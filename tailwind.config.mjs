@@ -94,8 +94,11 @@ const config = {
         warning: 'hsl(var(--warning))',
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        laquile: ['var(--font-laquile)'],
+        laquileRounded: ['var(--font-laquile-rounded)'],
+        laquileRough: ['var(--font-laquile-rough)'],
+        laquileStamp: ['var(--font-laquile-stamp)'],
+        martel: ['var(--font-martel)'],
       },
       keyframes: {
         'accordion-down': {

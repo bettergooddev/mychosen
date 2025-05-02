@@ -12,6 +12,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { laquile, laquileRounded, laquileRough, laquileStamp, martel } from '@/fonts/fonts'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -20,7 +21,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html
+      className={cn(
+        martel.variable,
+        laquile.variable,
+        laquileRounded.variable,
+        laquileRough.variable,
+        laquileStamp.variable,
+      )}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
