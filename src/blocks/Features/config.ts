@@ -27,6 +27,12 @@ const gallery: Field[] = [
     required: true,
     minRows: 2,
   },
+  {
+    name: 'reverse',
+    type: 'checkbox',
+    label: 'Reverse Layout',
+    defaultValue: false,
+  },
 ]
 
 const highlights: Field[] = [

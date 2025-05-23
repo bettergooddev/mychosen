@@ -821,6 +821,7 @@ export interface FeaturesBlock {
   heading: string;
   subheading?: string | null;
   images?: (string | Media)[] | null;
+  reverse?: boolean | null;
   highlights?:
     | {
         image: string | Media;
@@ -1306,6 +1307,7 @@ export interface FeaturesBlockSelect<T extends boolean = true> {
   heading?: T;
   subheading?: T;
   images?: T;
+  reverse?: T;
   highlights?:
     | T
     | {
