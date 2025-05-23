@@ -818,15 +818,14 @@ export interface Form {
  */
 export interface FeaturesBlock {
   type: 'none' | 'gallery' | 'highlights';
-  gallery?:
-    | {
-        image: string | Media;
-        id?: string | null;
-      }[]
-    | null;
+  heading: string;
+  subheading?: string | null;
+  images?: (string | Media)[] | null;
   highlights?:
     | {
         image: string | Media;
+        heading: string;
+        subheading?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1304,16 +1303,15 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface FeaturesBlockSelect<T extends boolean = true> {
   type?: T;
-  gallery?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
+  heading?: T;
+  subheading?: T;
+  images?: T;
   highlights?:
     | T
     | {
         image?: T;
+        heading?: T;
+        subheading?: T;
         id?: T;
       };
   id?: T;

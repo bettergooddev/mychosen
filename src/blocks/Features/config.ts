@@ -1,20 +1,47 @@
 import type { Block, Field } from 'payload'
 
-const gallery: Field[] = [
+const highlightField: Field[] = [
   {
     name: 'image',
     type: 'upload',
     relationTo: 'media',
     required: true,
   },
+  {
+    name: 'heading',
+    type: 'text',
+    required: true,
+  },
+  {
+    name: 'subheading',
+    type: 'text',
+  },
+]
+
+const gallery: Field[] = [
+  {
+    name: 'images',
+    type: 'upload',
+    relationTo: 'media',
+    hasMany: true,
+    required: true,
+    minRows: 2,
+  },
 ]
 
 const highlights: Field[] = [
   {
-    name: 'image',
-    type: 'upload',
-    relationTo: 'media',
+    name: 'highlights',
+    type: 'array',
+    fields: highlightField,
     required: true,
+    minRows: 3,
+    maxRows: 3,
+    admin: {
+      components: {
+        RowLabel: '@/blocks/Features/Highlights/HighlightsRowLabel#HighlightsRowLabel',
+      },
+    },
   },
 ]
 
@@ -45,26 +72,32 @@ export const Features: Block = {
     },
 
     {
-      name: 'gallery',
-      type: 'array',
-      fields: gallery,
-      label: 'Gallery Content',
-      admin: {
-        condition: (_, { type } = {}) => type === 'gallery',
-      },
-      maxRows: 1,
+      name: 'heading',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'subheading',
+      type: 'text',
     },
 
-    {
-      name: 'highlights',
-      type: 'array',
-      fields: highlights,
-      label: 'Highlights Content',
+    // @ts-expect-error the convience of this set up was worth it
+    ...gallery.map((field: Field) => ({
+      ...field,
       admin: {
-        condition: (_, { type } = {}) => type === 'highlights',
+        ...field.admin,
+        condition: (_: any, { type }: { type: string }) => type === 'gallery',
       },
-      maxRows: 1,
-    },
+    })),
+
+    // @ts-expect-error the convience of this set up was worth it
+    ...highlights.map((field: Field) => ({
+      ...field,
+      admin: {
+        ...field.admin,
+        condition: (_: any, { type }: { type: string }) => type === 'highlights',
+      },
+    })),
   ],
   labels: {
     plural: 'Features',
