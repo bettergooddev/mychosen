@@ -76,7 +76,7 @@ const mediumImpact: Field[] = [
   },
 
   {
-    name: 'links',
+    name: 'Buttons',
     type: 'group',
     label: false,
     fields: [
@@ -128,6 +128,18 @@ const mediumImpact: Field[] = [
       },
     ],
     required: true,
+  },
+]
+
+const lowImpact: Field[] = [
+  {
+    name: 'heading',
+    type: 'text',
+    required: true,
+  },
+  {
+    name: 'subheading',
+    type: 'text',
   },
 ]
 
@@ -189,49 +201,19 @@ export const hero: Field = {
       maxRows: 1,
     },
 
-    // {
-    //   name: 'lowImpact',
-    //   type: 'array',
-    //   fields: lowImpact,
-    //   label: 'Content',
-    //   admin: {
-    //     condition: (_, { type } = {}) => type === 'lowImpact',
-    //     components: {
-    //  RowLabel: '@/heros/HeroRowLabel#HeroRowLabel',
-    //     },
-    //   },
-    //   maxRows: 1,
-    // },
-
-    // {
-    //   name: 'richText',
-    //   type: 'richText',
-    //   editor: lexicalEditor({
-    //     features: ({ rootFeatures }) => {
-    //       return [
-    //         ...rootFeatures,
-    //         HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-    //         FixedToolbarFeature(),
-    //         InlineToolbarFeature(),
-    //       ]
-    //     },
-    //   }),
-    //   label: false,
-    // },
-    // linkGroup({
-    //   overrides: {
-    //     maxRows: 2,
-    //   },
-    // }),
-    // {
-    //   name: 'media',
-    //   type: 'upload',
-    //   admin: {
-    //     condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-    //   },
-    //   relationTo: 'media',
-    //   required: true,
-    // },
+    {
+      name: 'lowImpact',
+      type: 'array',
+      fields: lowImpact,
+      label: 'Content',
+      admin: {
+        condition: (_, { type } = {}) => type === 'lowImpact',
+        components: {
+          RowLabel: '@/heros/HeroRowLabel#HeroRowLabel',
+        },
+      },
+      maxRows: 1,
+    },
   ],
   label: false,
 }

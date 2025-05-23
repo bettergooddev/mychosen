@@ -189,7 +189,7 @@ export interface Page {
           logo?: (string | null) | Media;
           heading: string;
           subheading?: string | null;
-          links?: {
+          Buttons?: {
             primaryButton?:
               | {
                   link: {
@@ -265,6 +265,13 @@ export interface Page {
           };
           image?: (string | null) | Media;
           theme: 'cafe' | 'sugarShack' | 'pizza';
+          id?: string | null;
+        }[]
+      | null;
+    lowImpact?:
+      | {
+          heading: string;
+          subheading?: string | null;
           id?: string | null;
         }[]
       | null;
@@ -1100,7 +1107,7 @@ export interface PagesSelect<T extends boolean = true> {
               logo?: T;
               heading?: T;
               subheading?: T;
-              links?:
+              Buttons?:
                 | T
                 | {
                     primaryButton?:
@@ -1151,6 +1158,13 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               image?: T;
               theme?: T;
+              id?: T;
+            };
+        lowImpact?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
               id?: T;
             };
       };
