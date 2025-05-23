@@ -180,6 +180,91 @@ export interface Page {
           heading: string;
           subheading?: string | null;
           media: (string | Media)[];
+          backgroundLayers?: (string | Media)[] | null;
+          id?: string | null;
+        }[]
+      | null;
+    mediumImpact?:
+      | {
+          logo?: (string | null) | Media;
+          heading: string;
+          subheading?: string | null;
+          links?: {
+            primaryButton?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    /**
+                     * Choose how the link should be rendered.
+                     */
+                    appearance?: ('default' | 'outline') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            secondaryButton?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    /**
+                     * Choose how the link should be rendered.
+                     */
+                    appearance?: ('default' | 'outline') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            tertiaryButton?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    /**
+                     * Choose how the link should be rendered.
+                     */
+                    appearance?: ('default' | 'outline') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+          };
+          image?: (string | null) | Media;
+          theme: 'cafe' | 'sugarShack' | 'pizza';
           id?: string | null;
         }[]
       | null;
@@ -1006,6 +1091,66 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               media?: T;
+              backgroundLayers?: T;
+              id?: T;
+            };
+        mediumImpact?:
+          | T
+          | {
+              logo?: T;
+              heading?: T;
+              subheading?: T;
+              links?:
+                | T
+                | {
+                    primaryButton?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                appearance?: T;
+                              };
+                          id?: T;
+                        };
+                    secondaryButton?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                appearance?: T;
+                              };
+                          id?: T;
+                        };
+                    tertiaryButton?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                                appearance?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              image?: T;
+              theme?: T;
               id?: T;
             };
       };

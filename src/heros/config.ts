@@ -49,6 +49,86 @@ const highImpact: Field[] = [
     required: true,
     maxRows: 21,
   },
+  {
+    name: 'backgroundLayers',
+    type: 'upload',
+    relationTo: 'media',
+    hasMany: true,
+    maxRows: 3,
+    minRows: 3,
+  },
+]
+
+const mediumImpact: Field[] = [
+  {
+    name: 'logo',
+    type: 'upload',
+    relationTo: 'media',
+  },
+  {
+    name: 'heading',
+    type: 'text',
+    required: true,
+  },
+  {
+    name: 'subheading',
+    type: 'text',
+  },
+
+  {
+    name: 'links',
+    type: 'group',
+    label: false,
+    fields: [
+      {
+        name: 'primaryButton',
+        type: 'array',
+        fields: [link()],
+        maxRows: 1,
+        minRows: 1,
+      },
+      {
+        name: 'secondaryButton',
+        type: 'array',
+        fields: [link()],
+        maxRows: 1,
+        minRows: 1,
+      },
+
+      {
+        name: 'tertiaryButton',
+        type: 'array',
+        fields: [link()],
+        maxRows: 1,
+        minRows: 1,
+      },
+    ],
+  },
+
+  {
+    name: 'image',
+    type: 'upload',
+    relationTo: 'media',
+  },
+  {
+    name: 'theme',
+    type: 'select',
+    options: [
+      {
+        label: 'Cafe',
+        value: 'cafe',
+      },
+      {
+        label: 'Sugar Shack',
+        value: 'sugarShack',
+      },
+      {
+        label: 'Pizza',
+        value: 'pizza',
+      },
+    ],
+    required: true,
+  },
 ]
 
 export const hero: Field = {
@@ -95,19 +175,19 @@ export const hero: Field = {
       maxRows: 1,
     },
 
-    // {
-    //   name: 'mediumImpact',
-    //   type: 'array',
-    //   fields: mediumImpact,
-    //   label: 'Content',
-    //   admin: {
-    //     condition: (_, { type } = {}) => type === 'mediumImpact',
-    //     components: {
-    //       RowLabel: '@/heros/HeroRowLabel#HeroRowLabel',
-    //     },
-    //   },
-    //   maxRows: 1,
-    // },
+    {
+      name: 'mediumImpact',
+      type: 'array',
+      fields: mediumImpact,
+      label: 'Content',
+      admin: {
+        condition: (_, { type } = {}) => type === 'mediumImpact',
+        components: {
+          RowLabel: '@/heros/HeroRowLabel#HeroRowLabel',
+        },
+      },
+      maxRows: 1,
+    },
 
     // {
     //   name: 'lowImpact',
