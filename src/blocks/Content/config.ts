@@ -75,5 +75,11 @@ export const Content: Block = {
       },
       fields: columnFields,
     },
+    {
+      name: 'reverse',
+      type: 'checkbox',
+      label: 'Reverse Layout',
+      defaultValue: false,
+    },
   ],
 }

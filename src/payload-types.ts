@@ -564,6 +564,7 @@ export interface ContentBlock {
         id?: string | null;
       }[]
     | null;
+  reverse?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
@@ -1261,6 +1262,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  reverse?: T;
   id?: T;
   blockName?: T;
 }
