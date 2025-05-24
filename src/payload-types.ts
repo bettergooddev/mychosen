@@ -103,10 +103,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    card: Card;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    card: CardSelect<false> | CardSelect<true>;
   };
   locale: null;
   user: User & {
@@ -276,7 +278,15 @@ export interface Page {
         }[]
       | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | FeaturesBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | FeaturesBlock
+    | PlayingCardsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -837,6 +847,18 @@ export interface FeaturesBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PlayingCardsBlock".
+ */
+export interface PlayingCardsBlock {
+  heading: string;
+  subheading: string;
+  attachToFooter?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'playingCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1200,6 +1222,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         features?: T | FeaturesBlockSelect<T>;
+        playingCards?: T | PlayingCardsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1318,6 +1341,17 @@ export interface FeaturesBlockSelect<T extends boolean = true> {
         subheading?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PlayingCardsBlock_select".
+ */
+export interface PlayingCardsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  attachToFooter?: T;
   id?: T;
   blockName?: T;
 }
@@ -1795,6 +1829,38 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "card".
+ */
+export interface Card {
+  id: string;
+  cards?:
+    | {
+        logo?: (string | null) | Media;
+        name: string;
+        pattern?: (string | null) | Media;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1824,6 +1890,32 @@ export interface FooterSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "card_select".
+ */
+export interface CardSelect<T extends boolean = true> {
+  cards?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        pattern?: T;
         link?:
           | T
           | {
