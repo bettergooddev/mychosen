@@ -1,11 +1,11 @@
 'use client'
 
-import { ContactDetail } from '@/payload-types'
+import { CompanyDetail } from '@/payload-types'
 import { useRowLabel } from '@payloadcms/ui'
 
 export const RowLabel = () => {
   const { data, rowNumber: rowNumberRaw } =
-    useRowLabel<NonNullable<ContactDetail['socials']>[number]>()
+    useRowLabel<NonNullable<CompanyDetail['socials']>[number]>()
 
   const rowNumber = (rowNumberRaw || 0) + 1
 

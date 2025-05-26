@@ -25,9 +25,9 @@ import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from 
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
 import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/RowLabel'
 import { Select as Select_120d363afd071dc9d3846e86a2a5d3db } from '@/fields/lucideIcon/Select'
-import { Field as Field_01d0486ee9f2329f2201c596f1fed18d } from '@/collections/ContactDetails/Field'
-import { RowLabel as RowLabel_4366f582b93b0ac822bc21be636ade68 } from '@/collections/ContactDetails/FindUsRowLabel'
-import { RowLabel as RowLabel_d5eace84b6f5974f5f66735ed6b416d0 } from '@/collections/ContactDetails/SocialsRowLabel'
+import { Field as Field_9bbc4ea063d21e8ca0498094333bb64f } from '@/collections/CompanyDetails/Field'
+import { RowLabel as RowLabel_a6fee3a038409b1d77c10e4497e52913 } from '@/collections/CompanyDetails/FindUsRowLabel'
+import { RowLabel as RowLabel_8c743bc97328bee5930a4cdfafea06aa } from '@/collections/CompanyDetails/SocialsRowLabel'
 import { RowLabel as RowLabel_2070b2f5f3e169c59d6769e389794f9c } from '@/collections/Cards/RowLabel'
 import { TimeFormatInfo as TimeFormatInfo_d34487111b42bc922d18204b2f5948d8 } from '@/collections/Hours/TimeFormatInfo'
 import { RowLabel as RowLabel_bd670192799650a036dbe69d685a3ecf } from '@/collections/Hours/RowLabel'
@@ -62,9 +62,9 @@ export const importMap = {
   "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,
   "@/Footer/RowLabel#RowLabel": RowLabel_1f6ff6ff633e3695d348f4f3c58f1466,
   "@/fields/lucideIcon/Select#Select": Select_120d363afd071dc9d3846e86a2a5d3db,
-  "@/collections/ContactDetails/Field#Field": Field_01d0486ee9f2329f2201c596f1fed18d,
-  "@/collections/ContactDetails/FindUsRowLabel#RowLabel": RowLabel_4366f582b93b0ac822bc21be636ade68,
-  "@/collections/ContactDetails/SocialsRowLabel#RowLabel": RowLabel_d5eace84b6f5974f5f66735ed6b416d0,
+  "@/collections/CompanyDetails/Field#Field": Field_9bbc4ea063d21e8ca0498094333bb64f,
+  "@/collections/CompanyDetails/FindUsRowLabel#RowLabel": RowLabel_a6fee3a038409b1d77c10e4497e52913,
+  "@/collections/CompanyDetails/SocialsRowLabel#RowLabel": RowLabel_8c743bc97328bee5930a4cdfafea06aa,
   "@/collections/Cards/RowLabel#RowLabel": RowLabel_2070b2f5f3e169c59d6769e389794f9c,
   "@/collections/Hours/TimeFormatInfo#TimeFormatInfo": TimeFormatInfo_d34487111b42bc922d18204b2f5948d8,
   "@/collections/Hours/RowLabel#RowLabel": RowLabel_bd670192799650a036dbe69d685a3ecf,

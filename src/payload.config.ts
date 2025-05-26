@@ -16,7 +16,7 @@ import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { Cards } from './collections/Cards'
 import { Background } from './collections/Background'
-import { ContactDetails } from './collections/ContactDetails'
+import { CompanyDetails } from './collections/CompanyDetails'
 import { Brands } from './collections/Brands'
 import { Hours } from './collections/Hours'
 
@@ -72,7 +72,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Brands],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer, ContactDetails, Background, Cards, Hours],
+  globals: [Header, Footer, CompanyDetails, Background, Cards, Hours],
   plugins: [
     ...plugins,
     vercelBlobStorage({

@@ -105,7 +105,7 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
-    contactDetails: ContactDetail;
+    companyDetails: CompanyDetail;
     background: Background;
     card: Card;
     hours: Hour;
@@ -113,7 +113,7 @@ export interface Config {
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
-    contactDetails: ContactDetailsSelect<false> | ContactDetailsSelect<true>;
+    companyDetails: CompanyDetailsSelect<false> | CompanyDetailsSelect<true>;
     background: BackgroundSelect<false> | BackgroundSelect<true>;
     card: CardSelect<false> | CardSelect<true>;
     hours: HoursSelect<false> | HoursSelect<true>;
@@ -1852,9 +1852,9 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactDetails".
+ * via the `definition` "companyDetails".
  */
-export interface ContactDetail {
+export interface CompanyDetail {
   id: string;
   findUs?:
     | {
@@ -1898,6 +1898,12 @@ export interface ContactDetail {
         id?: string | null;
       }[]
     | null;
+  location?: {
+    /**
+     * Paste the embed URL from Google Maps (e.g., https://www.google.com/maps/embed?pb=...)
+     */
+    googleMapsEmbedUrl?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2046,9 +2052,9 @@ export interface FooterSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactDetails_select".
+ * via the `definition` "companyDetails_select".
  */
-export interface ContactDetailsSelect<T extends boolean = true> {
+export interface CompanyDetailsSelect<T extends boolean = true> {
   findUs?:
     | T
     | {
@@ -2078,6 +2084,11 @@ export interface ContactDetailsSelect<T extends boolean = true> {
             };
         lucideIcon?: T;
         id?: T;
+      };
+  location?:
+    | T
+    | {
+        googleMapsEmbedUrl?: T;
       };
   updatedAt?: T;
   createdAt?: T;
