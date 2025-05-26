@@ -14,6 +14,23 @@ export const CallToAction: Block = {
   interfaceName: 'CallToActionBlock',
   fields: [
     {
+      name: 'style',
+      type: 'select',
+      label: 'Style',
+      options: [
+        {
+          label: 'Default',
+          value: 'default',
+        },
+        {
+          label: 'Fancy',
+          value: 'fancy',
+        },
+      ],
+      defaultValue: 'default',
+      required: true,
+    },
+    {
       name: 'heading',
       type: 'text',
       label: 'Heading',
