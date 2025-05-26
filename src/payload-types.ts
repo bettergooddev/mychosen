@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     users: User;
     brands: Brand;
+    menus: Menu;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -90,6 +91,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     brands: BrandsSelect<false> | BrandsSelect<true>;
+    menus: MenusSelect<false> | MenusSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -880,6 +882,20 @@ export interface Brand {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menus".
+ */
+export interface Menu {
+  id: string;
+  brand: string | Brand;
+  name: string;
+  lucideIcon: string;
+  pdf: string | Media;
+  thumbnail: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1073,6 +1089,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'brands';
         value: string | Brand;
+      } | null)
+    | ({
+        relationTo: 'menus';
+        value: string | Menu;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1560,6 +1580,19 @@ export interface BrandsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menus_select".
+ */
+export interface MenusSelect<T extends boolean = true> {
+  brand?: T;
+  name?: T;
+  lucideIcon?: T;
+  pdf?: T;
+  thumbnail?: T;
   updatedAt?: T;
   createdAt?: T;
 }

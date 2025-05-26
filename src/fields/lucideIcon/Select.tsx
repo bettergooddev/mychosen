@@ -50,7 +50,7 @@ export const Select: React.FC<LucideSelectComponentProps> = ({ path }) => {
         }}
       />
       {value && (
-        <span className="flex items-center gap-2 mt-2">
+        <span className="flex items-center gap-2 mt-2 mb-3">
           Icon Preview: <DynamicIcon name={value as any} size={20} />
         </span>
       )}
