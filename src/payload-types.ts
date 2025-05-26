@@ -493,6 +493,7 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
+  style: 'default' | 'fancy';
   heading: string;
   subheading?: string | null;
   links?:
@@ -1254,6 +1255,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
+  style?: T;
   heading?: T;
   subheading?: T;
   links?:
