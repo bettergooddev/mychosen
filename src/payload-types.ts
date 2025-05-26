@@ -1958,38 +1958,38 @@ export interface Hour {
     | {
         brand: string | Brand;
         monday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         tuesday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         wednesday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         thursday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         friday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         saturday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         sunday: {
-          openTime: string;
-          closeTime: string;
+          openTime?: string | null;
+          closeTime?: string | null;
           isClosed: boolean;
         };
         id?: string | null;

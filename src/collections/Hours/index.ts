@@ -12,6 +12,7 @@ const Day: Field[] = [
         admin: {
           width: '50%',
           placeholder: '9:00 AM',
+          condition: (data: any, siblingData: any) => !siblingData?.isClosed,
         },
       },
       {
@@ -21,6 +22,7 @@ const Day: Field[] = [
         admin: {
           width: '50%',
           placeholder: '5:00 PM',
+          condition: (data: any, siblingData: any) => !siblingData?.isClosed,
         },
       },
     ],
@@ -28,6 +30,7 @@ const Day: Field[] = [
   {
     name: 'isClosed',
     type: 'checkbox',
+    label: 'Closed',
     required: true,
     defaultValue: false,
   },
