@@ -14,19 +14,15 @@ export const CallToAction: Block = {
   interfaceName: 'CallToActionBlock',
   fields: [
     {
-      name: 'richText',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [
-            ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-          ]
-        },
-      }),
-      label: false,
+      name: 'heading',
+      type: 'text',
+      label: 'Heading',
+      required: true,
+    },
+    {
+      name: 'subheading',
+      type: 'text',
+      label: 'Subheading',
     },
     linkGroup({
       appearances: ['default', 'outline'],
