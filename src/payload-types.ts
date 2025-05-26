@@ -1957,56 +1957,40 @@ export interface Hour {
   hours?:
     | {
         brand: string | Brand;
-        week: {
-          monday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
-          tuesday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
-          wednesday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
-          thursday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
-          friday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
-          saturday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
-          sunday: {
-            hours: {
-              openTime: string;
-              closeTime: string;
-              isClosed: boolean;
-            };
-          };
+        monday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
+        };
+        tuesday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
+        };
+        wednesday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
+        };
+        thursday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
+        };
+        friday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
+        };
+        saturday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
+        };
+        sunday: {
+          openTime: string;
+          closeTime: string;
+          isClosed: boolean;
         };
         id?: string | null;
       }[]
@@ -2149,86 +2133,54 @@ export interface HoursSelect<T extends boolean = true> {
     | T
     | {
         brand?: T;
-        week?:
+        monday?:
           | T
           | {
-              monday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
-              tuesday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
-              wednesday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
-              thursday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
-              friday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
-              saturday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
-              sunday?:
-                | T
-                | {
-                    hours?:
-                      | T
-                      | {
-                          openTime?: T;
-                          closeTime?: T;
-                          isClosed?: T;
-                        };
-                  };
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
+            };
+        tuesday?:
+          | T
+          | {
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
+            };
+        wednesday?:
+          | T
+          | {
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
+            };
+        thursday?:
+          | T
+          | {
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
+            };
+        friday?:
+          | T
+          | {
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
+            };
+        saturday?:
+          | T
+          | {
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
+            };
+        sunday?:
+          | T
+          | {
+              openTime?: T;
+              closeTime?: T;
+              isClosed?: T;
             };
         id?: T;
       };

@@ -1,84 +1,46 @@
 import type { CollectionConfig, GlobalConfig, Field } from 'payload'
 import { link } from '@/fields/link'
 
-const Day: Field = {
-  name: 'hours',
-  type: 'group',
-  label: false,
-  fields: [
-    {
-      type: 'row',
-      fields: [
-        {
-          name: 'openTime',
-          type: 'text',
-          required: true,
-          admin: {
-            width: '50%',
-          },
+const Day: Field[] = [
+  {
+    type: 'row',
+    fields: [
+      {
+        name: 'openTime',
+        type: 'text',
+        required: true,
+        admin: {
+          width: '50%',
+          placeholder: '9:00 AM',
         },
-        {
-          name: 'closeTime',
-          type: 'text',
-          required: true,
-          admin: {
-            width: '50%',
-          },
+      },
+      {
+        name: 'closeTime',
+        type: 'text',
+        required: true,
+        admin: {
+          width: '50%',
+          placeholder: '5:00 PM',
         },
-      ],
-    },
-    {
-      name: 'isClosed',
-      type: 'checkbox',
-      required: true,
-      defaultValue: false,
-    },
-  ],
-}
+      },
+    ],
+  },
+  {
+    name: 'isClosed',
+    type: 'checkbox',
+    required: true,
+    defaultValue: false,
+  },
+]
 
-const Week: Field[] = [
-  {
-    name: 'monday',
-    type: 'group',
-    label: 'Monday',
-    fields: [Day],
-  },
-  {
-    name: 'tuesday',
-    type: 'group',
-    label: 'Tuesday',
-    fields: [Day],
-  },
-  {
-    name: 'wednesday',
-    type: 'group',
-    label: 'Wednesday',
-    fields: [Day],
-  },
-  {
-    name: 'thursday',
-    type: 'group',
-    label: 'Thursday',
-    fields: [Day],
-  },
-  {
-    name: 'friday',
-    type: 'group',
-    label: 'Friday',
-    fields: [Day],
-  },
-  {
-    name: 'saturday',
-    type: 'group',
-    label: 'Saturday',
-    fields: [Day],
-  },
-  {
-    name: 'sunday',
-    type: 'group',
-    label: 'Sunday',
-    fields: [Day],
-  },
+const days = [
+  { name: 'monday', label: 'Monday' },
+  { name: 'tuesday', label: 'Tuesday' },
+  { name: 'wednesday', label: 'Wednesday' },
+  { name: 'thursday', label: 'Thursday' },
+  { name: 'friday', label: 'Friday' },
+  { name: 'saturday', label: 'Saturday' },
+  { name: 'sunday', label: 'Sunday' },
 ]
 
 const HourSet: Field[] = [
@@ -93,13 +55,15 @@ const HourSet: Field[] = [
       hidden: true,
     },
   },
-  {
-    name: 'week',
-    label: false,
+  // @ts-expect-error the convenience of this setup was worth it
+  ...days.map((day) => ({
+    name: day.name,
     type: 'group',
-    fields: Week,
-  },
+    label: day.label,
+    fields: Day,
+  })),
 ]
+
 export const Hours: GlobalConfig = {
   slug: 'hours',
   label: {
@@ -107,6 +71,15 @@ export const Hours: GlobalConfig = {
     plural: 'Hours',
   },
   fields: [
+    {
+      type: 'ui',
+      name: 'timeFormatInfo',
+      admin: {
+        components: {
+          Field: '@/collections/Hours/TimeFormatInfo#TimeFormatInfo',
+        },
+      },
+    },
     {
       name: 'hours',
       type: 'array',
