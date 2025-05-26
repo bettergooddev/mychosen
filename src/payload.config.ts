@@ -15,6 +15,7 @@ import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { Cards } from './collections/Cards'
+import { Background } from './collections/Background'
 
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -67,7 +68,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer, Cards],
+  globals: [Header, Footer, Background, Cards],
   plugins: [
     ...plugins,
     vercelBlobStorage({

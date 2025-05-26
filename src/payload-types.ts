@@ -103,11 +103,13 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    background: Background;
     card: Card;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    background: BackgroundSelect<false> | BackgroundSelect<true>;
     card: CardSelect<false> | CardSelect<true>;
   };
   locale: null;
@@ -1829,6 +1831,21 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "background".
+ */
+export interface Background {
+  id: string;
+  layers?:
+    | {
+        layer: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "card".
  */
 export interface Card {
@@ -1899,6 +1916,21 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "background_select".
+ */
+export interface BackgroundSelect<T extends boolean = true> {
+  layers?:
+    | T
+    | {
+        layer?: T;
         id?: T;
       };
   updatedAt?: T;
