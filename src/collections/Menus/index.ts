@@ -27,6 +27,7 @@ export const Menus: CollectionConfig = {
     lucideIcon,
     {
       name: 'pdf',
+      label: 'PDF File',
       type: 'upload',
       relationTo: 'media',
       required: true,
