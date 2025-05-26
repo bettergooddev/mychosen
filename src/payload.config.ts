@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { Testimonials } from './collections/Testimonials'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { Cards } from './collections/Cards'
@@ -70,7 +71,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Brands],
+  collections: [Pages, Posts, Media, Categories, Users, Brands, Testimonials],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, CompanyDetails, Background, Cards, Hours],
   plugins: [
