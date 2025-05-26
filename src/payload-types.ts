@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    brands: Brand;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +89,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    brands: BrandsSelect<false> | BrandsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -106,6 +108,7 @@ export interface Config {
     contactDetails: ContactDetail;
     background: Background;
     card: Card;
+    hours: Hour;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
@@ -113,6 +116,7 @@ export interface Config {
     contactDetails: ContactDetailsSelect<false> | ContactDetailsSelect<true>;
     background: BackgroundSelect<false> | BackgroundSelect<true>;
     card: CardSelect<false> | CardSelect<true>;
+    hours: HoursSelect<false> | HoursSelect<true>;
   };
   locale: null;
   user: User & {
@@ -850,6 +854,18 @@ export interface PlayingCardsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands".
+ */
+export interface Brand {
+  id: string;
+  name: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1039,6 +1055,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'brands';
+        value: string | Brand;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1509,6 +1529,17 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands_select".
+ */
+export interface BrandsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1919,6 +1950,72 @@ export interface Card {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hours".
+ */
+export interface Hour {
+  id: string;
+  hours?:
+    | {
+        brand: string | Brand;
+        week: {
+          monday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+          tuesday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+          wednesday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+          thursday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+          friday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+          saturday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+          sunday: {
+            hours: {
+              openTime: string;
+              closeTime: string;
+              isClosed: boolean;
+            };
+          };
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2036,6 +2133,102 @@ export interface CardSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hours_select".
+ */
+export interface HoursSelect<T extends boolean = true> {
+  hours?:
+    | T
+    | {
+        brand?: T;
+        week?:
+          | T
+          | {
+              monday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
+              tuesday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
+              wednesday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
+              thursday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
+              friday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
+              saturday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
+              sunday?:
+                | T
+                | {
+                    hours?:
+                      | T
+                      | {
+                          openTime?: T;
+                          closeTime?: T;
+                          isClosed?: T;
+                        };
+                  };
             };
         id?: T;
       };

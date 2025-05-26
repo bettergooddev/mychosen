@@ -29,6 +29,7 @@ import { Field as Field_01d0486ee9f2329f2201c596f1fed18d } from '@/collections/C
 import { RowLabel as RowLabel_4366f582b93b0ac822bc21be636ade68 } from '@/collections/ContactDetails/FindUsRowLabel'
 import { RowLabel as RowLabel_d5eace84b6f5974f5f66735ed6b416d0 } from '@/collections/ContactDetails/SocialsRowLabel'
 import { RowLabel as RowLabel_2070b2f5f3e169c59d6769e389794f9c } from '@/collections/Cards/RowLabel'
+import { RowLabel as RowLabel_bd670192799650a036dbe69d685a3ecf } from '@/collections/Hours/RowLabel'
 import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
@@ -64,6 +65,7 @@ export const importMap = {
   "@/collections/ContactDetails/FindUsRowLabel#RowLabel": RowLabel_4366f582b93b0ac822bc21be636ade68,
   "@/collections/ContactDetails/SocialsRowLabel#RowLabel": RowLabel_d5eace84b6f5974f5f66735ed6b416d0,
   "@/collections/Cards/RowLabel#RowLabel": RowLabel_2070b2f5f3e169c59d6769e389794f9c,
+  "@/collections/Hours/RowLabel#RowLabel": RowLabel_bd670192799650a036dbe69d685a3ecf,
   "@/components/BeforeLogin#default": default_8a7ab0eb7ab5c511aba12e68480bfe5e,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

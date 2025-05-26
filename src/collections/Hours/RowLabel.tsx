@@ -1,16 +1,22 @@
 'use client'
 
-import { useRowLabel } from '@payloadcms/ui'
-import { v4 as uuidv4 } from 'uuid'
+import { usePayloadAPI, useRowLabel } from '@payloadcms/ui'
 
-interface ContactInfoData {
-  name?: string
+interface HourData {
+  brand?: string
 }
 
 export const RowLabel = () => {
-  const { data, rowNumber } = useRowLabel<ContactInfoData>()
+  const { data, rowNumber } = useRowLabel<HourData>()
 
-  const customLabel = data?.name || `Contact Info ${String((rowNumber || 0) + 1).padStart(2, '0')}`
+  const [{ data: brandData, isError, isLoading }, { setParams }] = usePayloadAPI(
+    `/api/brands/${data?.brand}`,
+    {
+      initialParams: { depth: 1 },
+    },
+  )
 
-  return <div key={uuidv4()}>{customLabel}</div>
+  const customLabel = brandData?.name || `Hour ${String((rowNumber || 0) + 1).padStart(2, '0')}`
+
+  return <>{customLabel}</>
 }

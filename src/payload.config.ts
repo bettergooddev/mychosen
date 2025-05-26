@@ -17,6 +17,8 @@ import { Header } from './Header/config'
 import { Cards } from './collections/Cards'
 import { Background } from './collections/Background'
 import { ContactDetails } from './collections/ContactDetails'
+import { Brands } from './collections/Brands'
+import { Hours } from './collections/Hours'
 
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -68,9 +70,9 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, Brands],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer, ContactDetails, Background, Cards],
+  globals: [Header, Footer, ContactDetails, Background, Cards, Hours],
   plugins: [
     ...plugins,
     vercelBlobStorage({
