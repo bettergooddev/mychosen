@@ -109,6 +109,7 @@ export interface Config {
     background: Background;
     card: Card;
     hours: Hour;
+    testimonials: Testimonial;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
@@ -117,6 +118,7 @@ export interface Config {
     background: BackgroundSelect<false> | BackgroundSelect<true>;
     card: CardSelect<false> | CardSelect<true>;
     hours: HoursSelect<false> | HoursSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -294,6 +296,7 @@ export interface Page {
     | FormBlock
     | FeaturesBlock
     | PlayingCardsBlock
+    | TestimonialsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -855,6 +858,16 @@ export interface PlayingCardsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  heading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "brands".
  */
 export interface Brand {
@@ -1235,6 +1248,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         features?: T | FeaturesBlockSelect<T>;
         playingCards?: T | PlayingCardsBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1366,6 +1380,15 @@ export interface PlayingCardsBlockSelect<T extends boolean = true> {
   heading?: T;
   subheading?: T;
   attachToFooter?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  heading?: T;
   id?: T;
   blockName?: T;
 }
@@ -2008,6 +2031,27 @@ export interface Hour {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  testimonials?:
+    | {
+        image: string | Media;
+        rating: '0' | '0.5' | '1' | '1.5' | '2' | '2.5' | '3' | '3.5' | '4' | '4.5' | '5';
+        author: {
+          name: string;
+          role: string;
+          profilePicture: string | Media;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2194,6 +2238,29 @@ export interface HoursSelect<T extends boolean = true> {
               openTime?: T;
               closeTime?: T;
               isClosed?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  testimonials?:
+    | T
+    | {
+        image?: T;
+        rating?: T;
+        author?:
+          | T
+          | {
+              name?: T;
+              role?: T;
+              profilePicture?: T;
             };
         id?: T;
       };

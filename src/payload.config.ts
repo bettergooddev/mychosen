@@ -71,9 +71,9 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Brands, Testimonials],
+  collections: [Pages, Posts, Media, Categories, Users, Brands],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer, CompanyDetails, Background, Cards, Hours],
+  globals: [Header, Footer, CompanyDetails, Background, Cards, Hours, Testimonials],
   plugins: [
     ...plugins,
     vercelBlobStorage({
