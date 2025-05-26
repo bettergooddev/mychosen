@@ -299,6 +299,7 @@ export interface Page {
     | FeaturesBlock
     | PlayingCardsBlock
     | TestimonialsBlock
+    | TimelineBlock
   )[];
   meta?: {
     title?: string | null;
@@ -870,6 +871,23 @@ export interface TestimonialsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock".
+ */
+export interface TimelineBlock {
+  heading: string;
+  subheading?: string | null;
+  events: {
+    year: number;
+    description: string;
+    image: string | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'timeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "brands".
  */
 export interface Brand {
@@ -1269,6 +1287,7 @@ export interface PagesSelect<T extends boolean = true> {
         features?: T | FeaturesBlockSelect<T>;
         playingCards?: T | PlayingCardsBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
+        timeline?: T | TimelineBlockSelect<T>;
       };
   meta?:
     | T
@@ -1409,6 +1428,24 @@ export interface PlayingCardsBlockSelect<T extends boolean = true> {
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
   heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock_select".
+ */
+export interface TimelineBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  events?:
+    | T
+    | {
+        year?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

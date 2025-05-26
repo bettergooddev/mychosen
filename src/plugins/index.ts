@@ -88,6 +88,9 @@ export const plugins: Plugin[] = [
       fields: ({ defaultFields }) => {
         return [...defaultFields, ...searchFields]
       },
+      admin: {
+        hidden: true,
+      },
     },
   }),
   payloadCloudPlugin(),

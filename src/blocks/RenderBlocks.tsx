@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { RenderFeatures } from '@/blocks/Features/RenderFeatures'
 import { PlayingCardsBlock } from '@/blocks/PlayingCards/Component'
 import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
+import { TimelineBlock } from '@/blocks/Timeline/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   features: RenderFeatures,
   playingCards: PlayingCardsBlock,
   testimonials: TestimonialsBlock,
+  timeline: TimelineBlock,
 }
 
 export const RenderBlocks: React.FC<{

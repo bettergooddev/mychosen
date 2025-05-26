@@ -10,6 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { Features } from '@/blocks/Features/config'
 import { PlayingCards } from '@/blocks/PlayingCards/config'
 import { Testimonials } from '@/blocks/Testimonials/config'
+import { Timeline } from '@/blocks/Timeline/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -87,6 +88,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Features,
                 PlayingCards,
                 Testimonials,
+                Timeline,
               ],
               required: true,
               admin: {
