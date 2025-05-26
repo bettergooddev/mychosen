@@ -33,7 +33,11 @@ export const Select: React.FC<LucideSelectComponentProps> = ({ path }) => {
   const { value, setValue } = useField<string>({ path })
 
   return (
-    <div>
+    <div
+      style={{
+        marginBottom: '12px',
+      }}
+    >
       <SelectInput
         path={path}
         name={path}
@@ -50,7 +54,15 @@ export const Select: React.FC<LucideSelectComponentProps> = ({ path }) => {
         }}
       />
       {value && (
-        <span className="flex items-center gap-2 mt-2 mb-3">
+        <span
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginTop: '8px',
+            fontSize: '14px',
+          }}
+        >
           Icon Preview: <DynamicIcon name={value as any} size={20} />
         </span>
       )}
