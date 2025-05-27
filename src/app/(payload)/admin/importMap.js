@@ -24,7 +24,8 @@ import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { Select as Select_120d363afd071dc9d3846e86a2a5d3db } from '@/fields/lucideIcon/Select'
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
-import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
+import { LinkRowLabel as LinkRowLabel_bb1c4b965b7c07ad4b88efe6dc65271f } from '@/fields/dropdown/LinkRowLabel'
+import { RowLabel as RowLabel_2cfe2e364368a03eb7e153423c97fea0 } from '@/Navigation/RowLabel'
 import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/RowLabel'
 import { Field as Field_9bbc4ea063d21e8ca0498094333bb64f } from '@/collections/CompanyDetails/Field'
 import { RowLabel as RowLabel_a6fee3a038409b1d77c10e4497e52913 } from '@/collections/CompanyDetails/FindUsRowLabel'
@@ -62,7 +63,8 @@ export const importMap = {
   "@/fields/lucideIcon/Select#Select": Select_120d363afd071dc9d3846e86a2a5d3db,
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
-  "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,
+  "@/fields/dropdown/LinkRowLabel#LinkRowLabel": LinkRowLabel_bb1c4b965b7c07ad4b88efe6dc65271f,
+  "@/Navigation/RowLabel#RowLabel": RowLabel_2cfe2e364368a03eb7e153423c97fea0,
   "@/Footer/RowLabel#RowLabel": RowLabel_1f6ff6ff633e3695d348f4f3c58f1466,
   "@/collections/CompanyDetails/Field#Field": Field_9bbc4ea063d21e8ca0498094333bb64f,
   "@/collections/CompanyDetails/FindUsRowLabel#RowLabel": RowLabel_a6fee3a038409b1d77c10e4497e52913,

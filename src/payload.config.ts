@@ -15,7 +15,7 @@ import { Users } from './collections/Users'
 import { Testimonials } from './collections/Testimonials'
 import { Menus } from './collections/Menus'
 import { Footer } from './Footer/config'
-import { Header } from './Header/config'
+import { Navigation } from './Navigation/config'
 import { Cards } from './collections/Cards'
 import { Background } from './collections/Background'
 import { CompanyDetails } from './collections/CompanyDetails'
@@ -74,7 +74,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Brands, Menus],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer, CompanyDetails, Background, Cards, Hours, Testimonials],
+  globals: [Navigation, Footer, CompanyDetails, Background, Cards, Hours, Testimonials],
   plugins: [
     ...plugins,
     vercelBlobStorage({

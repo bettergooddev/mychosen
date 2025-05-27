@@ -105,7 +105,7 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    header: Header;
+    navigation: Navigation;
     footer: Footer;
     companyDetails: CompanyDetail;
     background: Background;
@@ -114,7 +114,7 @@ export interface Config {
     testimonials: Testimonial;
   };
   globalsSelect: {
-    header: HeaderSelect<false> | HeaderSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     companyDetails: CompanyDetailsSelect<false> | CompanyDetailsSelect<true>;
     background: BackgroundSelect<false> | BackgroundSelect<true>;
@@ -1866,26 +1866,117 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
+ * via the `definition` "navigation".
  */
-export interface Header {
+export interface Navigation {
   id: string;
+  logo: {
+    desktopLogo: string | Media;
+    mobileLogo: string | Media;
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
   navItems?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
+        navigationItem: {
+          type: 'link' | 'dropdown';
+          link?: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: string | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
+          dropdown?: {
+            label: string;
+            items?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+          };
+        };
+        id?: string | null;
+      }[]
+    | null;
+  actions?:
+    | {
+        navigationItem: {
+          type: 'link' | 'dropdown';
+          link?: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: string | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
+          dropdown?: {
+            label: string;
+            items?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: string | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: string | Post;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+          };
         };
         id?: string | null;
       }[]
@@ -2099,12 +2190,14 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
+ * via the `definition` "navigation_select".
  */
-export interface HeaderSelect<T extends boolean = true> {
-  navItems?:
+export interface NavigationSelect<T extends boolean = true> {
+  logo?:
     | T
     | {
+        desktopLogo?: T;
+        mobileLogo?: T;
         link?:
           | T
           | {
@@ -2113,6 +2206,81 @@ export interface HeaderSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+            };
+      };
+  navItems?:
+    | T
+    | {
+        navigationItem?:
+          | T
+          | {
+              type?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              dropdown?:
+                | T
+                | {
+                    label?: T;
+                    items?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+            };
+        id?: T;
+      };
+  actions?:
+    | T
+    | {
+        navigationItem?:
+          | T
+          | {
+              type?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              dropdown?:
+                | T
+                | {
+                    label?: T;
+                    items?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                              };
+                          id?: T;
+                        };
+                  };
             };
         id?: T;
       };
