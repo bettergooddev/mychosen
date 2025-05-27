@@ -1990,26 +1990,104 @@ export interface Navigation {
  */
 export interface Footer {
   id: string;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  sitemap: {
+    heading: string;
+    footerItems?:
+      | {
+          navigationItem: {
+            type: 'link' | 'dropdown';
+            link?: {
+              type?: ('reference' | 'custom') | null;
+              newTab?: boolean | null;
+              reference?:
+                | ({
+                    relationTo: 'pages';
+                    value: string | Page;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: string | Post;
+                  } | null);
+              url?: string | null;
+              label: string;
+            };
+            dropdown?: {
+              label: string;
+              items?:
+                | {
+                    link: {
+                      type?: ('reference' | 'custom') | null;
+                      newTab?: boolean | null;
+                      reference?:
+                        | ({
+                            relationTo: 'pages';
+                            value: string | Page;
+                          } | null)
+                        | ({
+                            relationTo: 'posts';
+                            value: string | Post;
+                          } | null);
+                      url?: string | null;
+                      label: string;
+                    };
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
+  whatToDo: {
+    heading: string;
+    footerItems?:
+      | {
+          navigationItem: {
+            type: 'link' | 'dropdown';
+            link?: {
+              type?: ('reference' | 'custom') | null;
+              newTab?: boolean | null;
+              reference?:
+                | ({
+                    relationTo: 'pages';
+                    value: string | Page;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: string | Post;
+                  } | null);
+              url?: string | null;
+              label: string;
+            };
+            dropdown?: {
+              label: string;
+              items?:
+                | {
+                    link: {
+                      type?: ('reference' | 'custom') | null;
+                      newTab?: boolean | null;
+                      reference?:
+                        | ({
+                            relationTo: 'pages';
+                            value: string | Page;
+                          } | null)
+                        | ({
+                            relationTo: 'posts';
+                            value: string | Post;
+                          } | null);
+                      url?: string | null;
+                      label: string;
+                    };
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2293,19 +2371,91 @@ export interface NavigationSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  sitemap?:
     | T
     | {
-        link?:
+        heading?: T;
+        footerItems?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              navigationItem?:
+                | T
+                | {
+                    type?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    dropdown?:
+                      | T
+                      | {
+                          label?: T;
+                          items?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                  };
+              id?: T;
             };
-        id?: T;
+      };
+  whatToDo?:
+    | T
+    | {
+        heading?: T;
+        footerItems?:
+          | T
+          | {
+              navigationItem?:
+                | T
+                | {
+                    type?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    dropdown?:
+                      | T
+                      | {
+                          label?: T;
+                          items?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                  };
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
