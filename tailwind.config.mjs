@@ -49,6 +49,17 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'loop-horizontally': 'loop-horizontally 20s linear infinite',
+        'loop-testimonials': 'loop-testimonials 30s linear infinite',
+        'loop-vertically': 'loop-vertically 30s linear infinite',
+        'loop-vertically-top': 'loop-vertically-top 50s linear infinite',
+        'loop-vertically-bottom': 'loop-vertically-bottom 50s linear infinite',
+        'marquee-horizontally': 'marquee-top 30s linear infinite',
+        'marquee-top': 'marquee-top 50s linear infinite',
+        'marquee-right': 'marquee-right 25s linear infinite',
+        'marquee-bottom': 'marquee-bottom 50s linear infinite',
+        'marquee-left': 'marquee-left 25s linear infinite',
+        tabs: 'tabs 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -103,12 +114,56 @@ const config = {
       },
       keyframes: {
         'accordion-down': {
-          from: { height: '0' },
+          from: { height: '0px' },
           to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          to: { height: '0px' },
+        },
+        'loop-horizontally': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
+        'loop-testimonials': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-135rem)' },
+        },
+        'loop-vertically': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(-50%)' },
+        },
+        'loop-vertically-top': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(-50%)' },
+        },
+        'loop-vertically-bottom': {
+          from: { transform: 'translateY(-50%)' },
+          to: { transform: 'translateY(0)' },
+        },
+        'marquee-horizontally': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        'marquee-top': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        'marquee-right': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(100%)' },
+        },
+        'marquee-bottom': {
+          from: { transform: 'translateX(-50%)' },
+          to: { transform: 'translateX(0%)' },
+        },
+        'marquee-left': {
+          from: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(0)' },
+        },
+        tabs: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       typography: () => ({
