@@ -49,13 +49,13 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
         )}
 
         <div className="prose">
-          <h1 className="mb-6">{heading}</h1>
-          {subheading && <p className="max-w-[48ch] mb-12">{subheading}</p>}
+          <h1 className="mb-6 text-foreground">{heading}</h1>
+          {subheading && <p className="max-w-[48ch] mb-12 text-foreground">{subheading}</p>}
         </div>
 
         {/* Down Arrow */}
         <div className="animate-bounce">
-          <ChevronDown className="w-8 h-8 text-green-900" />
+          <ChevronDown className="w-8 h-8 text-foreground" />
         </div>
       </div>
     </section>
