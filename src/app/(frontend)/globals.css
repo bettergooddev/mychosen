@@ -139,7 +139,7 @@ html[data-theme='light'] {
   .type-h1,
   .prose h1 {
     font-family: var(--font-fiyona);
-    font-size: 7rem;
+    font-size: clamp(3.375rem, 4vw + 2rem, 5.25rem);
     font-style: normal;
     font-weight: 100;
     line-height: 120%;
@@ -149,7 +149,7 @@ html[data-theme='light'] {
   .type-h2,
   .prose h2 {
     font-family: var(--font-fiyona);
-    font-size: 4.5rem;
+    font-size: clamp(1.125rem, 2.5vw + 1rem, 3.375rem);
     font-style: normal;
     font-weight: 82;
     line-height: 120%;
@@ -157,7 +157,7 @@ html[data-theme='light'] {
 
   .h2-accent {
     font-family: var(--font-laquile);
-    font-size: 4.5rem;
+    font-size: clamp(1.125rem, 2.5vw + 1rem, 3.375rem);
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
@@ -167,7 +167,7 @@ html[data-theme='light'] {
   .type-h3,
   .prose h3 {
     font-family: var(--font-martel);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
     font-style: normal;
     font-weight: 800;
     line-height: 140%;
@@ -177,7 +177,7 @@ html[data-theme='light'] {
   .type-h4,
   .prose h4 {
     font-family: var(--font-martel);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
     font-style: normal;
     font-weight: 800;
     line-height: 120%;
@@ -191,7 +191,7 @@ html[data-theme='light'] {
   .prose span,
   .prose a {
     font-family: var(--font-martel);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
@@ -202,7 +202,7 @@ html[data-theme='light'] {
   .type-caption,
   .prose h5 {
     font-family: var(--font-martel);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
     font-style: normal;
     font-weight: 800;
     line-height: 140%;

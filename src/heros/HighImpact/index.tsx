@@ -35,22 +35,40 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         {/* Logos */}
         {logos && logos.length > 0 && (
-          <div className="flex items-center justify-center gap-8 md:gap-16 mb-12 w-full container max-w-screen-md -mt-1/3">
-            <CMSLink {...logoLeft?.link} appearance="inline" label={null} className="w-1/4">
-              <Media resource={logoLeft?.logo} className="h-auto" imgClassName="size-full" />
-            </CMSLink>
-            <CMSLink {...logoCenter?.link} appearance="inline" label={null} className="w-2/4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 md:mb-12 mb-14 w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[8%]">
+            <div className="flex w-full justify-between gap-10 md:contents">
+              <CMSLink
+                {...logoLeft?.link}
+                appearance="inline"
+                label={null}
+                className="w-1/2 md:w-1/4 md:order-1"
+              >
+                <Media resource={logoLeft?.logo} className="h-auto" imgClassName="size-full" />
+              </CMSLink>
+              <CMSLink
+                {...logoRight?.link}
+                appearance="inline"
+                label={null}
+                className="w-1/2 md:w-1/4 md:order-3"
+              >
+                <Media resource={logoRight?.logo} className="h-auto" imgClassName="size-full" />
+              </CMSLink>
+            </div>
+
+            <CMSLink
+              {...logoCenter?.link}
+              appearance="inline"
+              label={null}
+              className="w-3/4 md:w-2/4 md:order-2"
+            >
               <Media resource={logoCenter?.logo} className="h-auto" imgClassName="size-full" />
-            </CMSLink>
-            <CMSLink {...logoRight?.link} appearance="inline" label={null} className="w-1/4">
-              <Media resource={logoRight?.logo} className="h-auto" imgClassName="size-full" />
             </CMSLink>
           </div>
         )}
 
-        <div className="prose">
-          <h1 className="mb-6 text-foreground">{heading}</h1>
-          {subheading && <p className="max-w-[48ch] mb-12 text-foreground">{subheading}</p>}
+        <div className="prose max-w-screen-lg text-center flex flex-col items-center">
+          <h1 className="mb-0 text-foreground">{heading}</h1>
+          {subheading && <p className="max-w-[46ch] mb-12 text-foreground">{subheading}</p>}
         </div>
 
         {/* Down Arrow */}
@@ -77,9 +95,9 @@ const HeroBackground: React.FC<{
           <div
             key={index}
             className="absolute inset-0"
-            // style={{
-            //   transform: `translateY(${scrollY * parallaxSpeed}px)`,
-            // }}
+            style={{
+              transform: `translateY(${scrollY * parallaxSpeed}px)`,
+            }}
           >
             <Media
               resource={layer}
