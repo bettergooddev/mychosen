@@ -94,6 +94,7 @@ const config = {
         warning: 'hsl(var(--warning))',
       },
       fontFamily: {
+        fiyona: ['var(--font-fiyona)'],
         laquile: ['var(--font-laquile)'],
         laquileRounded: ['var(--font-laquile-rounded)'],
         laquileRough: ['var(--font-laquile-rough)'],

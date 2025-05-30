@@ -133,3 +133,78 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+@layer components {
+  h1,
+  .type-h1,
+  .prose h1 {
+    font-family: var(--font-fiyona);
+    font-size: 7rem;
+    font-style: normal;
+    font-weight: 100;
+    line-height: 120%;
+  }
+
+  h2,
+  .type-h2,
+  .prose h2 {
+    font-family: var(--font-fiyona);
+    font-size: 4.5rem;
+    font-style: normal;
+    font-weight: 82;
+    line-height: 120%;
+  }
+
+  .h2-accent {
+    font-family: var(--font-laquile);
+    font-size: 4.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+  }
+
+  h3,
+  .type-h3,
+  .prose h3 {
+    font-family: var(--font-martel);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 140%;
+  }
+
+  h4,
+  .type-h4,
+  .prose h4 {
+    font-family: var(--font-martel);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 120%;
+  }
+
+  p,
+  span,
+  a,
+  .type-body,
+  .prose p,
+  .prose span,
+  .prose a {
+    font-family: var(--font-martel);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  h5,
+  .type-h5,
+  .type-caption,
+  .prose h5 {
+    font-family: var(--font-martel);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 140%;
+  }
+}

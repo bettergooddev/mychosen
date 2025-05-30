@@ -12,7 +12,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
-import { laquile, laquileRounded, laquileRough, laquileStamp, martel } from '@/fonts/fonts'
+import { laquile, laquileRounded, laquileRough, laquileStamp, martel, fiyona } from '@/fonts/fonts'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -23,6 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       className={cn(
+        fiyona.variable,
         martel.variable,
         laquile.variable,
         laquileRounded.variable,
