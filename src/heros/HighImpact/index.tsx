@@ -33,13 +33,22 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
           {/* Logos */}
           {logos && logos.length > 0 && (
-            <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 md:mb-12 mb-14 w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[8%]">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 md:mb-12 mb-14 w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[10%]">
+              <CMSLink
+                {...logoCenter?.link}
+                appearance="inline"
+                label={null}
+                className="w-[70%] md:w-[35%] md:order-2"
+              >
+                <Media resource={logoCenter?.logo} className="h-auto" imgClassName="size-full" />
+              </CMSLink>
+
               <div className="flex w-full justify-between gap-10 md:contents">
                 <CMSLink
                   {...logoLeft?.link}
                   appearance="inline"
                   label={null}
-                  className="w-1/2 md:w-1/4 md:order-1"
+                  className="w-[35%] md:w-[15%] md:order-1"
                 >
                   <Media resource={logoLeft?.logo} className="h-auto" imgClassName="size-full" />
                 </CMSLink>
@@ -47,20 +56,11 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                   {...logoRight?.link}
                   appearance="inline"
                   label={null}
-                  className="w-1/2 md:w-1/4 md:order-3"
+                  className="w-[35%] md:w-[15%] md:order-3"
                 >
                   <Media resource={logoRight?.logo} className="h-auto" imgClassName="size-full" />
                 </CMSLink>
               </div>
-
-              <CMSLink
-                {...logoCenter?.link}
-                appearance="inline"
-                label={null}
-                className="w-3/4 md:w-2/4 md:order-2"
-              >
-                <Media resource={logoCenter?.logo} className="h-auto" imgClassName="size-full" />
-              </CMSLink>
             </div>
           )}
 
@@ -175,6 +175,11 @@ const HeroBackground: React.FC<{
           />
         </div>
       )}
+
+      <div
+        data-theme="sugar-shack"
+        className="absolute inset-0 h-1/4 mt-auto bg-gradient-to-b from-background/0 to-background"
+      />
     </div>
   )
 }
