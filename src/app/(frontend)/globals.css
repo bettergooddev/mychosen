@@ -49,7 +49,7 @@
     --error: 10 100% 86%;
   }
 
-  [data-theme='green'] {
+  [data-theme='cafe'] {
     --background: 32 63% 89%;
     --foreground: 134 42% 12%;
     --card: 32 92% 95%;
@@ -71,7 +71,7 @@
     --ring: 134 42% 12%;
   }
 
-  [data-theme='red'] {
+  [data-theme='pizza'] {
     --background: 32 63% 89%;
     --foreground: 360 64% 27%;
     --card: 32 92% 95%;
@@ -93,7 +93,7 @@
     --ring: 0 66% 29%;
   }
 
-  [data-theme='brown'] {
+  [data-theme='sugar-shack'] {
     --background: 32 63% 89%;
     --foreground: 21 33% 9%;
     --card: 32 92% 95%;

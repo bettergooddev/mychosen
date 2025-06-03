@@ -2156,7 +2156,7 @@ export interface Background {
   id: string;
   layers?:
     | {
-        layer: string | Media;
+        media: string | Media;
         id?: string | null;
       }[]
     | null;
@@ -2513,7 +2513,7 @@ export interface BackgroundSelect<T extends boolean = true> {
   layers?:
     | T
     | {
-        layer?: T;
+        media?: T;
         id?: T;
       };
   updatedAt?: T;

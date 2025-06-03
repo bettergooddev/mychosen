@@ -13,7 +13,7 @@ export const Background: GlobalConfig = {
       type: 'array',
       fields: [
         {
-          name: 'layer',
+          name: 'media',
           type: 'upload',
           relationTo: 'media',
           required: true,

@@ -6,6 +6,7 @@ import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
+import { Background } from '@/components/Background'
 import { Footer } from '@/Footer/Component'
 import { Navigation } from '@/Navigation/Component'
 import { Providers } from '@/providers'
@@ -38,8 +39,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body>
+      <body className="relative">
         <Providers>
+          <Background />
+
           <AdminBar
             adminBarProps={{
               preview: isEnabled,

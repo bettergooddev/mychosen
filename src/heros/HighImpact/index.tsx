@@ -56,7 +56,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
 
   return (
     <>
-      <section className="relative h-screen overflow-hidden bg-amber-200" data-theme="green">
+      <section className="relative h-screen overflow-hidden" data-theme="green">
         <HeroBackground backgroundLayers={backgroundLayers} scrollY={scrollY} />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
