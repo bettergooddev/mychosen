@@ -53,12 +53,12 @@ export const AdminBar: React.FC<{
         hidden: !show,
       })}
     >
-      <div className="container">
+      <div className="container !type-h5">
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
           classNames={{
-            controls: 'font-medium text-white',
+            controls: ' text-white',
             logo: 'text-white',
             user: 'text-white',
           }}

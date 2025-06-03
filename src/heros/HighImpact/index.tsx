@@ -8,38 +8,6 @@ import { Media } from '@/components/Media'
 import type { Media as MediaType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 
-type ImageProps = {
-  src: string
-  alt?: string
-}
-
-const galleryImages: ImageProps[] = [
-  {
-    src: 'https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg',
-    alt: 'Relume placeholder image 1',
-  },
-  {
-    src: 'https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg',
-    alt: 'Relume placeholder image 2',
-  },
-  {
-    src: 'https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg',
-    alt: 'Relume placeholder image 3',
-  },
-  {
-    src: 'https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg',
-    alt: 'Relume placeholder image 4',
-  },
-  {
-    src: 'https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg',
-    alt: 'Relume placeholder image 5',
-  },
-  {
-    src: 'https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg',
-    alt: 'Relume placeholder image 6',
-  },
-]
-
 export const HighImpactHero: React.FC<Page['hero']> = (props) => {
   if (!props?.highImpact?.[0]) return null
 
@@ -54,9 +22,12 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const imagePool1 = media.slice(0, Math.floor(media.length / 2))
+  const imagePool2 = media.slice(Math.floor(media.length / 2))
+
   return (
     <>
-      <section className="relative h-screen overflow-hidden" data-theme="green">
+      <section className="relative h-screen overflow-hidden" data-theme="cafe">
         <HeroBackground backgroundLayers={backgroundLayers} scrollY={scrollY} />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
@@ -106,21 +77,21 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      <section id="relume" className="">
+      {/* <section id="relume" className="">
         <div className="flex w-screen justify-start overflow-hidden">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
-              {[...new Array(2)].map((e, index) => (
+              {[...new Array(2)].map((_, index) => (
                 <div key={index} className="grid w-full grid-flow-col gap-4">
-                  {galleryImages.map((image, imageIndex) => (
+                  {imagePool1.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
                       className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem]"
                     >
-                      <img
+                      <Media
+                        resource={image}
                         className="absolute inset-0 size-full object-cover"
-                        src={image.src}
-                        alt={image.alt}
+                        imgClassName="size-full object-cover"
                       />
                     </div>
                   ))}
@@ -128,17 +99,17 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
               ))}
             </div>
             <div className="grid w-full animate-marquee-bottom grid-cols-2 gap-4 self-center">
-              {[...new Array(2)].map((e, index) => (
+              {[...new Array(2)].map((_, index) => (
                 <div key={index} className="grid w-full grid-flow-col gap-4">
-                  {galleryImages.map((image, imageIndex) => (
+                  {imagePool2.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
                       className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem]"
                     >
-                      <img
+                      <Media
+                        resource={image}
                         className="absolute inset-0 size-full object-cover"
-                        src={image.src}
-                        alt={image.alt}
+                        imgClassName="size-full object-cover"
                       />
                     </div>
                   ))}
@@ -147,7 +118,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }
@@ -156,29 +127,54 @@ const HeroBackground: React.FC<{
   backgroundLayers?: (string | MediaType)[] | null
   scrollY: number
 }> = ({ backgroundLayers, scrollY }) => {
+  const [rightLayer, centerLayer, leftLayer] = backgroundLayers || []
+
   return (
     <div className="absolute inset-0">
-      {backgroundLayers?.map((layer, index) => {
-        // Define parallax speeds for each layer (slowest to fastest)
-        const parallaxSpeeds = [0.1, 0.15, 0.2, 0.25, 0.3]
-        const parallaxSpeed = parallaxSpeeds[index] || 0.1
+      {rightLayer && (
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.1}px)`,
+          }}
+        >
+          <Media
+            resource={rightLayer}
+            className="size-full absolute inset-0"
+            imgClassName={`size-full object-cover`}
+          />
+        </div>
+      )}
 
-        return (
-          <div
-            key={index}
-            className="absolute inset-0"
-            style={{
-              transform: `translateY(${scrollY * parallaxSpeed}px)`,
-            }}
-          >
-            <Media
-              resource={layer}
-              className="size-full absolute inset-0"
-              imgClassName={`size-full object-cover`}
-            />
-          </div>
-        )
-      })}
+      {centerLayer && (
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.15}px)`,
+          }}
+        >
+          <Media
+            resource={centerLayer}
+            className="size-full absolute inset-0"
+            imgClassName={`size-full object-cover`}
+          />
+        </div>
+      )}
+
+      {leftLayer && (
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.2}px)`,
+          }}
+        >
+          <Media
+            resource={leftLayer}
+            className="size-full absolute inset-0"
+            imgClassName={`size-full object-cover`}
+          />
+        </div>
+      )}
     </div>
   )
 }
