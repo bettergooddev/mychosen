@@ -1,16 +1,20 @@
 import tailwindcssAnimate from 'tailwindcss-animate'
 import typography from '@tailwindcss/typography'
+import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
+  content: {
+    files: [
+      './pages/**/*.{ts,tsx}',
+      './components/**/*.{ts,tsx}',
+      './app/**/*.{ts,tsx}',
+      './src/**/*.{ts,tsx}',
+    ],
+    extract,
+  },
   darkMode: ['selector', '[data-theme="dark"]'],
-  plugins: [tailwindcssAnimate, typography],
+  plugins: [tailwindcssAnimate, typography, fluid],
   prefix: '',
   safelist: [
     'lg:col-span-4',
@@ -27,6 +31,8 @@ const config = {
     'bg-warning/30',
   ],
   theme: {
+    screens,
+    fontSize,
     container: {
       center: true,
       padding: {

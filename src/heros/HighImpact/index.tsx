@@ -27,7 +27,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
 
   return (
     <>
-      <section className="relative h-screen overflow-hidden" data-theme="cafe">
+      <section className="relative h-[110dvh] overflow-hidden" data-theme="cafe">
         <HeroBackground backgroundLayers={backgroundLayers} scrollY={scrollY} />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
@@ -127,7 +127,7 @@ const HeroBackground: React.FC<{
   backgroundLayers?: (string | MediaType)[] | null
   scrollY: number
 }> = ({ backgroundLayers, scrollY }) => {
-  const [rightLayer, centerLayer, leftLayer] = backgroundLayers || []
+  const [rightLayer, leftLayer, centerLayer] = backgroundLayers || []
 
   return (
     <div className="absolute inset-0">
@@ -140,23 +140,8 @@ const HeroBackground: React.FC<{
         >
           <Media
             resource={rightLayer}
-            className="size-full absolute inset-0"
-            imgClassName={`size-full object-cover`}
-          />
-        </div>
-      )}
-
-      {centerLayer && (
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${scrollY * 0.15}px)`,
-          }}
-        >
-          <Media
-            resource={centerLayer}
-            className="size-full absolute inset-0"
-            imgClassName={`size-full object-cover`}
+            className="size-full absolute inset-0 "
+            imgClassName="size-full object-cover translate-x-[2rem]"
           />
         </div>
       )}
@@ -165,13 +150,28 @@ const HeroBackground: React.FC<{
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
+            transform: `translateY(${scrollY * 0.15}px)`,
           }}
         >
           <Media
             resource={leftLayer}
             className="size-full absolute inset-0"
-            imgClassName={`size-full object-cover`}
+            imgClassName="size-full object-cover -translate-x-[5rem]"
+          />
+        </div>
+      )}
+
+      {centerLayer && (
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.2}px)`,
+          }}
+        >
+          <Media
+            resource={centerLayer}
+            className="size-full absolute inset-0"
+            imgClassName="size-full object-cover translate-y-[2rem]"
           />
         </div>
       )}
