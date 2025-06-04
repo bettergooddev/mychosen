@@ -3,6 +3,9 @@ import { link } from '@/fields/link'
 
 export const Background: GlobalConfig = {
   slug: 'background',
+  admin: {
+    hidden: true,
+  },
   label: {
     singular: 'Background',
     plural: 'Backgrounds',
