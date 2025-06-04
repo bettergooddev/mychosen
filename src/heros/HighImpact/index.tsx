@@ -78,7 +78,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      <section id="relume" className="-mt-32">
+      <section id="relume" className="-mt-[10%] lg:-mt-32">
         <div className="flex w-screen justify-start overflow-hidden">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
@@ -131,7 +131,7 @@ const HeroBackground: React.FC<{
   const [rightLayer, leftLayer, centerLayer] = backgroundLayers || []
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 -mt-[10%]">
       {rightLayer && (
         <div
           className="absolute inset-0"
@@ -141,8 +141,8 @@ const HeroBackground: React.FC<{
         >
           <Media
             resource={rightLayer}
-            className="size-full absolute inset-0 "
-            imgClassName="size-full object-cover translate-x-[2rem]"
+            className="size-full absolute inset-0"
+            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[2rem] lg:translate-x-[2rem] "
           />
         </div>
       )}
@@ -157,7 +157,7 @@ const HeroBackground: React.FC<{
           <Media
             resource={leftLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-cover -translate-x-[5rem]"
+            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[2rem] lg:-translate-x-[2rem] "
           />
         </div>
       )}
@@ -172,17 +172,14 @@ const HeroBackground: React.FC<{
           <Media
             resource={centerLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-cover"
+            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[2rem] "
           />
         </div>
       )}
 
       <div
         data-theme="sugar-shack"
-        className="absolute inset-0 h-[30%] mt-auto bg-gradient-to-b from-background/0 to-background"
-        style={{
-          transform: `translateY(${scrollY * -0.145}px)`,
-        }}
+        className="absolute inset-0 h-[75%] lg:h-[30%] mt-auto bg-gradient-to-b lg:-translate-y-[2rem] from-background/0 to-background"
       />
     </div>
   )
