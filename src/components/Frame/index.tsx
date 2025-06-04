@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Media } from '@/components/Media'
 import type { Props as MediaProps } from '@/components/Media/types'

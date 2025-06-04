@@ -34,7 +34,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
           {/* Logos */}
           {logos && logos.length > 0 && (
-            <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 md:mb-12 mb-14 w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[10%]">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 md:mb-12 mb-[4rem] w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[13%] -mt-[40%]">
               <CMSLink
                 {...logoCenter?.link}
                 appearance="inline"
@@ -44,12 +44,12 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                 <Media resource={logoCenter?.logo} className="h-auto" imgClassName="size-full" />
               </CMSLink>
 
-              <div className="flex w-full justify-between gap-10 md:contents">
+              <div className="flex w-full justify-center gap-8 md:contents">
                 <CMSLink
                   {...logoLeft?.link}
                   appearance="inline"
                   label={null}
-                  className="w-[35%] md:w-[15%] md:order-1"
+                  className="w-[35%] md:w-[17.5%] md:order-1"
                 >
                   <Media resource={logoLeft?.logo} className="h-auto" imgClassName="size-full" />
                 </CMSLink>
@@ -57,7 +57,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                   {...logoRight?.link}
                   appearance="inline"
                   label={null}
-                  className="w-[35%] md:w-[15%] md:order-3"
+                  className="w-[35%] md:w-[17.5%] md:order-3"
                 >
                   <Media resource={logoRight?.logo} className="h-auto" imgClassName="size-full" />
                 </CMSLink>
@@ -78,7 +78,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      <section id="relume" className="">
+      <section id="relume" className="-mt-32">
         <div className="flex w-screen justify-start overflow-hidden">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
@@ -110,7 +110,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                       <Frame
                         resource={image}
                         className="absolute inset-0 size-full object-cover"
-                        imgClassName="size-full object-cover inset-0 size-full"
+                        imgClassName="size-full object-cover inset-0"
                       />
                     </div>
                   ))}
@@ -136,7 +136,7 @@ const HeroBackground: React.FC<{
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
+            transform: `translateY(${scrollY * -0.05}px)`,
           }}
         >
           <Media
@@ -151,7 +151,7 @@ const HeroBackground: React.FC<{
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.15}px)`,
+            transform: `translateY(${scrollY * -0.1}px)`,
           }}
         >
           <Media
@@ -166,13 +166,13 @@ const HeroBackground: React.FC<{
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
+            transform: `translateY(${scrollY * -0.15}px)`,
           }}
         >
           <Media
             resource={centerLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-cover translate-y-[1rem]"
+            imgClassName="size-full object-cover"
           />
         </div>
       )}
@@ -180,6 +180,9 @@ const HeroBackground: React.FC<{
       <div
         data-theme="sugar-shack"
         className="absolute inset-0 h-[30%] mt-auto bg-gradient-to-b from-background/0 to-background"
+        style={{
+          transform: `translateY(${scrollY * -0.145}px)`,
+        }}
       />
     </div>
   )
