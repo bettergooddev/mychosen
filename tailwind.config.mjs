@@ -63,7 +63,7 @@ const config = {
         'marquee-horizontally': 'marquee-top 30s linear infinite',
         'marquee-top': 'marquee-top 50s linear infinite',
         'marquee-right': 'marquee-right 25s linear infinite',
-        'marquee-bottom': 'marquee-bottom 50s linear infinite',
+        'marquee-bottom': 'marquee-bottom 80s linear infinite',
         'marquee-left': 'marquee-left 25s linear infinite',
         tabs: 'tabs 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
       },

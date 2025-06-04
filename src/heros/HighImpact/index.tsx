@@ -7,6 +7,7 @@ import { ChevronDown } from 'lucide-react'
 import { Media } from '@/components/Media'
 import type { Media as MediaType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import { Frame } from '@/components/Frame'
 
 export const HighImpactHero: React.FC<Page['hero']> = (props) => {
   if (!props?.highImpact?.[0]) return null
@@ -77,7 +78,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      {/* <section id="relume" className="">
+      <section id="relume" className="">
         <div className="flex w-screen justify-start overflow-hidden">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
@@ -86,9 +87,9 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                   {imagePool1.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
-                      className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem]"
+                      className="relative w-[60vw] pt-[110%] sm:w-[18rem] md:w-[26rem]"
                     >
-                      <Media
+                      <Frame
                         resource={image}
                         className="absolute inset-0 size-full object-cover"
                         imgClassName="size-full object-cover"
@@ -104,12 +105,12 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                   {imagePool2.map((image, imageIndex) => (
                     <div
                       key={imageIndex}
-                      className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem]"
+                      className="relative w-[60vw] pt-[110%] sm:w-[18rem] md:w-[26rem]"
                     >
-                      <Media
+                      <Frame
                         resource={image}
                         className="absolute inset-0 size-full object-cover"
-                        imgClassName="size-full object-cover"
+                        imgClassName="size-full object-cover inset-0 size-full"
                       />
                     </div>
                   ))}
@@ -118,7 +119,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </>
   )
 }
@@ -171,14 +172,14 @@ const HeroBackground: React.FC<{
           <Media
             resource={centerLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-cover translate-y-[2rem]"
+            imgClassName="size-full object-cover translate-y-[1rem]"
           />
         </div>
       )}
 
       <div
         data-theme="sugar-shack"
-        className="absolute inset-0 h-1/4 mt-auto bg-gradient-to-b from-background/0 to-background"
+        className="absolute inset-0 h-[30%] mt-auto bg-gradient-to-b from-background/0 to-background"
       />
     </div>
   )

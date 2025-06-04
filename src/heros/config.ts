@@ -39,7 +39,7 @@ const highImpact: Field[] = [
   },
   {
     name: 'subheading',
-    type: 'text',
+    type: 'textarea',
   },
   {
     name: 'media',
@@ -72,7 +72,7 @@ const mediumImpact: Field[] = [
   },
   {
     name: 'subheading',
-    type: 'text',
+    type: 'textarea',
   },
 
   {
@@ -139,7 +139,7 @@ const lowImpact: Field[] = [
   },
   {
     name: 'subheading',
-    type: 'text',
+    type: 'textarea',
   },
 ]
 
