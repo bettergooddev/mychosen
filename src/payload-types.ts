@@ -836,10 +836,23 @@ export interface Form {
  */
 export interface FeaturesBlock {
   type: 'none' | 'gallery' | 'highlights';
-  heading: string;
+  heading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   subheading?: string | null;
   images?: (string | Media)[] | null;
-  reverse?: boolean | null;
   highlights?:
     | {
         image: string | Media;
@@ -1376,7 +1389,6 @@ export interface FeaturesBlockSelect<T extends boolean = true> {
   heading?: T;
   subheading?: T;
   images?: T;
-  reverse?: T;
   highlights?:
     | T
     | {

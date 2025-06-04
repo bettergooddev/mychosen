@@ -1,5 +1,12 @@
 import type { Block, Field } from 'payload'
 
+import {
+  FixedToolbarFeature,
+  HeadingFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
+
 const highlightField: Field[] = [
   {
     name: 'image',
@@ -27,12 +34,12 @@ const gallery: Field[] = [
     required: true,
     minRows: 2,
   },
-  {
-    name: 'reverse',
-    type: 'checkbox',
-    label: 'Reverse Layout',
-    defaultValue: false,
-  },
+  // {
+  //   name: 'reverse',
+  //   type: 'checkbox',
+  //   label: 'Reverse Layout',
+  //   defaultValue: false,
+  // },
 ]
 
 const highlights: Field[] = [
@@ -76,15 +83,24 @@ export const Features: Block = {
       ],
       required: true,
     },
-
     {
       name: 'heading',
-      type: 'text',
-      required: true,
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h2'] }),
+            FixedToolbarFeature(),
+            // InlineToolbarFeature(),
+          ]
+        },
+      }),
+      label: false,
     },
     {
       name: 'subheading',
-      type: 'text',
+      type: 'textarea',
     },
 
     // @ts-expect-error the convience of this set up was worth it
