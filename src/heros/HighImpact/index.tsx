@@ -16,11 +16,22 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
   const [logoLeft, logoCenter, logoRight] = logos || []
 
   const [scrollY, setScrollY] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(0)
 
   useEffect(() => {
+    // Set initial window width
+    setWindowWidth(window.innerWidth)
+
     const handleScroll = () => setScrollY(window.scrollY)
+    const handleResize = () => setWindowWidth(window.innerWidth)
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const imagePool1 = media.slice(0, Math.floor(media.length / 2))
@@ -34,7 +45,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
           {/* Logos */}
           {logos && logos.length > 0 && (
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 md:mb-12 mb-[4rem] w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[13%] -mt-[40%]">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 md:mb-12 mb-[4rem] w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[14.25%] -mt-[28%]">
               <CMSLink
                 {...logoCenter?.link}
                 appearance="inline"
@@ -78,7 +89,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      <section id="relume" className="-mt-[10%] lg:-mt-32">
+      <section id="relume" className="-mt-[15%] lg:-mt-32">
         <div className="flex w-screen justify-start overflow-hidden">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
@@ -129,20 +140,30 @@ const HeroBackground: React.FC<{
   scrollY: number
 }> = ({ backgroundLayers, scrollY }) => {
   const [rightLayer, leftLayer, centerLayer] = backgroundLayers || []
+  const [windowWidth, setWindowWidth] = useState(0)
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
-    <div className="absolute inset-0 -mt-[10%]">
+    <div className="absolute inset-0 -mt-[15%] bottom-12">
       {rightLayer && (
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * -0.05}px)`,
+            transform: windowWidth >= 1024 ? `translateY(${scrollY * -0.05}px)` : 'none',
           }}
         >
           <Media
             resource={rightLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[2rem] lg:translate-x-[2rem] "
+            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[3rem] lg:translate-x-[4rem] lg:scale-[0.94] lg:origin-bottom"
           />
         </div>
       )}
@@ -151,13 +172,13 @@ const HeroBackground: React.FC<{
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * -0.1}px)`,
+            transform: windowWidth >= 1024 ? `translateY(${scrollY * -0.1}px)` : 'none',
           }}
         >
           <Media
             resource={leftLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[2rem] lg:-translate-x-[2rem] "
+            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[3rem] lg:-translate-x-[4rem] lg:scale-[0.94] lg:origin-bottom"
           />
         </div>
       )}
@@ -166,20 +187,24 @@ const HeroBackground: React.FC<{
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * -0.15}px)`,
+            transform: windowWidth >= 1024 ? `translateY(${scrollY * -0.15}px)` : 'none',
           }}
         >
           <Media
             resource={centerLayer}
             className="size-full absolute inset-0"
-            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[2rem] "
+            imgClassName="size-full object-contain lg:object-center object-bottom lg:object-cover lg:translate-y-[5rem] "
           />
         </div>
       )}
 
       <div
         data-theme="sugar-shack"
-        className="absolute inset-0 h-[75%] lg:h-[30%] mt-auto bg-gradient-to-b lg:-translate-y-[2rem] from-background/0 to-background"
+        className="absolute inset-0 h-[75%] lg:h-[30%] mt-auto bg-gradient-to-b  from-background/0 to-background"
+        style={{
+          transform:
+            windowWidth >= 1024 ? `translateY(calc(${scrollY * -0.15}px + 5.05rem))` : 'none',
+        }}
       />
     </div>
   )
