@@ -8,6 +8,7 @@ import { Media } from '@/components/Media'
 import type { Media as MediaType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Frame } from '@/components/Frame'
+import { useWindowWidth } from '@/react/useWindowWidth'
 
 export const HighImpactHero: React.FC<Page['hero']> = (props) => {
   if (!props?.highImpact?.[0]) return null
@@ -16,21 +17,14 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
   const [logoLeft, logoCenter, logoRight] = logos || []
 
   const [scrollY, setScrollY] = useState(0)
-  const [windowWidth, setWindowWidth] = useState(0)
 
   useEffect(() => {
-    // Set initial window width
-    setWindowWidth(window.innerWidth)
-
     const handleScroll = () => setScrollY(window.scrollY)
-    const handleResize = () => setWindowWidth(window.innerWidth)
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -140,16 +134,7 @@ const HeroBackground: React.FC<{
   scrollY: number
 }> = ({ backgroundLayers, scrollY }) => {
   const [rightLayer, leftLayer, centerLayer] = backgroundLayers || []
-  const [windowWidth, setWindowWidth] = useState(0)
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth)
-
-    const handleResize = () => setWindowWidth(window.innerWidth)
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  const windowWidth = useWindowWidth()
 
   return (
     <div className="absolute inset-0 -mt-[15%] bottom-12">
