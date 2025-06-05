@@ -1,6 +1,7 @@
 'use client'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import { motion, useInView } from 'motion/react'
 
 import type { FeaturesBlock, Page } from '@/payload-types'
 
@@ -8,8 +9,7 @@ import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
-import { annotate } from 'rough-notation'
-import { RoughAnnotation } from 'rough-notation/lib/model'
+import { Heading } from '@/components/Heading'
 
 export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }) => {
   const { setHeaderTheme } = useHeaderTheme()
@@ -55,79 +55,6 @@ export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }
             </div>
           ))}
         </div>
-      )}
-    </div>
-  )
-}
-
-class Annotation {
-  constructor(
-    public element: HTMLElement,
-    public annotation: RoughAnnotation,
-  ) {
-    this.element = element
-    this.annotation = annotation
-  }
-
-  static create(element: HTMLElement) {
-    const annotation = annotate(element, { type: 'underline' })
-    return new Annotation(element, annotation)
-  }
-
-  show() {
-    this.annotation.show()
-  }
-
-  hide() {
-    this.annotation.hide()
-  }
-}
-
-const Heading = ({
-  heading,
-  subheading,
-}: {
-  heading?: FeaturesBlock['heading']
-  subheading?: string | null
-}) => {
-  const textWrapper = useRef<HTMLDivElement>(null)
-  const annotations = useRef<Annotation[]>([])
-
-  useEffect(() => {
-    if (!textWrapper.current) return
-    const text = textWrapper.current.querySelectorAll('em') as NodeListOf<HTMLElement>
-
-    text.forEach((t) => {
-      const annotation = Annotation.create(t)
-      annotation.show()
-      annotations.current.push(annotation)
-    })
-
-    return () => {
-      annotations.current.forEach((a) => a.hide())
-      annotations.current = []
-    }
-  }, [])
-
-  return (
-    <div className="container" data-theme="sugar-shack">
-      {heading && (
-        <div className="mb-6" ref={textWrapper}>
-          <RichText
-            data={heading}
-            enableGutter={false}
-            className={cn(
-              'prose-center [&_*]:text-foreground type-h1 text-center',
-              '[&_em]:type-h2-accent [&_em]:theme-pizza',
-            )}
-          />
-        </div>
-      )}
-
-      {subheading && (
-        <p className="opacity-75 type-body text-center text-foreground mx-auto max-w-[52ch]">
-          {subheading}
-        </p>
       )}
     </div>
   )
