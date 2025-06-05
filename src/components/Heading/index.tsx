@@ -72,7 +72,7 @@ export const Heading = ({
   }, [annotations, isInView])
 
   return (
-    <div data-theme="sugar-shack">
+    <div data-theme="sugar-shack" className="mb-16">
       {heading && (
         <div className="mb-6" ref={textWrapper}>
           <RichText

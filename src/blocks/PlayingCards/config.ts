@@ -1,3 +1,5 @@
+import { FixedToolbarFeature, HeadingFeature } from '@payloadcms/richtext-lexical'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import type { Block, Field } from 'payload'
 
 export const PlayingCards: Block = {
@@ -6,13 +8,23 @@ export const PlayingCards: Block = {
   fields: [
     {
       name: 'heading',
-      type: 'text',
-      required: true,
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h2'] }),
+            FixedToolbarFeature(),
+            // InlineToolbarFeature(),
+          ]
+        },
+      }),
+      label: false,
     },
     {
       name: 'subheading',
-      type: 'text',
-      required: true,
+      type: 'textarea',
+      required: false,
     },
     {
       name: 'attachToFooter',
