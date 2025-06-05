@@ -2,6 +2,7 @@ import React from 'react'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import type { Mask as MaskType, Media as MediaType } from '@/payload-types'
 import { getClientSideURL } from '@/utilities/getURL'
+import { Mask } from './Mask'
 
 interface MaskBackgroundProps {
   children: React.ReactNode
@@ -42,29 +43,10 @@ export async function MaskBackground({ children, shape = 'wood' }: MaskBackgroun
   //   }
 
   return (
-    <div className="absolute inset-0 flex flex-col">
-      <div
-        className="w-full h-auto"
-        style={{
-          backgroundImage: `url(${top.url})`,
-          backgroundRepeat: 'no-repeat',
-          aspectRatio: (top?.width || 1) / (top?.height || 1),
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }}
-      ></div>
-
-      {/* <div
-        className=""
-        style={{
-          opacity: config.polka.opacity / 100,
-          backgroundImage: `url(${getClientSideURL()}${typeof top === 'string' ? top : top?.url})`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: `${config.polka.size}px ${config.polka.size}px`,
-        }}
-      /> */}
-
+    <div className="relative flex flex-col">
+      <Mask media={top} className="bg-red-500" />
       {children}
+      <Mask media={bottom} className="bg-blue-500" />
     </div>
   )
 }
