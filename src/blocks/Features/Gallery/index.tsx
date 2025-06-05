@@ -2,6 +2,7 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import { motion, useInView } from 'motion/react'
+import { cva } from 'class-variance-authority'
 
 import type { FeaturesBlock, Page } from '@/payload-types'
 
@@ -10,23 +11,22 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
 import { Heading } from '@/components/Heading'
+import { Frame } from '@/components/Frame'
+
+const galleryGridVariants = cva('grid gap-6', {
+  variants: {
+    imageCount: {
+      1: 'grid-cols-1',
+      2: 'grid-cols-1 md:grid-cols-2',
+      3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+    },
+  },
+  defaultVariants: {
+    imageCount: 3,
+  },
+})
 
 export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }) => {
-  const { setHeaderTheme } = useHeaderTheme()
-
-  useEffect(() => {
-    setHeaderTheme('dark')
-  })
-
-  // Determine grid layout based on number of images
-  const getGridClasses = (imageCount: number) => {
-    if (imageCount === 1) return 'grid-cols-1'
-    if (imageCount === 2) return 'grid-cols-1 md:grid-cols-2'
-    return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-  }
-
-  const imageCount = images?.length || 0
-
   return (
     <div className="container py-16">
       <Heading heading={heading} subheading={subheading} />
@@ -42,15 +42,18 @@ export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }
         </div>
       </div>
 
-      {/* Images Grid */}
       {images && images.length > 0 && (
-        <div className={`grid gap-6 ${getGridClasses(imageCount)}`}>
+        <div
+          className={galleryGridVariants({
+            imageCount: images?.length as 1 | 2 | 3,
+          })}
+        >
           {images.map((image, index) => (
             <div key={index} className="relative">
-              <Media
+              <Frame
                 resource={image}
-                className="w-full"
-                imgClassName="w-full h-auto rounded-lg border border-border"
+                className="w-full overflow-hidden"
+                imgClassName="w-full h-auto scale-[1.025]"
               />
             </div>
           ))}
