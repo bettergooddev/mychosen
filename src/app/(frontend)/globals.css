@@ -49,7 +49,8 @@
     --error: 10 100% 86%;
   }
 
-  [data-theme='cafe'] {
+  [data-theme='cafe'],
+  .theme-cafe {
     --background: 32 63% 89%;
     --foreground: 134 42% 12%;
     --card: 32 92% 95%;
@@ -71,7 +72,8 @@
     --ring: 134 42% 12%;
   }
 
-  [data-theme='pizza'] {
+  [data-theme='pizza'],
+  .theme-pizza {
     --background: 32 63% 89%;
     --foreground: 360 64% 27%;
     --card: 32 92% 95%;
@@ -93,7 +95,8 @@
     --ring: 0 66% 29%;
   }
 
-  [data-theme='sugar-shack'] {
+  [data-theme='sugar-shack'],
+  .theme-sugar-shack {
     --background: 32 63% 89%;
     --foreground: 21 33% 9%;
     --card: 32 92% 95%;
@@ -155,7 +158,9 @@ html[data-theme='light'] {
     line-height: 120%;
   }
 
-  .h2-accent {
+  h2 em,
+  .type-h2-accent,
+  .prose .type-h2-accent {
     font-family: var(--font-laquile);
     font-size: clamp(1.125rem, 2.5vw + 1rem, 3.375rem);
     font-style: normal;
