@@ -2305,6 +2305,7 @@ export interface Mask {
         name: string;
         top: string | Media;
         bottom: string | Media;
+        backgroundImage?: (string | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -2689,6 +2690,7 @@ export interface MasksSelect<T extends boolean = true> {
         name?: T;
         top?: T;
         bottom?: T;
+        backgroundImage?: T;
         id?: T;
       };
   updatedAt?: T;

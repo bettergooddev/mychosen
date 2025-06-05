@@ -4,7 +4,7 @@ import { link } from '@/fields/link'
 export const Masks: GlobalConfig = {
   slug: 'masks',
   admin: {
-    hidden: true,
+    // hidden: true,
   },
   label: {
     singular: 'Mask',
@@ -31,6 +31,11 @@ export const Masks: GlobalConfig = {
           type: 'upload',
           relationTo: 'media',
           required: true,
+        },
+        {
+          name: 'backgroundImage',
+          type: 'upload',
+          relationTo: 'media',
         },
       ],
     },
