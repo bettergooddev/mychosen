@@ -18,7 +18,11 @@ class Annotation {
   }
 
   static create(element: HTMLElement) {
-    const annotation = annotate(element, { type: 'underline' })
+    const annotation = annotate(element, {
+      type: 'underline',
+      padding: [0, 0, 0, 0],
+      multiline: true,
+    })
     return new Annotation(element, annotation)
   }
 
@@ -68,7 +72,7 @@ export const Heading = ({
   }, [annotations, isInView])
 
   return (
-    <div className="container" data-theme="sugar-shack">
+    <div data-theme="sugar-shack">
       {heading && (
         <div className="mb-6" ref={textWrapper}>
           <RichText
@@ -76,7 +80,7 @@ export const Heading = ({
             enableGutter={false}
             className={cn(
               'prose-center [&_*]:text-foreground type-h1 text-center',
-              '[&_em]:type-h2-accent [&_em]:theme-pizza [&_svg]:theme-pizza [&_svg]:-mt-1 [&_svg]:stroke-foreground',
+              '[&_em]:type-h2-accent [&_em]:theme-pizza [&_svg]:theme-pizza [&_svg]:stroke-foreground',
             )}
           />
         </div>
