@@ -112,6 +112,7 @@ export interface Config {
     card: Card;
     hours: Hour;
     testimonials: Testimonial;
+    masks: Mask;
   };
   globalsSelect: {
     navigation: NavigationSelect<false> | NavigationSelect<true>;
@@ -121,6 +122,7 @@ export interface Config {
     card: CardSelect<false> | CardSelect<true>;
     hours: HoursSelect<false> | HoursSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    masks: MasksSelect<false> | MasksSelect<true>;
   };
   locale: null;
   user: User & {
@@ -2280,6 +2282,23 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "masks".
+ */
+export interface Mask {
+  id: string;
+  masks?:
+    | {
+        name: string;
+        top: string | Media;
+        bottom: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation_select".
  */
 export interface NavigationSelect<T extends boolean = true> {
@@ -2639,6 +2658,23 @@ export interface TestimonialsSelect<T extends boolean = true> {
               role?: T;
               profilePicture?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "masks_select".
+ */
+export interface MasksSelect<T extends boolean = true> {
+  masks?:
+    | T
+    | {
+        name?: T;
+        top?: T;
+        bottom?: T;
         id?: T;
       };
   updatedAt?: T;

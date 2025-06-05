@@ -21,6 +21,7 @@ import { Background } from './collections/Background'
 import { CompanyDetails } from './collections/CompanyDetails'
 import { Brands } from './collections/Brands'
 import { Hours } from './collections/Hours'
+import { Masks } from './collections/Masks'
 
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -74,7 +75,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Brands, Menus],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Navigation, Footer, CompanyDetails, Background, Cards, Hours, Testimonials],
+  globals: [Navigation, Footer, CompanyDetails, Background, Cards, Hours, Testimonials, Masks],
   plugins: [
     ...plugins,
     vercelBlobStorage({
