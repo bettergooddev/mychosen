@@ -91,6 +91,17 @@ export const Heading = ({
           {subheading}
         </p>
       )}
+
+      {/* <div className="text-center mb-12"> */}
+      {/* Placeholder for future actions/CMS link buttons */}
+      {/* <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"> */}
+      {/* TODO: Add CMS link buttons here when needed */}
+      {/* Example structure:
+          <CMSLink {...primaryAction} size="lg" />
+          <CMSLink {...secondaryAction} size="lg" appearance="outline" />
+          */}
+      {/* </div> */}
+      {/* </div> */}
     </div>
   )
 }

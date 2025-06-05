@@ -44,12 +44,19 @@ const config = {
         xl: '2rem',
       },
       screens: {
-        '2xl': '86rem',
-        lg: '64rem',
-        md: '48rem',
-        sm: '40rem',
-        xl: '80rem',
+        '2xl': '73.1rem',
+        lg: '54.4rem',
+        md: '40.8rem',
+        sm: '34rem',
+        xl: '68rem',
       },
+      // screens: {
+      //   '2xl': '86rem',
+      //   lg: '64rem',
+      //   md: '48rem',
+      //   sm: '40rem',
+      //   xl: '80rem',
+      // },
     },
     extend: {
       animation: {
