@@ -1,7 +1,4 @@
-'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
-import React, { useEffect, useLayoutEffect, useRef } from 'react'
-import { motion, useInView } from 'motion/react'
+import React from 'react'
 import { cva } from 'class-variance-authority'
 
 import type { FeaturesBlock, Page } from '@/payload-types'
