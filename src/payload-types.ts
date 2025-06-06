@@ -2199,9 +2199,13 @@ export interface Card {
   id: string;
   cards?:
     | {
+        style: 'high-impact' | 'low-impact';
         logo?: (string | null) | Media;
+        pattern: string | Media;
+        patternSize: number;
+        patternOpacity: number;
+        eyebrow?: string | null;
         name: string;
-        pattern?: (string | null) | Media;
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -2574,9 +2578,13 @@ export interface CardSelect<T extends boolean = true> {
   cards?:
     | T
     | {
+        style?: T;
         logo?: T;
-        name?: T;
         pattern?: T;
+        patternSize?: T;
+        patternOpacity?: T;
+        eyebrow?: T;
+        name?: T;
         link?:
           | T
           | {

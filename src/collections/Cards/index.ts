@@ -3,21 +3,70 @@ import { link } from '@/fields/link'
 
 const Card: Field[] = [
   {
+    name: 'style',
+    type: 'select',
+    label: 'Card Style',
+    options: [
+      {
+        label: 'High Impact',
+        value: 'high-impact',
+      },
+      {
+        label: 'Low Impact',
+        value: 'low-impact',
+      },
+    ],
+    defaultValue: 'low-impact',
+    required: true,
+  },
+  {
     name: 'logo',
     type: 'upload',
     relationTo: 'media',
     required: false,
-  },
-  {
-    name: 'name',
-    type: 'text',
-    required: true,
+    admin: {
+      condition: (data, siblingData) => siblingData?.style === 'high-impact',
+    },
   },
   {
     name: 'pattern',
     type: 'upload',
     relationTo: 'media',
-    required: false,
+    required: true,
+    admin: {
+      hidden: true,
+    },
+  },
+  {
+    name: 'patternSize',
+    type: 'number',
+    required: true,
+    defaultValue: 10,
+    admin: {
+      hidden: true,
+    },
+  },
+  {
+    name: 'patternOpacity',
+    type: 'number',
+    required: true,
+    defaultValue: 0.1,
+    admin: {
+      hidden: true,
+    },
+  },
+  {
+    name: 'eyebrow',
+    type: 'text',
+    required: true,
+    admin: {
+      condition: (data, siblingData) => siblingData?.style === 'high-impact',
+    },
+  },
+  {
+    name: 'name',
+    type: 'text',
+    required: true,
   },
   link({
     appearances: false,
