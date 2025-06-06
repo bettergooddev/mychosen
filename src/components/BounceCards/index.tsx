@@ -132,19 +132,6 @@ export default function BounceCards({
       //     height: containerHeight,
       //   }}
     >
-      {/* <div
-            key={idx}
-            className={`card card-${idx} absolute w-[200px] aspect-square border-8 border-white rounded-[30px] overflow-hidden`}
-            style={{
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-              transform: transformStyles[idx] || 'none',
-            }}
-            onMouseEnter={() => pushSiblings(idx)}
-            onMouseLeave={resetSiblings}
-          >
-            <img className="w-full h-full object-cover" src={src} alt={`card-${idx}`} />
-          </div> */}
-
       {/* TODO: can this div become a slot? */}
       {elements.map((element, idx) => (
         <div

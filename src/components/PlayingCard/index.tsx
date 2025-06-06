@@ -65,7 +65,9 @@ function PlayingCard({ card, className }: { card: CardType; className?: string }
         <div className="relative theme-pizza size-full flex flex-col items-center justify-center text-center ">
           {card.logo && <Media resource={card.logo} className="size-28 object-contain mb-4" />}
           {isHighImpact && <h5 className="text-foreground type-h5 mb-2 mt-4">{card.eyebrow}</h5>}
-          <h2 className="type-h2 text-foreground">{card.name}</h2>
+          <h2 className="type-h1 md:type-h2 text-foreground">{card.name}</h2>
+
+          <div></div>
         </div>
       </div>
     </>

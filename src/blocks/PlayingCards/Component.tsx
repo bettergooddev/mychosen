@@ -5,7 +5,15 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import BounceCards from '@/components/BounceCards'
-import PlayingCard from './PlayingCard'
+import PlayingCard from '../../components/PlayingCard'
+import { CardContent } from '@/components/ui/card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props) => {
   const cardsResponse: Card = await getCachedGlobal('card', 1)()
@@ -19,13 +27,35 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
       </div>
 
       <MaskBackground shape={'wood'} innerClassName="relative flex justify-center ">
-        <BounceCards
-          className="h-[calc(var(--card-height)+9rem)]"
-          invertStackingOrder={true}
-          elements={cards?.map((card) => (
-            <PlayingCard key={card.id} card={card} className="!h-[var(--card-height)]" />
-          ))}
-        />
+        <>
+          {/* Desktop */}
+          <BounceCards
+            className="h-[calc(var(--card-height)+9rem)] hidden md:flex"
+            invertStackingOrder={true}
+            elements={cards?.map((card) => (
+              <PlayingCard key={card.id} card={card} className="!h-[var(--card-height)]" />
+            ))}
+          />
+
+          {/* Mobile */}
+          <Carousel
+            className="w-full h-[calc(var(--card-height)+9rem)] flex flex-col justify-center md:hidden"
+            opts={{
+              align: 'center',
+              loop: true,
+            }}
+          >
+            <CarouselContent className="-ml-6">
+              {cards?.map((card) => (
+                <CarouselItem key={card.id} className=" w-full basis-[min-content] pl-6">
+                  <PlayingCard card={card} className="!h-[var(--card-height)]" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </>
       </MaskBackground>
     </div>
   )
