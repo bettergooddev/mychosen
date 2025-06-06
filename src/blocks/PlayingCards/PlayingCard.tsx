@@ -12,9 +12,9 @@ function PlayingCard({ card, className }: { card: CardType; className?: string }
           className,
         )}
       >
-        <div className="theme-sugar-shack bg-background size-full">
-          {card.logo && <Media resource={card.logo} className="size-32 object-contain" />}
-          <h2 className="type-h2">{card.name}</h2>
+        <div className="theme-sugar-shack [&_*]:theme-pizza bg-background size-full flex flex-col items-center justify-center text-center ">
+          {card.logo && <Media resource={card.logo} className="size-28 object-contain mb-4" />}
+          <h2 className="type-h2 text-foreground">{card.name}</h2>
         </div>
       </div>
     </>

@@ -13,6 +13,7 @@ interface BounceCardsProps {
   easeType?: string
   transformStyles?: string[]
   enableHover?: boolean
+  invertStackingOrder?: boolean
 }
 
 export default function BounceCards({
@@ -31,6 +32,7 @@ export default function BounceCards({
     'rotate(2deg) translate(170px)',
   ],
   enableHover = true,
+  invertStackingOrder = false,
 }: BounceCardsProps) {
   useEffect(() => {
     gsap.fromTo(
@@ -151,6 +153,7 @@ export default function BounceCards({
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none',
+            zIndex: invertStackingOrder ? elements.length - idx : idx,
           }}
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
