@@ -7,6 +7,7 @@ import { getClientSideURL } from '@/utilities/getURL'
 import { useHover } from '@uidotdev/usehooks'
 import { tv } from 'tailwind-variants'
 import { CMSLink } from '@/components/Link'
+
 type CardType = NonNullable<Card['cards']>[number]
 
 function PlayingCard({ card, className }: { card: CardType; className?: string }) {
@@ -66,8 +67,6 @@ function PlayingCard({ card, className }: { card: CardType; className?: string }
           {card.logo && <Media resource={card.logo} className="size-28 object-contain mb-4" />}
           {isHighImpact && <h5 className="text-foreground type-h5 mb-2 mt-4">{card.eyebrow}</h5>}
           <h2 className="type-h1 md:type-h2 text-foreground">{card.name}</h2>
-
-          <div></div>
         </div>
       </div>
     </>
