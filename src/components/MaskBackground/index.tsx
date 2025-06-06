@@ -3,6 +3,7 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import type { Mask as MaskType, Media as MediaType } from '@/payload-types'
 import { getClientSideURL } from '@/utilities/getURL'
 import { Mask } from './Mask'
+import { Media } from '../Media'
 
 interface MaskBackgroundProps {
   children: React.ReactNode
@@ -17,36 +18,35 @@ export async function MaskBackground({ children, shape = 'wood' }: MaskBackgroun
 
   const maskTop = mask.top as MediaType
   const maskBottom = mask.bottom as MediaType
+  const backgroundImage = mask.backgroundImage as MediaType | null
 
   const top = {
     ...maskTop,
-    url: `${getClientSideURL()}${maskTop.url}`,
+    fullUrl: `${getClientSideURL()}${maskTop.url}`,
   }
 
   const bottom = {
     ...maskBottom,
-    url: `${getClientSideURL()}${maskBottom.url}`,
+    fullUrl: `${getClientSideURL()}${maskBottom.url}`,
   }
 
   if (!mask) return null
 
-  // Configuration for the mask styling
-  //   const config = {
-  //     polka: {
-  //       size: 15,
-  //       opacity: 1.5,
-  //     },
-  //     blanket: {
-  //       size: 700,
-  //       opacity: 5,
-  //     },
-  //   }
-
   return (
-    <div className="relative flex flex-col">
-      <Mask media={top} className="bg-red-500" />
+    <div className="relative flex flex-col overflow-hidden">
+      {backgroundImage ? (
+        <Media
+          resource={backgroundImage}
+          className="absolute -z-10 size-full object-cover"
+          imgClassName="size-full object-cover"
+        />
+      ) : (
+        <div className="absolute -z-10 size-full bg-foreground" />
+      )}
+
+      <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[1px]" />
       {children}
-      <Mask media={bottom} className="bg-blue-500" />
+      <Mask media={bottom} className="theme-sugar-shack bg-background translate-y-[1px]" />
     </div>
   )
 }
