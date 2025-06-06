@@ -1,13 +1,17 @@
+'use client'
+
 import { Card } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { cn } from '@/utilities/ui'
 import { getClientSideURL } from '@/utilities/getURL'
+import { useHover } from '@uidotdev/usehooks'
+import { tv } from 'tailwind-variants'
+import { CMSLink } from '@/components/Link'
 type CardType = NonNullable<Card['cards']>[number]
 
 function PlayingCard({ card, className }: { card: CardType; className?: string }) {
+  const [ref, hovering] = useHover()
   const isHighImpact = card.style === 'high-impact'
-  //   const hasPatternUrl = card?.pattern && typeof card.pattern === 'object' && card.pattern.url
-  //   const isPrimary = card.logo && typeof card.logo === 'object' && card.logo.url
 
   const patternStyle = {
     opacity: card.patternOpacity,
@@ -17,20 +21,45 @@ function PlayingCard({ card, className }: { card: CardType; className?: string }
   return (
     <>
       <div
+        ref={ref}
         className={cn(
           'relative theme-pizza border-foreground border-[6px] rounded-xl overflow-hidden aspect-[5/7] h-[10rem]',
           className,
         )}
       >
+        <CMSLink
+          className="absolute z-10 inset-0 pointer-events-auto"
+          {...card.link}
+          label={null}
+          aria-label={card.name}
+          appearance="inline"
+        />
+
         <div className="absolute inset-0 theme-sugar-shack bg-background -z-[1]">
-          <div
-            className="absolute -z-[1] inset-0 w-full h-full mix-blend-darken"
-            style={{
-              backgroundImage: `url(${getClientSideURL()}${(card.pattern as any).url})`,
-              backgroundRepeat: 'repeat',
-              ...patternStyle,
-            }}
+          <Media
+            resource={card.hoverImage}
+            className={cn(
+              'absolute size-full transition-opacity duration-300',
+              hovering ? 'opacity-100' : 'opacity-0',
+            )}
+            imgClassName="size-full object-cover scale-[1.45] saturate-0 opacity-20"
           />
+
+          <div
+            className={cn(
+              'absolute -z-[1] inset-0 transition-opacity duration-300',
+              hovering ? 'opacity-0' : 'opacity-100',
+            )}
+          >
+            <div
+              className={cn('absolute inset-0 mix-blend-darken')}
+              style={{
+                backgroundImage: `url(${getClientSideURL()}${(card.pattern as any).url})`,
+                backgroundRepeat: 'repeat',
+                ...patternStyle,
+              }}
+            />
+          </div>
         </div>
 
         <div className="relative theme-pizza size-full flex flex-col items-center justify-center text-center ">
