@@ -21,6 +21,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
       <MaskBackground shape={'wood'} innerClassName="relative flex justify-center ">
         <BounceCards
           className="h-[calc(var(--card-height)+9rem)]"
+          invertStackingOrder={true}
           elements={cards?.map((card) => (
             <PlayingCard key={card.id} card={card} className="!h-[var(--card-height)]" />
           ))}
