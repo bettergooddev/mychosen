@@ -2221,6 +2221,7 @@ export interface Card {
           url?: string | null;
           label: string;
         };
+        hoverImage: string | Media;
         id?: string | null;
       }[]
     | null;
@@ -2594,6 +2595,7 @@ export interface CardSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        hoverImage?: T;
         id?: T;
       };
   updatedAt?: T;

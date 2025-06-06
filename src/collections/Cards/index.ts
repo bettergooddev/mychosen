@@ -74,6 +74,12 @@ const Card: Field[] = [
       required: true,
     },
   }),
+  {
+    name: 'hoverImage',
+    type: 'upload',
+    relationTo: 'media',
+    required: true,
+  },
 ]
 
 export const Cards: GlobalConfig = {
