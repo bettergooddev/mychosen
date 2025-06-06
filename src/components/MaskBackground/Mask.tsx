@@ -34,7 +34,7 @@ function Shadow({ media, children }: MaskProps & { children: React.ReactNode }) 
       {children}
       <Media
         resource={media}
-        className="absolute -z-[1] size-full object-cover -translate-y-full blur-[6px] opacity-75"
+        className="absolute -z-[1] size-full object-cover -translate-y-full blur-[8px] opacity-75 mix-blend-darken"
         imgClassName=""
       />
     </div>

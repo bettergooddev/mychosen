@@ -44,9 +44,9 @@ export async function MaskBackground({ children, shape = 'wood' }: MaskBackgroun
         <div className="absolute -z-10 size-full bg-foreground" />
       )}
 
-      <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[1px]" />
+      <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[2px]" />
       {children}
-      <Mask media={bottom} className="theme-sugar-shack bg-background translate-y-[1px]" />
+      <Mask media={bottom} className="theme-sugar-shack bg-background translate-y-[2px]" />
     </div>
   )
 }

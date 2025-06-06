@@ -16,7 +16,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
         <Heading heading={heading} subheading={subheading} />
       </div>
 
-      <MaskBackground>
+      <MaskBackground shape={'wood'}>
         <div className="container">
           <Heading heading={heading} subheading={subheading} />
         </div>
