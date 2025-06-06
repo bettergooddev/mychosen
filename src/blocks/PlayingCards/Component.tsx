@@ -39,7 +39,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
 
           {/* Mobile */}
           <Carousel
-            className="w-full h-[calc(var(--card-height)+9rem)] flex flex-col justify-center md:hidden"
+            className="w-full h-[calc(var(--card-height)+12rem)] flex flex-col justify-center md:hidden"
             opts={{
               align: 'center',
               loop: true,
@@ -52,8 +52,10 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="relative flex justify-center gap-8 mt-8 theme-pizza -mb-4">
+              <CarouselPrevious className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground" />
+              <CarouselNext className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground" />
+            </div>
           </Carousel>
         </>
       </MaskBackground>
