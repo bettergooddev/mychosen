@@ -6,8 +6,8 @@ import { gsap } from 'gsap'
 interface BounceCardsProps {
   className?: string
   elements?: React.ReactNode[]
-  containerWidth?: number
-  containerHeight?: number
+  //   containerWidth?: number
+  //   containerHeight?: number
   animationDelay?: number
   animationStagger?: number
   easeType?: string
@@ -18,8 +18,8 @@ interface BounceCardsProps {
 export default function BounceCards({
   className = '',
   elements = [],
-  containerWidth = 400,
-  containerHeight = 400,
+  //   containerWidth = 400,
+  //   containerHeight = 400,
   animationDelay = 0.5,
   animationStagger = 0.06,
   easeType = 'elastic.out(1, 0.8)',
@@ -125,10 +125,10 @@ export default function BounceCards({
   return (
     <div
       className={`relative flex items-center justify-center h-32 ${className}`}
-      style={{
-        width: containerWidth,
-        height: containerHeight,
-      }}
+      //   style={{
+      //     width: containerWidth,
+      //     height: containerHeight,
+      //   }}
     >
       {/* <div
             key={idx}
@@ -147,7 +147,7 @@ export default function BounceCards({
       {elements.map((element, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} absolute border-8 border-white rounded-[30px] overflow-hidden`}
+          className={`card card-${idx} absolute overflow-hidden`}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none',
