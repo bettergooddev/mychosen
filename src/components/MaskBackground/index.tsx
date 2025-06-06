@@ -4,13 +4,19 @@ import type { Mask as MaskType, Media as MediaType } from '@/payload-types'
 import { getClientSideURL } from '@/utilities/getURL'
 import { Mask } from './Mask'
 import { Media } from '../Media'
+import { cn } from '@/utilities/ui'
 
 interface MaskBackgroundProps {
   children: React.ReactNode
   shape?: 'wood' | 'paper'
+  innerClassName?: string
 }
 
-export async function MaskBackground({ children, shape = 'wood' }: MaskBackgroundProps) {
+export async function MaskBackground({
+  children,
+  innerClassName,
+  shape = 'wood',
+}: MaskBackgroundProps) {
   const masksData: MaskType = await getCachedGlobal('masks', 1)()
   const { masks } = masksData
 
@@ -45,7 +51,7 @@ export async function MaskBackground({ children, shape = 'wood' }: MaskBackgroun
       )}
 
       <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[2px]" />
-      {children}
+      <div className={cn(innerClassName)}>{children}</div>
       <Mask media={bottom} className="theme-sugar-shack bg-background translate-y-[2px]" />
     </div>
   )

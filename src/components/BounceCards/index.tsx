@@ -5,7 +5,7 @@ import { gsap } from 'gsap'
 
 interface BounceCardsProps {
   className?: string
-  images?: string[]
+  elements?: React.ReactNode[]
   containerWidth?: number
   containerHeight?: number
   animationDelay?: number
@@ -17,7 +17,7 @@ interface BounceCardsProps {
 
 export default function BounceCards({
   className = '',
-  images = [],
+  elements = [],
   containerWidth = 400,
   containerHeight = 400,
   animationDelay = 0.5,
@@ -30,7 +30,7 @@ export default function BounceCards({
     'rotate(-10deg) translate(85px)',
     'rotate(2deg) translate(170px)',
   ],
-  enableHover = false,
+  enableHover = true,
 }: BounceCardsProps) {
   useEffect(() => {
     gsap.fromTo(
@@ -73,7 +73,7 @@ export default function BounceCards({
   const pushSiblings = (hoveredIdx: number) => {
     if (!enableHover) return
 
-    images.forEach((_, i) => {
+    elements.forEach((_, i) => {
       const selector = `.card-${i}`
       gsap.killTweensOf(selector)
 
@@ -108,7 +108,7 @@ export default function BounceCards({
   const resetSiblings = () => {
     if (!enableHover) return
 
-    images.forEach((_, i) => {
+    elements.forEach((_, i) => {
       const selector = `.card-${i}`
       gsap.killTweensOf(selector)
 
@@ -124,16 +124,30 @@ export default function BounceCards({
 
   return (
     <div
-      className={`relative flex items-center justify-center ${className}`}
+      className={`relative flex items-center justify-center h-32 ${className}`}
       style={{
         width: containerWidth,
         height: containerHeight,
       }}
     >
-      {images.map((src, idx) => (
+      {/* <div
+            key={idx}
+            className={`card card-${idx} absolute w-[200px] aspect-square border-8 border-white rounded-[30px] overflow-hidden`}
+            style={{
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              transform: transformStyles[idx] || 'none',
+            }}
+            onMouseEnter={() => pushSiblings(idx)}
+            onMouseLeave={resetSiblings}
+          >
+            <img className="w-full h-full object-cover" src={src} alt={`card-${idx}`} />
+          </div> */}
+
+      {/* TODO: can this div become a slot? */}
+      {elements.map((element, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} absolute w-[200px] aspect-square border-8 border-white rounded-[30px] overflow-hidden`}
+          className={`card card-${idx} absolute border-8 border-white rounded-[30px] overflow-hidden`}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none',
@@ -141,7 +155,7 @@ export default function BounceCards({
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
         >
-          <img className="w-full h-full object-cover" src={src} alt={`card-${idx}`} />
+          {element}
         </div>
       ))}
     </div>

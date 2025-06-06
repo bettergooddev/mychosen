@@ -5,6 +5,7 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import BounceCards from '@/components/BounceCards'
+import PlayingCard from './PlayingCard'
 
 export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props) => {
   const cardsResponse: Card = await getCachedGlobal('card', 1)()
@@ -17,8 +18,8 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
         <Heading heading={heading} subheading={subheading} />
       </div>
 
-      <MaskBackground shape={'wood'}>
-        <BounceCards />
+      <MaskBackground shape={'wood'} innerClassName="relative flex justify-center">
+        <BounceCards elements={cards?.map((card) => <PlayingCard key={card.id} card={card} />)} />
       </MaskBackground>
     </div>
   )
