@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { Badge } from '@/components/ui/badge'
 
 export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props) => {
   const cardsResponse: Card = await getCachedGlobal('card', 1)()
@@ -36,10 +37,12 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
               <PlayingCard key={card.id} card={card} className="!h-[var(--card-height)]" />
             ))}
           />
-
           {/* Mobile */}
+          <Badge className="theme-pizza absolute top-0 left-1/2 -translate-x-1/2 !bg-primary !text-background !type-h5 !font-normal pt-1.5 pb-1 px-4 -mb-12 mt-8 !type-border md:hidden">
+            Tap to learn more!
+          </Badge>
           <Carousel
-            className="w-full h-[calc(var(--card-height)+12rem)] flex flex-col justify-center md:hidden"
+            className="w-full h-[calc(var(--card-height)+12rem)] flex flex-col justify-center mt-8 md:hidden"
             opts={{
               align: 'center',
               loop: true,
