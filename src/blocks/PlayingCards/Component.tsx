@@ -13,14 +13,14 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
   const { heading, subheading } = props
 
   return (
-    <div className="relative py-16 [--card-height:20rem]">
+    <div className="relative py-16 [--card-height:22rem]">
       <div className="container">
         <Heading heading={heading} subheading={subheading} />
       </div>
 
       <MaskBackground shape={'wood'} innerClassName="relative flex justify-center ">
         <BounceCards
-          className="h-[calc(var(--card-height)+12rem)]"
+          className="h-[calc(var(--card-height)+9rem)]"
           elements={cards?.map((card) => (
             <PlayingCard key={card.id} card={card} className="!h-[var(--card-height)]" />
           ))}
