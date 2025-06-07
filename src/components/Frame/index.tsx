@@ -1,20 +1,22 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Media } from '@/components/Media'
 import type { Props as MediaProps } from '@/components/Media/types'
 import { cn } from '@/utilities/ui'
+import { getSeededRotation } from './utils'
 
 export const Frame: React.FC<MediaProps> = ({ className, ...mediaProps }) => {
-  const randomRotation = useMemo(() => {
-    return (Math.random() - 0.5) * 2
-  }, [])
+  const rotation = getSeededRotation(mediaProps.resource)
 
   return (
     <Media
-      className={cn('border-[10px] border-white drop-shadow-md !rounded-none', className)}
+      className={cn(
+        'border-[10px] border-white drop-shadow-md transition-transform duration-300 !rounded-none',
+        className,
+      )}
       style={{
-        transform: `rotate(${randomRotation}deg)`,
+        transform: `rotate(${rotation}deg)`,
       }}
       {...mediaProps}
     />
