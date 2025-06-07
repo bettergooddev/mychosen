@@ -13,6 +13,7 @@ export const Testimonials: GlobalConfig = {
     {
       name: 'testimonials',
       type: 'array',
+      maxRows: 3,
       fields: [
         {
           name: 'image',
@@ -37,6 +38,11 @@ export const Testimonials: GlobalConfig = {
             { label: '4.5', value: '4.5' },
             { label: '5', value: '5' },
           ],
+        },
+        {
+          name: 'review',
+          type: 'textarea',
+          required: true,
         },
         {
           name: 'author',
