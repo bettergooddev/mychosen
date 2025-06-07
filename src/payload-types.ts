@@ -904,7 +904,22 @@ export interface PlayingCardsBlock {
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
-  heading: string;
+  heading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  subheading?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonials';
@@ -1452,6 +1467,7 @@ export interface PlayingCardsBlockSelect<T extends boolean = true> {
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
   heading?: T;
+  subheading?: T;
   id?: T;
   blockName?: T;
 }
