@@ -11,6 +11,24 @@ import { link } from '@/fields/link'
 
 const columnFields: Field[] = [
   {
+    name: 'type',
+    type: 'select',
+    defaultValue: 'content',
+    options: [
+      {
+        label: 'Text',
+        value: 'content',
+      },
+      {
+        label: 'Media',
+        value: 'media',
+      },
+    ],
+    admin: {
+      description: 'Choose whether this column contains text content or media',
+    },
+  },
+  {
     name: 'size',
     type: 'select',
     defaultValue: 'oneThird',
@@ -46,21 +64,42 @@ const columnFields: Field[] = [
         ]
       },
     }),
-    label: false,
+    label: 'Content',
+    admin: {
+      condition: (_data, siblingData) => {
+        return siblingData?.type === 'content'
+      },
+    },
   },
   {
     name: 'enableLink',
     type: 'checkbox',
+    admin: {
+      condition: (_data, siblingData) => {
+        return siblingData?.type === 'content'
+      },
+    },
   },
   link({
     overrides: {
       admin: {
         condition: (_data, siblingData) => {
-          return Boolean(siblingData?.enableLink)
+          return Boolean(siblingData?.enableLink) && siblingData?.type === 'content'
         },
       },
     },
   }),
+  {
+    name: 'media',
+    type: 'upload',
+    relationTo: 'media',
+    label: 'Media',
+    admin: {
+      condition: (_data, siblingData) => {
+        return siblingData?.type === 'media'
+      },
+    },
+  },
 ]
 
 export const Content: Block = {

@@ -14,12 +14,12 @@ import { Frame } from '@/components/Frame'
 
 export const FlairBlock: React.FC<FlairBlockType> = ({ image }) => {
   return (
-    <div className="relative -z-10">
-      <div className="absolute w-full h-[110vh] top-1/2 -translate-y-1/2">
+    <div className="relative -z-10 w-full">
+      <div className="absolute w-full h-[100dvh] top-1/2 -translate-y-1/2 opacity-[0.8] scale-[1.15] overflow-hidden">
         <Media
           resource={image}
-          className="w-full h-full object-cover"
-          imgClassName="size-full object-cover"
+          className="w-full h-full object-cover -translate-y-[4rem] mix-blend-darken"
+          imgClassName="size-full object-cover mix-blend-darken"
         />
       </div>
     </div>

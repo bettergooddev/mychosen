@@ -540,6 +540,10 @@ export interface CallToActionBlock {
 export interface ContentBlock {
   columns?:
     | {
+        /**
+         * Choose whether this column contains text content or media
+         */
+        type?: ('content' | 'media') | null;
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText?: {
           root: {
@@ -576,6 +580,7 @@ export interface ContentBlock {
            */
           appearance?: ('default' | 'outline') | null;
         };
+        media?: (string | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -1357,6 +1362,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
   columns?:
     | T
     | {
+        type?: T;
         size?: T;
         richText?: T;
         enableLink?: T;
@@ -1370,6 +1376,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
             };
+        media?: T;
         id?: T;
       };
   reverse?: T;

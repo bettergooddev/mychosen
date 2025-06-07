@@ -5,6 +5,7 @@ import RichText from '@/components/RichText'
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
 import { CMSLink } from '../../components/Link'
+import { Frame } from '../../components/Frame'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const { columns } = props
@@ -18,22 +19,42 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
 
   return (
     <div className="container my-16">
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
+      <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16 px-0 lg:px-24">
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
-            const { enableLink, link, richText, size } = col
+            const { type, enableLink, link, richText, size, media } = col
 
             return (
               <div
-                className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
-                  'md:col-span-2': size !== 'full',
-                })}
+                className={cn(
+                  `flex flex-col justify-center theme-sugar-shack col-span-4 lg:col-span-${colsSpanClasses[size!]}`,
+                  {
+                    'md:col-span-2': size !== 'full',
+                  },
+                )}
                 key={index}
               >
-                {richText && <RichText data={richText} enableGutter={false} />}
+                {type === 'content' && (
+                  <>
+                    {richText && (
+                      <RichText
+                        className="[&_h2]:!mb-4 [&_*]:text-foreground [&_p]:opacity-65 [&_p]:lg:max-w-[32ch] [&_br]:hidden [&_br]:lg:block"
+                        data={richText}
+                        enableGutter={false}
+                      />
+                    )}
+                    {enableLink && <CMSLink {...link} />}
+                  </>
+                )}
 
-                {enableLink && <CMSLink {...link} />}
+                {type === 'media' && media && (
+                  <Frame
+                    resource={media}
+                    className="w-full overflow-hidden"
+                    imgClassName="w-full h-auto scale-[1.025]"
+                  />
+                )}
               </div>
             )
           })}
