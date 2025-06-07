@@ -172,7 +172,7 @@ html[data-theme='light'] {
   .type-h3,
   .prose h3 {
     font-family: var(--font-martel);
-    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+    font-size: clamp(1.125rem, 0.5vw + 1rem, 1.35rem);
     font-style: normal;
     font-weight: 800;
     line-height: 140%;
