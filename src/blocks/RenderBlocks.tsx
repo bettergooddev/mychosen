@@ -11,6 +11,7 @@ import { RenderFeatures } from '@/blocks/Features/RenderFeatures'
 import { PlayingCardsBlock } from '@/blocks/PlayingCards/Component'
 import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
 import { TimelineBlock } from '@/blocks/Timeline/Component'
+import { FlairBlock } from '@/blocks/Flair/Component'
 
 const blockComponents = {
   archive: RenderArchive,
@@ -22,6 +23,7 @@ const blockComponents = {
   playingCards: PlayingCardsBlock,
   testimonials: TestimonialsBlock,
   timeline: TimelineBlock,
+  flair: FlairBlock,
 }
 
 export const RenderBlocks: React.FC<{

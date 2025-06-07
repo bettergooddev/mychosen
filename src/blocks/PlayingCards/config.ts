@@ -5,6 +5,7 @@ import type { Block, Field } from 'payload'
 export const PlayingCards: Block = {
   slug: 'playingCards',
   interfaceName: 'PlayingCardsBlock',
+  imageURL: '/api/media/file/block-playing-cards.png',
   fields: [
     {
       name: 'heading',

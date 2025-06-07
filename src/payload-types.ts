@@ -302,6 +302,7 @@ export interface Page {
     | PlayingCardsBlock
     | TestimonialsBlock
     | TimelineBlock
+    | FlairBlock
   )[];
   meta?: {
     title?: string | null;
@@ -922,6 +923,16 @@ export interface TimelineBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlairBlock".
+ */
+export interface FlairBlock {
+  image: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'flair';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1296,6 +1307,7 @@ export interface PagesSelect<T extends boolean = true> {
         playingCards?: T | PlayingCardsBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
         timeline?: T | TimelineBlockSelect<T>;
+        flair?: T | FlairBlockSelect<T>;
       };
   meta?:
     | T
@@ -1451,6 +1463,15 @@ export interface TimelineBlockSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlairBlock_select".
+ */
+export interface FlairBlockSelect<T extends boolean = true> {
+  image?: T;
   id?: T;
   blockName?: T;
 }

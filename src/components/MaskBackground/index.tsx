@@ -39,7 +39,7 @@ export async function MaskBackground({
   if (!mask) return null
 
   return (
-    <div className="relative flex flex-col overflow-hidden">
+    <div className="relative flex flex-col overflow-hidden z-0">
       {backgroundImage ? (
         <Media
           resource={backgroundImage}
