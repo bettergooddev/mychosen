@@ -17,7 +17,7 @@ export const Highlights: React.FC<FeaturesBlock> = ({ heading, subheading, highl
       <Heading heading={heading} subheading={subheading} />
 
       {hasHighlights && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:px-24">
+        <div className="grid grid-cols-1 px-12 min-[54.4rem]:px-48 min-[68rem]:grid-cols-3 gap-16 min-[68rem]:px-24">
           {highlights.map((highlight, index) => (
             <HighlightCard key={index} highlight={highlight} />
           ))}

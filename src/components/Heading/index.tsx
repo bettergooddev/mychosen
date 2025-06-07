@@ -74,7 +74,7 @@ export const Heading = ({
   return (
     <div data-theme="sugar-shack" className="mb-16">
       {heading && (
-        <div className="mb-6" ref={textWrapper}>
+        <div className="" ref={textWrapper}>
           <RichText
             data={heading}
             enableGutter={false}
@@ -87,7 +87,7 @@ export const Heading = ({
       )}
 
       {subheading && (
-        <p className="opacity-75 type-body text-center text-foreground mx-auto max-w-[52ch]">
+        <p className="opacity-75 type-body text-center text-foreground mx-auto max-w-[52ch] mt-4">
           {subheading}
         </p>
       )}
