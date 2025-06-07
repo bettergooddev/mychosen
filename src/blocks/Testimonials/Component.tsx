@@ -29,16 +29,16 @@ export const TestimonialsBlock: React.FC<Props> = async ({ heading, subheading }
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 theme-sugar-shack">
           {testimonials.map((testimonial, index) => (
             <div
-              key={testimonial.id || index}
-              className="flex w-full flex-col items-start border border-border-primary"
+              key={index}
+              className="flex w-full flex-col items-start border-[10px] border-white drop-shadow-md bg-white"
             >
               <Media
                 resource={testimonial.image}
-                className="size-full h-[20rem]"
+                className="size-full min-h-[20rem]"
                 imgClassName="size-full"
               />
 
-              <div className="p-6 md:p-8 flex flex-col size-full">
+              <div className="p-4 md:p-6 mt-2 flex flex-col size-full">
                 <div className="mb-5 flex md:mb-6">
                   <StarRating
                     rating={parseFloat(testimonial.rating)}
@@ -46,11 +46,11 @@ export const TestimonialsBlock: React.FC<Props> = async ({ heading, subheading }
                   />
                 </div>
                 <blockquote className="type-h5 !font-normal text-foreground/65 md:text-md mb-5 md:mb-6">
-                  "{testimonial.review}"
+                  {testimonial.review}
                 </blockquote>
 
                 <div className="mt-auto flex w-full flex-col items-start md:w-fit md:flex-row md:items-center">
-                  <div className="mb-4 size-12 min-h-12 min-w-12 rounded-full overflow-hidden md:mb-0 md:mr-4">
+                  <div className="mb-4 size-11 min-h-11 min-w-11 rounded-full overflow-hidden md:mb-0 md:mr-4">
                     <Media
                       resource={testimonial.author.profilePicture}
                       className="size-full object-cover !border-0 !drop-shadow-none !transform-none"
