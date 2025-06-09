@@ -11,7 +11,7 @@ const Day: Field[] = [
         required: true,
         admin: {
           width: '50%',
-          placeholder: '9:00 AM',
+          placeholder: '9AM',
           condition: (data: any, siblingData: any) => !siblingData?.isClosed,
         },
       },
@@ -21,7 +21,7 @@ const Day: Field[] = [
         required: true,
         admin: {
           width: '50%',
-          placeholder: '5:00 PM',
+          placeholder: '5PM',
           condition: (data: any, siblingData: any) => !siblingData?.isClosed,
         },
       },

@@ -6,7 +6,8 @@ import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
 import { annotate } from 'rough-notation'
 import { RoughAnnotation } from 'rough-notation/lib/model'
-import { FeaturesBlock } from '@/payload-types'
+import { CallToActionBlock, FeaturesBlock } from '@/payload-types'
+import { CMSLink } from '../Link'
 
 class Annotation {
   constructor(
@@ -38,9 +39,11 @@ class Annotation {
 export const Heading = ({
   heading,
   subheading,
+  actions,
 }: {
   heading?: FeaturesBlock['heading']
   subheading?: string | null
+  actions?: NonNullable<CallToActionBlock['links']>
 }) => {
   const textWrapper = useRef<HTMLDivElement>(null)
   const annotations = useRef<Annotation[]>([])
@@ -71,6 +74,8 @@ export const Heading = ({
       : annotations.current.forEach((a) => a.hide())
   }, [annotations, isInView])
 
+  console.log(actions)
+
   return (
     <div data-theme="sugar-shack" className="mb-16">
       {heading && (
@@ -92,16 +97,13 @@ export const Heading = ({
         </p>
       )}
 
-      {/* <div className="text-center mb-12"> */}
-      {/* Placeholder for future actions/CMS link buttons */}
-      {/* <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"> */}
-      {/* TODO: Add CMS link buttons here when needed */}
-      {/* Example structure:
-          <CMSLink {...primaryAction} size="lg" />
-          <CMSLink {...secondaryAction} size="lg" appearance="outline" />
-          */}
-      {/* </div> */}
-      {/* </div> */}
+      {actions && (
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center theme-pizza">
+          {actions.map((action) => (
+            <CMSLink key={action.id} {...action.link} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

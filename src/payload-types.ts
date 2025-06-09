@@ -188,7 +188,7 @@ export interface Page {
                   /**
                    * Choose how the link should be rendered.
                    */
-                  appearance?: ('default' | 'outline') | null;
+                  appearance?: ('default' | 'outline' | 'secondary') | null;
                 };
                 id?: string | null;
               }[]
@@ -225,7 +225,7 @@ export interface Page {
                     /**
                      * Choose how the link should be rendered.
                      */
-                    appearance?: ('default' | 'outline') | null;
+                    appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
                   id?: string | null;
                 }[]
@@ -249,7 +249,7 @@ export interface Page {
                     /**
                      * Choose how the link should be rendered.
                      */
-                    appearance?: ('default' | 'outline') | null;
+                    appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
                   id?: string | null;
                 }[]
@@ -273,7 +273,7 @@ export interface Page {
                     /**
                      * Choose how the link should be rendered.
                      */
-                    appearance?: ('default' | 'outline') | null;
+                    appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
                   id?: string | null;
                 }[]
@@ -538,7 +538,7 @@ export interface CallToActionBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'secondary' | 'outline') | null;
         };
         id?: string | null;
       }[]
@@ -592,7 +592,7 @@ export interface ContentBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'outline' | 'secondary') | null;
         };
         media?: (string | null) | Media;
         id?: string | null;

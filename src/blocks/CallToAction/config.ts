@@ -51,7 +51,7 @@ export const CallToAction: Block = {
       type: 'textarea',
     },
     linkGroup({
-      appearances: ['default', 'outline'],
+      appearances: ['default', 'secondary', 'outline'],
       overrides: {
         maxRows: 2,
       },
