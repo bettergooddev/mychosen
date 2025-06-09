@@ -33,14 +33,22 @@ export const CallToAction: Block = {
     },
     {
       name: 'heading',
-      type: 'text',
-      label: 'Heading',
-      required: true,
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h2'] }),
+            FixedToolbarFeature(),
+            // InlineToolbarFeature(),
+          ]
+        },
+      }),
+      label: false,
     },
     {
       name: 'subheading',
-      type: 'text',
-      label: 'Subheading',
+      type: 'textarea',
     },
     linkGroup({
       appearances: ['default', 'outline'],
