@@ -7,6 +7,7 @@ import { CMSLink } from '@/components/Link'
 import { Heading } from '@/components/Heading'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import { BusinessHours } from '@/components/BusinessHours'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = async ({
   heading,
@@ -20,12 +21,14 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
     depth: 1,
   })
 
+  const hours = hoursData.hours || []
+
   return (
     <div className="container py-16">
       <Heading heading={heading} subheading={subheading} actions={links || []} />
       <div className="grid grid-cols-2 gap-16">
         <div>hey</div>
-        {/* <BusinessHours /> */}
+        <BusinessHours hours={hours} />
       </div>
     </div>
   )
