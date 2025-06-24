@@ -1,12 +1,20 @@
-'use client'
-
 import * as React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/utilities/ui'
 import { Hour, Brand } from '@/payload-types'
 
-const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+// TODO: Working on the hours component.
+
+const daysOfWeek = [
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday',
+] as const
 
 type HoursType = NonNullable<Hour['hours']>
 type DayType = HoursType[number]['monday']
@@ -14,22 +22,15 @@ type DayType = HoursType[number]['monday']
 export function BusinessHours({
   hours,
 }: {
-  hours: Array<NonNullable<HoursType> & { brand: Brand }>
+  hours: Array<NonNullable<Hour['hours']>[number] & { brand: Brand }>
 }) {
   const defaultBrand = hours[0]?.brand?.toString() || ''
-
-  const [currentDay, setCurrentDay] = React.useState('')
-
-  React.useEffect(() => {
-    const dayName = new Date().toLocaleString('en-us', { weekday: 'long' }).toLowerCase()
-    setCurrentDay(dayName)
-  }, [])
 
   if (!hours) return null
 
   return (
     <div className="w-full max-w-md">
-      <Tabs defaultValue={defaultBrand}>
+      {/* <Tabs defaultValue={defaultBrand}>
         <TabsList className="grid w-full grid-cols-3">
           {hours.map(({ brand }) => (
             <TabsTrigger key={brand?.slug || ''} value={brand?.slug || ''}>
@@ -37,26 +38,24 @@ export function BusinessHours({
             </TabsTrigger>
           ))}
         </TabsList>
-        {hours.map(({ brand, id, ...days }) => (
+        {hours.map((hours) => (
           <TabsContent key={brand?.slug || ''} value={brand?.slug || ''} className="mt-2">
             <Card>
               <CardContent className="p-4 space-y-1">
-                {daysOfWeek.map((day, index) => (
-                  <Day day={days[day as keyof typeof days]} index={index} key={index} />
+                {daysOfWeek.map((dayName, index) => (
+                  <Day day={days[dayName]} key={index} index={index} />
                 ))}
               </CardContent>
             </Card>
           </TabsContent>
         ))}
-      </Tabs>
+      </Tabs> */}
     </div>
   )
 }
-
-function Day({ day }: { day: Day }) {
+function Day({ day, index }: { day: DayType; index: number }) {
   return (
     <div
-      key={day}
       className={cn(
         'flex justify-between items-center py-2.5 px-2', // Add px-2 to all rows for consistency
         //   isCurrentDay && 'bg-muted rounded-md font-semibold',
@@ -68,5 +67,3 @@ function Day({ day }: { day: Day }) {
     </div>
   )
 }
-
-export default index
