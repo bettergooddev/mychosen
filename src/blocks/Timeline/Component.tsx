@@ -7,8 +7,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { Media } from '@/components/Media'
+import { Frame } from '@/components/Frame'
 import React from 'react'
+import { ChevronRight } from 'lucide-react'
+import { cn } from '@/utilities/ui'
 
 export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheading, events }) => {
   if (!events || events.length === 0) return null
@@ -25,9 +27,14 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheadin
         }}
         className="mt-8"
       >
-        <CarouselContent className="-ml-4">
-          {events.map((event) => (
-            <TimelineEventItem key={event.id} event={event} />
+        <CarouselContent>
+          {events.map((event, index) => (
+            <Event
+              key={event.id}
+              event={event}
+              isFirst={index === 0}
+              isLast={index === events.length - 1}
+            />
           ))}
         </CarouselContent>
 
@@ -39,22 +46,63 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheadin
   )
 }
 
-const TimelineEventItem: React.FC<{ event: NonNullable<TimelineBlockProps['events']>[number] }> = ({
-  event,
-}) => {
+const Event: React.FC<{
+  event: NonNullable<TimelineBlockProps['events']>[number]
+  isFirst: boolean
+  isLast: boolean
+}> = ({ event, isFirst, isLast }) => {
   return (
-    <CarouselItem className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-      <div className="flex flex-col items-center text-center h-full p-4">
-        <Media
+    <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 !pl-0">
+      <div className="flex flex-col items-center text-center h-full">
+        {/* Image with internal padding formerly on the item */}
+        <Frame
           resource={event.image}
-          className="aspect-square w-full max-w-[10rem] overflow-hidden rounded-md"
+          className="aspect-square w-full max-w-[13rem] overflow-hidden rounded-md"
           imgClassName="size-full object-cover"
         />
-        <p className="type-h5 text-foreground mt-4">{event.year}</p>
+
+        {/* Timeline line */}
+        <TimelineLine isFirst={isFirst} isLast={isLast} />
+
+        <p className="type-h3 text-foreground mt-4">{event.year}</p>
         {event.description && (
-          <p className="type-body text-foreground/75 mt-2">{event.description}</p>
+          <p className="type-caption !font-normal text-foreground/75 mt-3 px-4">
+            {event.description}
+          </p>
         )}
       </div>
     </CarouselItem>
+  )
+}
+
+// Timeline line with central dot. The line is split into left and right halves so we can
+// hide the left or right side (and corresponding arrow) for the first or last event.
+const TimelineLine: React.FC<{ isFirst: boolean; isLast: boolean }> = ({ isFirst, isLast }) => {
+  return (
+    <div className="relative mt-11 mb-4 h-[3px] w-full flex items-center justify-center">
+      {/* Left half of the line (hidden on first) */}
+      {!isFirst && (
+        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1/2 h-full bg-border" />
+      )}
+
+      {/* Right half of the line (shorter on last item) */}
+      <span
+        className={cn(
+          'absolute left-1/2 top-1/2 -translate-y-1/2 h-full bg-border',
+          isLast ? 'w-1/4' : 'w-1/2',
+        )}
+      />
+
+      {/* Center dot */}
+      <span className="relative z-10 block size-5 rounded-full bg-foreground" />
+
+      {/* Right cap arrow for the last item only */}
+      {isLast && (
+        <ChevronRight
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-8 text-border"
+          style={{ left: '74%' }}
+        />
+      )}
+    </div>
   )
 }
