@@ -945,7 +945,21 @@ export interface TestimonialsBlock {
  * via the `definition` "TimelineBlock".
  */
 export interface TimelineBlock {
-  heading: string;
+  heading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   subheading?: string | null;
   events: {
     year: number;

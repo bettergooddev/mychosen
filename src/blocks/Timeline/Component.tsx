@@ -1,61 +1,71 @@
-import React from 'react'
-import type { TimelineBlock as TimelineBlockType, Media } from '@/payload-types'
+import { Heading } from '@/components/Heading'
+import { Media } from '@/components/Media'
+import type { Media as MediaType } from '@/payload-types'
+import { TimelineBlock as TimelineBlockType } from '@/payload-types'
+import { cn } from '@/utilities/ui'
+import { ChevronRight } from 'lucide-react'
 
-type Props = {
-  disableInnerContainer?: boolean
-} & TimelineBlockType
+export const TimelineBlock = (props: TimelineBlockType) => {
+  const { heading, subheading, events } = props
 
-export const TimelineBlock: React.FC<Props> = ({ heading, subheading, events }) => {
   return (
-    <div className="container mx-auto px-4">
-      {heading && <h2 className="text-3xl font-bold text-center mb-4">{heading}</h2>}
-      {subheading && <p className="text-lg text-center text-gray-600 mb-8">{subheading}</p>}
+    <div className="overflow-hidden py-16">
+      <div className="container">
+        <Heading heading={heading} subheading={subheading} />
 
-      {events && events.length > 0 && (
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full"></div>
-
-          <div className="space-y-12">
-            {events.map((event: TimelineBlockType['events'][0], index: number) => {
-              const isEven = index % 2 === 0
-
-              return (
-                <div
-                  key={index}
-                  className={`flex items-center ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
-                >
-                  {/* Content */}
-                  <div className={`w-5/12 ${isEven ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                      <div className="text-2xl font-bold text-blue-600 mb-2">{event.year}</div>
-                      <p className="text-gray-700 leading-relaxed">{event.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Timeline dot */}
-                  <div className="w-2/12 flex justify-center">
-                    <div className="w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  </div>
-
-                  {/* Image */}
-                  <div className={`w-5/12 ${isEven ? 'pl-8' : 'pr-8'}`}>
-                    {event.image && typeof event.image === 'object' && (
-                      <div className="rounded-lg overflow-hidden shadow-lg">
-                        <img
-                          src={(event.image as Media).url || ''}
-                          alt={(event.image as Media).alt || `Event from ${event.year}`}
-                          className="w-full h-48 object-cover"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+        <div className="relative grid auto-cols-fr grid-cols-1 md:flex">
+          {events.map((item, index) => (
+            <TimelineItem
+              key={index}
+              isFirstItem={index === 0}
+              isLastItem={index === events.length - 1}
+              {...item}
+            />
+          ))}
         </div>
-      )}
+      </div>
+    </div>
+  )
+}
+
+const TimelineItem = ({
+  image,
+  year,
+  description,
+  isFirstItem,
+  isLastItem,
+}: {
+  image: string | MediaType
+  year: number
+  description: string
+  isFirstItem: boolean
+  isLastItem: boolean
+  id?: string | null
+}) => {
+  return (
+    <div className="relative grid auto-cols-fr grid-cols-[0.5fr_max-content_1fr] items-start gap-4 md:flex md:flex-col md:items-center md:gap-0">
+      <div className="mb-8 w-full overflow-hidden md:mb-0 md:w-3/5">
+        <Media resource={image} className="w-full" />
+      </div>
+      <div className="relative flex flex-col items-center self-stretch md:mb-4 md:mt-8 md:w-full md:flex-row md:self-auto">
+        {isFirstItem && (
+          <div className="absolute left-0 top-1.5 z-10 hidden h-1 w-16 bg-gradient-to-r from-background-primary to-transparent md:block" />
+        )}
+        <div className="h-2 w-[3px] bg-neutral-black md:h-[3px] md:w-full" />
+        <div className="z-20 size-[0.9375rem] flex-none rounded-full bg-neutral-black shadow-[0_0_0_8px_white]" />
+        <div
+          className={cn('h-full w-[3px] bg-neutral-black md:h-[3px] md:w-full', {
+            'hidden md:block': isLastItem,
+          })}
+        />
+        {isLastItem && (
+          <div className="absolute right-0 top-1.5 z-0 hidden h-1 w-16 bg-gradient-to-l from-background-primary to-transparent md:block" />
+        )}
+      </div>
+      <div className="pb-4 sm:pb-0 md:mb-0 md:px-3 md:text-center">
+        <h3 className="mb-2 text-xl font-bold md:text-2xl">{year}</h3>
+        <p>{description}</p>
+      </div>
     </div>
   )
 }
