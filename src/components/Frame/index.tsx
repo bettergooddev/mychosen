@@ -6,19 +6,31 @@ import type { Props as MediaProps } from '@/components/Media/types'
 import { cn } from '@/utilities/ui'
 import { getSeededRotation } from './utils'
 
-export const Frame: React.FC<MediaProps> = ({ className, ...mediaProps }) => {
+interface FrameProps extends MediaProps {
+  children?: React.ReactNode
+}
+
+export const Frame: React.FC<FrameProps> = ({ className, children, ...mediaProps }) => {
   const rotation = getSeededRotation(mediaProps.resource)
 
-  return (
-    <Media
-      className={cn(
-        'border-[10px] border-white drop-shadow-md transition-transform duration-300 !rounded-none',
-        className,
-      )}
-      style={{
-        transform: `rotate(${rotation}deg)`,
-      }}
-      {...mediaProps}
-    />
+  const frameStyles = {
+    transform: `rotate(${rotation}deg)`,
+  }
+
+  const frameClassName = cn(
+    'border-[10px] border-white drop-shadow-md transition-transform duration-300 !rounded-none',
+    className,
   )
+
+  // If children exist, render as a div wrapper
+  if (children) {
+    return (
+      <div className={frameClassName} style={frameStyles}>
+        {children}
+      </div>
+    )
+  }
+
+  // If no children, render the Media component as before
+  return <Media className={frameClassName} style={frameStyles} {...mediaProps} />
 }
