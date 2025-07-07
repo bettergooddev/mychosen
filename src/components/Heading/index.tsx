@@ -69,10 +69,12 @@ export const Heading = ({
   }, [textWrapper])
 
   useEffect(() => {
-    isInView
-      ? annotations.current.forEach((a) => a.show())
-      : annotations.current.forEach((a) => a.hide())
-  }, [annotations, isInView])
+    if (isInView) {
+      annotations.current.forEach((a) => a.show())
+    } else {
+      annotations.current.forEach((a) => a.hide())
+    }
+  }, [isInView])
 
   console.log(actions)
 
