@@ -36,7 +36,7 @@ export function BusinessHours({ hours }: { hours: HoursType }) {
   if (!hours || hours.length === 0) return <Fallback />
 
   return (
-    <Card className="w-full max-w-md overflow-hidden bg-muted border">
+    <Card className="w-full overflow-hidden bg-muted border h-min">
       <CardContent className="p-0">
         <Tabs defaultValue={hours[0]?.brand.slug || ''} className="w-full">
           <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-1 bg-background">

@@ -9,6 +9,8 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { BusinessHours } from '@/components/BusinessHours'
 import { HoursType } from '@/collections/Hours/types'
+import { Frame } from '@/components/Frame'
+import Map from '@/components/Map'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = async ({
   heading,
@@ -28,7 +30,9 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
     <div className="container py-16">
       <Heading heading={heading} subheading={subheading} actions={links || []} />
       <div className="grid grid-cols-2 gap-16">
-        <div>hey</div>
+        <Frame>
+          <Map />
+        </Frame>
         <BusinessHours hours={hours} />
       </div>
     </div>
