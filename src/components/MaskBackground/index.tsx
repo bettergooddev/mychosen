@@ -10,13 +10,11 @@ interface MaskBackgroundProps {
   children: React.ReactNode
   shape?: 'wood' | 'paper'
   innerClassName?: string
-  backgroundClassName?: string
 }
 
 export async function MaskBackground({
   children,
   innerClassName,
-  backgroundClassName,
   shape = 'wood',
 }: MaskBackgroundProps) {
   const masksData: MaskType = await getCachedGlobal('masks', 1)()
@@ -49,7 +47,7 @@ export async function MaskBackground({
           imgClassName="size-full object-cover"
         />
       ) : (
-        <div className={cn('absolute -z-10 size-full bg-foreground', backgroundClassName)} />
+        <div className="absolute -z-10 size-full bg-foreground" />
       )}
 
       <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[2px]" />

@@ -35,11 +35,12 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
 
   return (
     <div className="py-16" data-theme="pizza">
-      <Heading heading={heading} subheading={subheading} actions={links || []} />
+      <div className="container">
+        <Heading heading={heading} subheading={subheading} actions={links || []} />
+      </div>
 
       <MaskBackground
         shape={'paper'}
-        backgroundClassName="bg-primary"
         innerClassName="grid grid-cols-1 lg:grid-cols-2 container gap-14 py-20"
       >
         <Frame className="lg:min-h-0">
