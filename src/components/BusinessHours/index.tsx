@@ -1,12 +1,10 @@
-import * as React from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { HoursType } from '@/collections/Hours/types'
 import { Card, CardContent } from '@/components/ui/card'
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/utilities/ui'
-import { Hour, Brand } from '@/payload-types'
 
-// TODO: Working on the hours component.
-
-const daysOfWeek = [
+const weekdays = [
   'monday',
   'tuesday',
   'wednesday',
@@ -16,54 +14,80 @@ const daysOfWeek = [
   'sunday',
 ] as const
 
-type HoursType = NonNullable<Hour['hours']>
-type DayType = HoursType[number]['monday']
+function createWeekObject(business: HoursType[number]) {
+  return weekdays.map((day) => {
+    const dayData = business[day]
+    const dayName = day.charAt(0).toUpperCase() + day.slice(1)
 
-export function BusinessHours({
-  hours,
-}: {
-  hours: Array<NonNullable<Hour['hours']>[number] & { brand: Brand }>
-}) {
-  const defaultBrand = hours[0]?.brand?.toString() || ''
+    if (!dayData || dayData.isClosed) {
+      return { day: dayName, hours: 'Closed' }
+    }
 
-  if (!hours) return null
+    return {
+      day: dayName,
+      hours: `${dayData.openTime} - ${dayData.closeTime}`,
+    }
+  })
+}
+
+export function BusinessHours({ hours }: { hours: HoursType }) {
+  const today = new Date().toLocaleString('en-us', { weekday: 'long' })
+
+  if (!hours || hours.length === 0) return <Fallback />
 
   return (
-    <div className="w-full max-w-md">
-      {/* <Tabs defaultValue={defaultBrand}>
-        <TabsList className="grid w-full grid-cols-3">
-          {hours.map(({ brand }) => (
-            <TabsTrigger key={brand?.slug || ''} value={brand?.slug || ''}>
-              {brand?.name || ''}
-            </TabsTrigger>
+    <Card className="w-full max-w-md overflow-hidden bg-muted border">
+      <CardContent className="p-0">
+        <Tabs defaultValue={hours[0]?.brand.slug || ''} className="w-full">
+          <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-1 bg-background">
+            {hours.map((business) => (
+              <TabsTrigger
+                key={business.id}
+                value={business.brand.slug || ''}
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-sm"
+              >
+                {business.brand.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {hours.map((business) => (
+            <TabsContent key={business.id} value={business.brand.slug || ''} className="m-0">
+              <Table>
+                <TableBody>
+                  {createWeekObject(business).map((item, index, arr) => {
+                    const isToday = item.day === today
+                    return (
+                      <TableRow
+                        key={item.day}
+                        className={cn(
+                          'border-background/50 hover:bg-transparent',
+                          isToday && 'bg-black/5 font-bold hover:bg-black/5',
+                          !isToday && 'font-medium',
+                          index === arr.length - 1 && 'border-b-0',
+                        )}
+                      >
+                        <TableCell className="px-4 py-3">{item.day}</TableCell>
+                        <TableCell className="px-4 py-3 text-right">{item.hours}</TableCell>
+                      </TableRow>
+                    )
+                  })}
+                </TableBody>
+              </Table>
+            </TabsContent>
           ))}
-        </TabsList>
-        {hours.map((hours) => (
-          <TabsContent key={brand?.slug || ''} value={brand?.slug || ''} className="mt-2">
-            <Card>
-              <CardContent className="p-4 space-y-1">
-                {daysOfWeek.map((dayName, index) => (
-                  <Day day={days[dayName]} key={index} index={index} />
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        ))}
-      </Tabs> */}
-    </div>
+        </Tabs>
+      </CardContent>
+    </Card>
   )
 }
-function Day({ day, index }: { day: DayType; index: number }) {
+
+function Fallback() {
   return (
-    <div
-      className={cn(
-        'flex justify-between items-center py-2.5 px-2', // Add px-2 to all rows for consistency
-        //   isCurrentDay && 'bg-muted rounded-md font-semibold',
-        index !== 0 && 'border-t',
-      )}
-    >
-      <p className="capitalize">{day}</p>
-      <p>{days[index].isClosed ? 'Closed' : `${hours.openTime} - ${hours.closeTime}`}</p>
-    </div>
+    <Card className="w-full max-w-md overflow-hidden">
+      <CardContent className="p-4 text-center">No hours available.</CardContent>
+    </Card>
   )
 }
+
+export default Fallback

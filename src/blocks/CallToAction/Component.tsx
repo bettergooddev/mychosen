@@ -8,6 +8,7 @@ import { Heading } from '@/components/Heading'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { BusinessHours } from '@/components/BusinessHours'
+import { HoursType } from '@/collections/Hours/types'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = async ({
   heading,
@@ -21,7 +22,7 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
     depth: 1,
   })
 
-  const hours = hoursData.hours || []
+  const hours = (hoursData.hours || []) as HoursType
 
   return (
     <div className="container py-16">
