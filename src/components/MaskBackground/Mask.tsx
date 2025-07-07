@@ -10,7 +10,13 @@ interface MaskProps {
 
 export function Mask(props: MaskProps) {
   const { shadow = true } = props
-  return shadow ? <Shadow {...props} children={<Inner {...props} />} /> : <Inner {...props} />
+  return shadow ? (
+    <Shadow {...props}>
+      <Inner {...props} />
+    </Shadow>
+  ) : (
+    <Inner {...props} />
+  )
 }
 
 function Inner({ media, className = '' }: MaskProps) {
