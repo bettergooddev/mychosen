@@ -76,8 +76,6 @@ export const Heading = ({
     }
   }, [isInView])
 
-  console.log(actions)
-
   return (
     <div data-theme="sugar-shack" className="mb-16">
       {heading && (
