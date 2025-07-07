@@ -4,14 +4,15 @@ import React from 'react'
 import { Media } from '@/components/Media'
 import type { Props as MediaProps } from '@/components/Media/types'
 import { cn } from '@/utilities/ui'
-import { getSeededRotation } from './utils'
+import { getSeededRotation, getURLFromResource } from './utils'
 
 interface FrameProps extends MediaProps {
   children?: React.ReactNode
+  seed?: string | null
 }
 
-export const Frame: React.FC<FrameProps> = ({ className, children, ...mediaProps }) => {
-  const rotation = getSeededRotation(mediaProps.resource)
+export const Frame: React.FC<FrameProps> = ({ className, children, seed, ...mediaProps }) => {
+  const rotation = getSeededRotation(seed ?? getURLFromResource(mediaProps.resource))
 
   const frameStyles = {
     transform: `rotate(${rotation}deg)`,

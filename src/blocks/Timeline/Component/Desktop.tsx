@@ -51,7 +51,7 @@ const Event: React.FC<{
   isLast: boolean
 }> = ({ event, isFirst, isLast }) => {
   return (
-    <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 !pl-0" data-theme="sugar-shack">
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3 !pl-0" data-theme="sugar-shack">
       <div className="flex flex-col items-center text-center h-full">
         {/* Image with internal padding formerly on the item */}
         <Frame

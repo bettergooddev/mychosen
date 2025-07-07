@@ -12,7 +12,7 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheadin
       <Heading heading={heading} subheading={subheading} />
 
       {/* Mobile (vertical list) */}
-      <MobileTimeline events={events} className="md:hidden" />
+      {/* <MobileTimeline events={events} className="md:hidden" /> */}
 
       {/* Desktop (carousel) */}
       <DesktopCarousel events={events} className="hidden md:block" />
