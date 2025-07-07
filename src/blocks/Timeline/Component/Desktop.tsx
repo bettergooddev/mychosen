@@ -12,37 +12,36 @@ import React from 'react'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/utilities/ui'
 
-export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheading, events }) => {
-  if (!events || events.length === 0) return null
-
+export function DesktopCarousel({
+  events,
+  className,
+}: {
+  events: NonNullable<TimelineBlockProps['events']>
+  className?: string
+}) {
   return (
-    <div className="container py-16">
-      <Heading heading={heading} subheading={subheading} />
+    <Carousel
+      opts={{
+        align: 'start',
+        loop: false,
+      }}
+      className={cn('mt-8', className)}
+    >
+      <CarouselContent>
+        {events.map((event, index) => (
+          <Event
+            key={event.id}
+            event={event}
+            isFirst={index === 0}
+            isLast={index === events.length - 1}
+          />
+        ))}
+      </CarouselContent>
 
-      {/* Timeline carousel */}
-      <Carousel
-        opts={{
-          align: 'start',
-          loop: false,
-        }}
-        className="mt-8"
-      >
-        <CarouselContent>
-          {events.map((event, index) => (
-            <Event
-              key={event.id}
-              event={event}
-              isFirst={index === 0}
-              isLast={index === events.length - 1}
-            />
-          ))}
-        </CarouselContent>
-
-        {/* Navigation */}
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </div>
+      {/* Navigation */}
+      <CarouselPrevious data-theme="pizza" variant="default" />
+      <CarouselNext data-theme="pizza" variant="default" />
+    </Carousel>
   )
 }
 
