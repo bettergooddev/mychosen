@@ -22,6 +22,7 @@ import { CompanyDetails } from './collections/CompanyDetails'
 import { Brands } from './collections/Brands'
 import { Hours } from './collections/Hours'
 import { Masks } from './collections/Masks'
+import { TypeGenerator } from './collections/TypeGenerator'
 
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -75,7 +76,17 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Brands, Menus],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Navigation, Footer, CompanyDetails, Background, Cards, Hours, Testimonials, Masks],
+  globals: [
+    Navigation,
+    Footer,
+    CompanyDetails,
+    Background,
+    Cards,
+    Hours,
+    Testimonials,
+    Masks,
+    TypeGenerator,
+  ],
   plugins: [
     ...plugins,
     vercelBlobStorage({

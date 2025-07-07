@@ -113,6 +113,7 @@ export interface Config {
     hours: Hour;
     testimonials: Testimonial;
     masks: Mask;
+    typeGenerator: TypeGenerator;
   };
   globalsSelect: {
     navigation: NavigationSelect<false> | NavigationSelect<true>;
@@ -123,6 +124,7 @@ export interface Config {
     hours: HoursSelect<false> | HoursSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     masks: MasksSelect<false> | MasksSelect<true>;
+    typeGenerator: TypeGeneratorSelect<false> | TypeGeneratorSelect<true>;
   };
   locale: null;
   user: User & {
@@ -2377,6 +2379,34 @@ export interface Mask {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "typeGenerator".
+ */
+export interface TypeGenerator {
+  id: string;
+  iconLink: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+    lucideIcon: string;
+    id?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation_select".
  */
 export interface NavigationSelect<T extends boolean = true> {
@@ -2759,6 +2789,30 @@ export interface MasksSelect<T extends boolean = true> {
         top?: T;
         bottom?: T;
         backgroundImage?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "typeGenerator_select".
+ */
+export interface TypeGeneratorSelect<T extends boolean = true> {
+  iconLink?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        lucideIcon?: T;
         id?: T;
       };
   updatedAt?: T;

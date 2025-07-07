@@ -1,3 +1,4 @@
+import { cn } from '@/utilities/ui'
 import React from 'react'
 
 interface MapProps {
@@ -28,17 +29,16 @@ const Map: React.FC<MapProps> = ({
   referrerPolicy = 'no-referrer-when-downgrade',
 }) => {
   return (
-    <div className={`w-full ${className}`}>
+    <div className={cn('size-full', className)}>
       <iframe
         src={src}
         width={width}
         height={height}
-        style={{ border: 0 }}
         allowFullScreen={allowFullScreen}
         loading={loading}
         referrerPolicy={referrerPolicy}
         title="My-Chosen Café Location"
-        className="w-full"
+        className="size-full h-full border-none"
       />
     </div>
   )

@@ -2,8 +2,7 @@ import React from 'react'
 
 import type { CallToActionBlock as CTABlockProps } from '@/payload-types'
 
-import RichText from '@/components/RichText'
-import { CMSLink } from '@/components/Link'
+import { IconList } from '@/components/IconList'
 import { Heading } from '@/components/Heading'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
@@ -24,16 +23,27 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
     depth: 1,
   })
 
+  const companyDetailsData = await payload.findGlobal({
+    slug: 'companyDetails',
+    depth: 1,
+  })
+
   const hours = (hoursData.hours || []) as HoursType
+  const { googleMapsEmbedUrl } = companyDetailsData?.location || {}
+  const findUs = companyDetailsData?.findUs || []
 
   return (
     <div className="container py-16">
       <Heading heading={heading} subheading={subheading} actions={links || []} />
       <div className="grid grid-cols-2 gap-16">
-        <Frame>
-          <Map />
-        </Frame>
-        <BusinessHours hours={hours} />
+        <Frame>{googleMapsEmbedUrl && <Map src={googleMapsEmbedUrl} />}</Frame>
+        <div className="flex flex-col gap-14">
+          <BusinessHours hours={hours} />
+          <div className="flex flex-col gap-4">
+            <h4 className="type-h4">Find Us</h4>
+            {findUs.length > 0 && <IconList items={findUs} />}
+          </div>
+        </div>
       </div>
     </div>
   )

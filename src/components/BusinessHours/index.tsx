@@ -36,23 +36,38 @@ export function BusinessHours({ hours }: { hours: HoursType }) {
   if (!hours || hours.length === 0) return <Fallback />
 
   return (
-    <Card className="w-full overflow-hidden bg-muted border h-min">
+    <Card
+      className="w-full overflow-hidden bg-background h-min shadow-md rounded-none border-none"
+      data-theme="sugar-shack"
+    >
       <CardContent className="p-0">
-        <Tabs defaultValue={hours[0]?.brand.slug || ''} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-1 bg-background">
+        <Tabs defaultValue={hours[0]?.brand.slug || ''} className="w-full" data-theme="pizza">
+          <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-1 relative bg-transparent">
             {hours.map((business) => (
               <TabsTrigger
                 key={business.id}
                 value={business.brand.slug || ''}
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-sm"
+                className="!type-h4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-sm py-3 z-10 "
               >
                 {business.brand.name}
               </TabsTrigger>
             ))}
+
+            <div
+              className={cn(
+                'absolute inset-0 bg-muted z-0 theme-sugar-shack',
+                // 'border-b border-primary/15',
+              )}
+            />
           </TabsList>
 
           {hours.map((business) => (
-            <TabsContent key={business.id} value={business.brand.slug || ''} className="m-0">
+            <TabsContent
+              key={business.id}
+              value={business.brand.slug || ''}
+              className="m-0"
+              data-theme="sugar-shack"
+            >
               <Table>
                 <TableBody>
                   {createWeekObject(business).map((item, index, arr) => {
@@ -61,14 +76,16 @@ export function BusinessHours({ hours }: { hours: HoursType }) {
                       <TableRow
                         key={item.day}
                         className={cn(
-                          'border-background/50 hover:bg-transparent',
-                          isToday && 'bg-black/5 font-bold hover:bg-black/5',
-                          !isToday && 'font-medium',
+                          'border-primary/5 border-b hover:bg-transparent',
+                          isToday &&
+                            'bg-muted/50 [&_*]:!font-bold [&_*]:theme-pizza [&_*]:text-foreground hover:bg-muted/50 border-none',
                           index === arr.length - 1 && 'border-b-0',
                         )}
                       >
-                        <TableCell className="px-4 py-3">{item.day}</TableCell>
-                        <TableCell className="px-4 py-3 text-right">{item.hours}</TableCell>
+                        <TableCell className="type-body px-4 py-3">{item.day}</TableCell>
+                        <TableCell className="type-body px-4 py-3 text-right">
+                          {item.hours}
+                        </TableCell>
                       </TableRow>
                     )
                   })}
