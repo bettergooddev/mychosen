@@ -6,6 +6,7 @@ import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 const config = {
   content: {
     files: [
+      './node_modules/@relume_io/relume-ui/dist/**/*.{js,ts,jsx,tsx}',
       './pages/**/*.{ts,tsx}',
       './components/**/*.{ts,tsx}',
       './app/**/*.{ts,tsx}',
