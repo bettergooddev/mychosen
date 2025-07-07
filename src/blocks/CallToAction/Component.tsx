@@ -35,8 +35,12 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
   return (
     <div className="container py-16">
       <Heading heading={heading} subheading={subheading} actions={links || []} />
-      <div className="grid grid-cols-2 gap-16">
-        <Frame>{googleMapsEmbedUrl && <Map src={googleMapsEmbedUrl} />}</Frame>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+        <Frame className="lg:min-h-0">
+          {googleMapsEmbedUrl && (
+            <Map src={googleMapsEmbedUrl} className="min-h-[450px] lg:min-h-0" />
+          )}
+        </Frame>
         <div className="flex flex-col gap-14">
           <BusinessHours hours={hours} />
           <div className="flex flex-col gap-4">

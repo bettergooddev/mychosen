@@ -78,7 +78,7 @@ export function BusinessHours({ hours }: { hours: HoursType }) {
                         className={cn(
                           'border-primary/5 border-b hover:bg-transparent',
                           isToday &&
-                            'bg-muted/35 [&_*]:!font-bold [&_*]:theme-pizza [&_*]:text-foreground hover:bg-muted/35 border-none',
+                            'bg-muted/50 [&_*]:!font-bold [&_*]:theme-pizza [&_*]:text-foreground hover:bg-muted/50 border-none',
                           index === arr.length - 1 && 'border-b-0',
                         )}
                       >
