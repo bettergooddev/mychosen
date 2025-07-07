@@ -11,11 +11,6 @@ import { Frame } from '@/components/Frame'
 import { useWindowWidth } from '@/react/useWindowWidth'
 
 export const HighImpactHero: React.FC<Page['hero']> = (props) => {
-  if (!props?.highImpact?.[0]) return null
-
-  const { logos, heading, subheading, media, backgroundLayers } = props?.highImpact?.[0]
-  const [logoLeft, logoCenter, logoRight] = logos || []
-
   const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
@@ -27,6 +22,11 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  if (!props?.highImpact?.[0]) return null
+
+  const { logos, heading, subheading, media, backgroundLayers } = props?.highImpact?.[0]
+  const [logoLeft, logoCenter, logoRight] = logos || []
 
   const imagePool1 = media.slice(0, Math.floor(media.length / 2))
   const imagePool2 = media.slice(Math.floor(media.length / 2))

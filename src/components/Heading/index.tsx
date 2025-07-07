@@ -69,12 +69,12 @@ export const Heading = ({
   }, [textWrapper])
 
   useEffect(() => {
-    isInView
-      ? annotations.current.forEach((a) => a.show())
-      : annotations.current.forEach((a) => a.hide())
-  }, [annotations, isInView])
-
-  console.log(actions)
+    if (isInView) {
+      annotations.current.forEach((a) => a.show())
+    } else {
+      annotations.current.forEach((a) => a.hide())
+    }
+  }, [isInView])
 
   return (
     <div data-theme="sugar-shack" className="mb-16">
