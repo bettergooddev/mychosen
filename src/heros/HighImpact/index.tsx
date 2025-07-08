@@ -1,6 +1,5 @@
 'use client'
 
-import { useHeaderTheme } from '@/providers/HeaderTheme'
 import type { Page } from '@/payload-types'
 import { useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
