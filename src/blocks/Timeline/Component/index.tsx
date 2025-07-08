@@ -8,11 +8,11 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheadin
   if (!events || events.length === 0) return null
 
   return (
-    <div className="container py-16">
+    <div className="container">
       <Heading heading={heading} subheading={subheading} />
 
       {/* Mobile (vertical list) */}
-      {/* <MobileTimeline events={events} className="md:hidden" /> */}
+      <MobileTimeline events={events} className="md:hidden" />
 
       {/* Desktop (carousel) */}
       <DesktopCarousel events={events} className="hidden md:block" />

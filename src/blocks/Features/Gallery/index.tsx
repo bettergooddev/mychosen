@@ -33,7 +33,7 @@ export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }
     images?.length && images.length in classes.grid['variants']['imageCount']
 
   return (
-    <div className="container py-16">
+    <div className="container">
       <Heading heading={heading} subheading={subheading} />
       {hasSupportedNumberOfImages && <GalleryGrid images={images} />}
     </div>

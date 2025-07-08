@@ -40,7 +40,7 @@ export const renderNavigationItem = (
     const buttonVariant = variantCandidate === 'inline' ? 'link' : variantCandidate
 
     return (
-      <div key={index} className="relative group">
+      <div key={index} className="relative group" data-theme="cafe">
         <Button
           className="flex items-center gap-1 type-button hover:text-primary underline-offset-4 transition-colors"
           variant={buttonVariant}
@@ -57,7 +57,7 @@ export const renderNavigationItem = (
               <CMSLink
                 key={dropdownIndex}
                 {...dropdownItem.link}
-                className="block px-4 py-3 type-button hover:bg-muted transition-colors"
+                className="block px-4 py-3 type-button hover:bg-secondary transition-colors"
               />
             ))}
           </div>

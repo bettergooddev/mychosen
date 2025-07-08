@@ -24,7 +24,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = async ({
   const testimonials = testimonialsGlobal.testimonials || []
 
   return (
-    <div className="container py-16">
+    <div className="container">
       <Heading heading={heading} subheading={subheading} />
 
       {testimonials.length > 0 && (
