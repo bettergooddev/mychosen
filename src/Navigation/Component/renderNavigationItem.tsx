@@ -28,7 +28,7 @@ export const renderNavigationItem = (
         key={index}
         {...navItem.link}
         appearance={overrideAppearance ?? navItem.link.appearance ?? 'inline'}
-        className="type-button"
+        className="type-button hover:underline"
       />
     )
   }
@@ -46,7 +46,7 @@ export const renderNavigationItem = (
     return (
       <div key={index} className="relative group">
         <Button
-          className="flex items-center gap-1 type-button hover:text-primary hover:underline underline-offset-4 transition-colors"
+          className="flex items-center gap-1 type-button hover:text-primary underline-offset-4 transition-colors"
           variant={buttonVariant}
           asChild
         >
