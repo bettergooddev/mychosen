@@ -59,7 +59,7 @@
     --popover-foreground: 134 42% 12%;
     --primary: 134 42% 12%;
     --primary-foreground: 33 59% 92%;
-    --secondary: 45 18% 69%;
+    --secondary: 38.182 28.696% 77.451%;
     --secondary-foreground: 134 42% 12%;
     --muted: 45 18% 69%;
     --muted-foreground: 134 42% 12%;
@@ -199,6 +199,11 @@ html[data-theme='light'] {
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
+  }
+
+  .type-button {
+    font-family: var(--font-martel);
+    @apply text-sm font-medium;
   }
 
   h5,

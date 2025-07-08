@@ -34,7 +34,7 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
   const findUs = companyDetailsData?.findUs || []
 
   return (
-    <div className="py-16" data-theme="pizza">
+    <div className="" data-theme="pizza">
       <div className="container">
         <Heading heading={heading} subheading={subheading} actions={links || []} />
       </div>

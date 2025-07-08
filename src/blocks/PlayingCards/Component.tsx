@@ -22,7 +22,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
   const { heading, subheading } = props
 
   return (
-    <div className="relative py-16 [--card-height:22rem]">
+    <div className="relative [--card-height:22rem]">
       <div className="container">
         <Heading heading={heading} subheading={subheading} />
       </div>

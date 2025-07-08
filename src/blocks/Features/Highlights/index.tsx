@@ -13,7 +13,7 @@ import { Frame } from '@/components/Frame'
 export const Highlights: React.FC<FeaturesBlock> = ({ heading, subheading, highlights }) => {
   const hasHighlights = highlights && highlights.length > 0
   return (
-    <div className="container py-16">
+    <div className="container">
       <Heading heading={heading} subheading={subheading} />
 
       {hasHighlights && (

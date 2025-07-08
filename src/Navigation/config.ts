@@ -9,6 +9,13 @@ export const Navigation: GlobalConfig = {
   access: {
     read: () => true,
   },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100,
+      },
+    },
+  },
   fields: [
     {
       name: 'logo',

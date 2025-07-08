@@ -188,7 +188,7 @@ export interface Page {
                   url?: string | null;
                   label: string;
                   /**
-                   * Choose how the link should be rendered.
+                   * Choose how this item should be rendered.
                    */
                   appearance?: ('default' | 'outline' | 'secondary') | null;
                 };
@@ -225,7 +225,7 @@ export interface Page {
                     url?: string | null;
                     label: string;
                     /**
-                     * Choose how the link should be rendered.
+                     * Choose how this item should be rendered.
                      */
                     appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
@@ -249,7 +249,7 @@ export interface Page {
                     url?: string | null;
                     label: string;
                     /**
-                     * Choose how the link should be rendered.
+                     * Choose how this item should be rendered.
                      */
                     appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
@@ -273,7 +273,7 @@ export interface Page {
                     url?: string | null;
                     label: string;
                     /**
-                     * Choose how the link should be rendered.
+                     * Choose how this item should be rendered.
                      */
                     appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
@@ -317,6 +317,15 @@ export interface Page {
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  parent?: (string | null) | Page;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | Page;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -469,15 +478,6 @@ export interface Category {
   title: string;
   slug?: string | null;
   slugLock?: boolean | null;
-  parent?: (string | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -538,7 +538,7 @@ export interface CallToActionBlock {
           url?: string | null;
           label: string;
           /**
-           * Choose how the link should be rendered.
+           * Choose how this item should be rendered.
            */
           appearance?: ('default' | 'secondary' | 'outline') | null;
         };
@@ -592,7 +592,7 @@ export interface ContentBlock {
           url?: string | null;
           label: string;
           /**
-           * Choose how the link should be rendered.
+           * Choose how this item should be rendered.
            */
           appearance?: ('default' | 'outline' | 'secondary') | null;
         };
@@ -1369,6 +1369,15 @@ export interface PagesSelect<T extends boolean = true> {
   publishedAt?: T;
   slug?: T;
   slugLock?: T;
+  parent?: T;
+  breadcrumbs?:
+    | T
+    | {
+        doc?: T;
+        url?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -1660,15 +1669,6 @@ export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   slugLock?: T;
-  parent?: T;
-  breadcrumbs?:
-    | T
-    | {
-        doc?: T;
-        url?: T;
-        label?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2009,9 +2009,17 @@ export interface Navigation {
                 } | null);
             url?: string | null;
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
           };
           dropdown?: {
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
             items?:
               | {
                   link: {
@@ -2055,9 +2063,17 @@ export interface Navigation {
                 } | null);
             url?: string | null;
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
           };
           dropdown?: {
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
             items?:
               | {
                   link: {
@@ -2083,6 +2099,7 @@ export interface Navigation {
         id?: string | null;
       }[]
     | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2112,9 +2129,17 @@ export interface Footer {
                   } | null);
               url?: string | null;
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
             };
             dropdown?: {
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
               items?:
                 | {
                     link: {
@@ -2161,9 +2186,17 @@ export interface Footer {
                   } | null);
               url?: string | null;
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
             };
             dropdown?: {
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
               items?:
                 | {
                     link: {
@@ -2190,6 +2223,7 @@ export interface Footer {
         }[]
       | null;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2454,11 +2488,13 @@ export interface NavigationSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
+                    appearance?: T;
                   };
               dropdown?:
                 | T
                 | {
                     label?: T;
+                    appearance?: T;
                     items?:
                       | T
                       | {
@@ -2492,11 +2528,13 @@ export interface NavigationSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
+                    appearance?: T;
                   };
               dropdown?:
                 | T
                 | {
                     label?: T;
+                    appearance?: T;
                     items?:
                       | T
                       | {
@@ -2515,6 +2553,7 @@ export interface NavigationSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -2543,11 +2582,13 @@ export interface FooterSelect<T extends boolean = true> {
                           reference?: T;
                           url?: T;
                           label?: T;
+                          appearance?: T;
                         };
                     dropdown?:
                       | T
                       | {
                           label?: T;
+                          appearance?: T;
                           items?:
                             | T
                             | {
@@ -2586,11 +2627,13 @@ export interface FooterSelect<T extends boolean = true> {
                           reference?: T;
                           url?: T;
                           label?: T;
+                          appearance?: T;
                         };
                     dropdown?:
                       | T
                       | {
                           label?: T;
+                          appearance?: T;
                           items?:
                             | T
                             | {
@@ -2610,6 +2653,7 @@ export interface FooterSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

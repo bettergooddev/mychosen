@@ -1,6 +1,7 @@
 import type { Field, GroupField } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
+import { buildAppearanceField } from '../appearance'
 import { link } from '../link'
 
 type DropdownType = (options?: { overrides?: Partial<GroupField> }) => Field
@@ -19,6 +20,7 @@ export const dropdown: DropdownType = ({ overrides = {} } = {}) => {
         required: true,
         label: 'Label',
       },
+      buildAppearanceField(),
       {
         name: 'items',
         type: 'array',
