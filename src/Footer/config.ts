@@ -34,6 +34,7 @@ export const Footer: GlobalConfig = {
           label: 'Link Groups',
           fields: [
             link({
+              appearances: false,
               overrides: {
                 label: false,
               },
@@ -49,6 +50,12 @@ export const Footer: GlobalConfig = {
           },
         },
       ],
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/Footer/GroupsRowLabel#RowLabel',
+        },
+      },
     },
   ],
   hooks: {

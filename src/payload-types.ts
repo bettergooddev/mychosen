@@ -2128,10 +2128,6 @@ export interface Footer {
                     } | null);
                 url?: string | null;
                 label: string;
-                /**
-                 * Choose how this item should be rendered.
-                 */
-                appearance?: ('default' | 'outline' | 'secondary') | null;
               };
               lucideIcon?: string | null;
               id?: string | null;
@@ -2495,7 +2491,6 @@ export interface FooterSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
-                    appearance?: T;
                   };
               lucideIcon?: T;
               id?: T;
