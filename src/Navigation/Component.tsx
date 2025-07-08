@@ -1,4 +1,4 @@
-import { NavigationClient } from './Component.client'
+import { NavigationClient } from '@/Navigation/Nav/client'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
 
