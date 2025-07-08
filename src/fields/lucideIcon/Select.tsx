@@ -42,7 +42,8 @@ export const Select: React.FC<LucideSelectComponentProps> = ({ path }) => {
         path={path}
         name={path}
         value={value}
-        required={true}
+        // required={true}
+        required={false}
         label={'Icon'}
         description={'You can find all icons on the page https://lucide.dev/icons'}
         hasMany={false}

@@ -636,7 +636,7 @@ export interface Menu {
   id: string;
   brand: string | Brand;
   name: string;
-  lucideIcon: string;
+  lucideIcon?: string | null;
   pdf: string | Media;
   thumbnail: string | Media;
   updatedAt: string;
@@ -2109,120 +2109,37 @@ export interface Navigation {
  */
 export interface Footer {
   id: string;
-  sitemap: {
-    heading: string;
-    footerItems?:
-      | {
-          navigationItem: {
-            type: 'link' | 'dropdown';
-            link?: {
-              type?: ('reference' | 'custom') | null;
-              newTab?: boolean | null;
-              reference?:
-                | ({
-                    relationTo: 'pages';
-                    value: string | Page;
-                  } | null)
-                | ({
-                    relationTo: 'posts';
-                    value: string | Post;
-                  } | null);
-              url?: string | null;
-              label: string;
-              /**
-               * Choose how this item should be rendered.
-               */
-              appearance?: ('default' | 'outline' | 'secondary') | null;
-            };
-            dropdown?: {
-              label: string;
-              /**
-               * Choose how this item should be rendered.
-               */
-              appearance?: ('default' | 'outline' | 'secondary') | null;
-              items?:
-                | {
-                    link: {
-                      type?: ('reference' | 'custom') | null;
-                      newTab?: boolean | null;
-                      reference?:
-                        | ({
-                            relationTo: 'pages';
-                            value: string | Page;
-                          } | null)
-                        | ({
-                            relationTo: 'posts';
-                            value: string | Post;
-                          } | null);
-                      url?: string | null;
-                      label: string;
-                    };
-                    id?: string | null;
-                  }[]
-                | null;
-            };
-          };
-          id?: string | null;
-        }[]
-      | null;
-  };
-  whatToDo: {
-    heading: string;
-    footerItems?:
-      | {
-          navigationItem: {
-            type: 'link' | 'dropdown';
-            link?: {
-              type?: ('reference' | 'custom') | null;
-              newTab?: boolean | null;
-              reference?:
-                | ({
-                    relationTo: 'pages';
-                    value: string | Page;
-                  } | null)
-                | ({
-                    relationTo: 'posts';
-                    value: string | Post;
-                  } | null);
-              url?: string | null;
-              label: string;
-              /**
-               * Choose how this item should be rendered.
-               */
-              appearance?: ('default' | 'outline' | 'secondary') | null;
-            };
-            dropdown?: {
-              label: string;
-              /**
-               * Choose how this item should be rendered.
-               */
-              appearance?: ('default' | 'outline' | 'secondary') | null;
-              items?:
-                | {
-                    link: {
-                      type?: ('reference' | 'custom') | null;
-                      newTab?: boolean | null;
-                      reference?:
-                        | ({
-                            relationTo: 'pages';
-                            value: string | Page;
-                          } | null)
-                        | ({
-                            relationTo: 'posts';
-                            value: string | Post;
-                          } | null);
-                      url?: string | null;
-                      label: string;
-                    };
-                    id?: string | null;
-                  }[]
-                | null;
-            };
-          };
-          id?: string | null;
-        }[]
-      | null;
-  };
+  groups?:
+    | {
+        heading: string;
+        linkGroups?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: string | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+                /**
+                 * Choose how this item should be rendered.
+                 */
+                appearance?: ('default' | 'outline' | 'secondary') | null;
+              };
+              lucideIcon?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -2250,7 +2167,7 @@ export interface CompanyDetail {
           url?: string | null;
           label: string;
         };
-        lucideIcon: string;
+        lucideIcon?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -2271,7 +2188,7 @@ export interface CompanyDetail {
           url?: string | null;
           label: string;
         };
-        lucideIcon: string;
+        lucideIcon?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -2447,7 +2364,7 @@ export interface TypeGenerator {
       url?: string | null;
       label: string;
     };
-    lucideIcon: string;
+    lucideIcon?: string | null;
     id?: string | null;
   };
   updatedAt?: string | null;
@@ -2563,95 +2480,27 @@ export interface NavigationSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  sitemap?:
+  groups?:
     | T
     | {
         heading?: T;
-        footerItems?:
+        linkGroups?:
           | T
           | {
-              navigationItem?:
+              link?:
                 | T
                 | {
                     type?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    dropdown?:
-                      | T
-                      | {
-                          label?: T;
-                          appearance?: T;
-                          items?:
-                            | T
-                            | {
-                                link?:
-                                  | T
-                                  | {
-                                      type?: T;
-                                      newTab?: T;
-                                      reference?: T;
-                                      url?: T;
-                                      label?: T;
-                                    };
-                                id?: T;
-                              };
-                        };
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
                   };
+              lucideIcon?: T;
               id?: T;
             };
-      };
-  whatToDo?:
-    | T
-    | {
-        heading?: T;
-        footerItems?:
-          | T
-          | {
-              navigationItem?:
-                | T
-                | {
-                    type?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    dropdown?:
-                      | T
-                      | {
-                          label?: T;
-                          appearance?: T;
-                          items?:
-                            | T
-                            | {
-                                link?:
-                                  | T
-                                  | {
-                                      type?: T;
-                                      newTab?: T;
-                                      reference?: T;
-                                      url?: T;
-                                      label?: T;
-                                    };
-                                id?: T;
-                              };
-                        };
-                  };
-              id?: T;
-            };
+        id?: T;
       };
   _status?: T;
   updatedAt?: T;
