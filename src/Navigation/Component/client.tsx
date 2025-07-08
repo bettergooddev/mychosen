@@ -6,6 +6,16 @@ import { renderNavigationItem } from './renderNavigationItem'
 import type { Navigation as NavigationType } from '@/payload-types'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from '@/components/ui/sheet'
+import { X } from 'lucide-react'
+import { renderMobileNavigationItem } from './renderMobileNavigationItem'
 
 interface NavigationClientProps {
   data: NavigationType
@@ -37,10 +47,45 @@ export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
           {actions.map((item, index) => renderNavigationItem(item, `action-${index}`))}
         </div>
 
+        {/* Mobile navigation – visible on small screens */}
         <div className="flex items-center lg:hidden" data-theme="cafe">
-          <Button variant="default" size="icon" aria-label="Open menu">
-            <Menu className="h-5 w-5" />
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="default" size="icon" aria-label="Open menu">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+
+            <SheetContent side="right" className="p-6 space-y-6" data-theme="cafe" hideClose>
+              <div className="flex items-center justify-between mb-4">
+                <NavLogo logo={data?.logo ?? null} />
+                <SheetClose asChild>
+                  <Button variant="default" size="icon" aria-label="Close menu">
+                    <X className="h-5 w-5" />
+                  </Button>
+                </SheetClose>
+              </div>
+              <SheetHeader>
+                <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
+              </SheetHeader>
+              {/* Primary navigation items */}
+              <nav className="flex flex-col gap-4 w-full">
+                {navItems.map((item, index) =>
+                  renderMobileNavigationItem(item, index, { appearance: 'inline' }),
+                )}
+              </nav>
+
+              {/* Divider */}
+              <div className="border-t border-border pt-4" />
+
+              {/* Actions */}
+              <div className="flex flex-col gap-4">
+                {actions.map((item, index) =>
+                  renderMobileNavigationItem(item, `action-mobile-${index}`),
+                )}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

@@ -46,14 +46,15 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
   /* Ensure we don't break any styles set by richText */
-  if (appearance === 'inline') {
-    return (
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
-        {label && label}
-        {children && children}
-      </Link>
-    )
-  }
+  // If rich text links ever break then check here. I wanted to be able to specify styles for inline links when it came to the navigation, but i was having issues with consistency and i didn't want to define those styles both here and in the button component.
+  // if (appearance === 'inline') {
+  //   return (
+  //     <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+  //       {label && label}
+  //       {children && children}
+  //     </Link>
+  //   )
+  // }
 
   return (
     <Button asChild className={className} size={size} variant={appearance}>
