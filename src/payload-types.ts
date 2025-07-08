@@ -612,7 +612,7 @@ export interface MediaBlock {
  */
 export interface ArchiveBlock {
   type: 'none' | 'menus';
-  heading: string;
+  heading?: string | null;
   subheading?: string | null;
   menus?: (string | Menu)[] | null;
   id?: string | null;
@@ -629,7 +629,7 @@ export interface Menu {
   name: string;
   lucideIcon?: string | null;
   pdf: string | Media;
-  thumbnail: string | Media;
+  thumbnail?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }

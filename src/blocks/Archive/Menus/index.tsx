@@ -1,19 +1,24 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
-import React, { useEffect } from 'react'
 
-import type { ArchiveBlock, Page } from '@/payload-types'
+import type { ArchiveBlock, Menu } from '@/payload-types'
+import { MenuSelect } from './menu-select'
 
-import { CMSLink } from '@/components/Link'
-import { Media } from '@/components/Media'
-import RichText from '@/components/RichText'
+export const Menus: React.FC<ArchiveBlock> = (props) => {
+  // Filter out string references and keep only Menu objects
+  const menuObjects = (props.menus || []).filter(
+    (menu): menu is Menu => typeof menu === 'object' && menu !== null,
+  )
 
-export const Menus: React.FC<ArchiveBlock> = ({}) => {
-  const { setHeaderTheme } = useHeaderTheme()
+  const hasMultipleMenus = menuObjects.length > 1
 
-  useEffect(() => {
-    setHeaderTheme('dark')
-  })
-
-  return <>archive - menus</>
+  return (
+    <div className="container -mt-48" data-theme="pizza">
+      {hasMultipleMenus && (
+        <>
+          <h4 className="type-h4 mb-4">Select a Menu:</h4>
+          <MenuSelect menus={menuObjects} />
+        </>
+      )}
+    </div>
+  )
 }

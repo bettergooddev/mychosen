@@ -35,7 +35,7 @@ export const Archive: Block = {
     {
       name: 'heading',
       type: 'text',
-      required: true,
+      // required: true,
     },
     {
       name: 'subheading',
