@@ -27,7 +27,6 @@ import { TypeGenerator } from './collections/TypeGenerator'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
-import { X } from 'lucide-react'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
