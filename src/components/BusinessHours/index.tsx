@@ -30,14 +30,17 @@ function createWeekObject(business: HoursType[number]) {
   })
 }
 
-export function BusinessHours({ hours }: { hours: HoursType }) {
+export function BusinessHours({ hours, className }: { hours: HoursType; className?: string }) {
   const today = new Date().toLocaleString('en-us', { weekday: 'long' })
 
   if (!hours || hours.length === 0) return <Fallback />
 
   return (
     <Card
-      className="w-full overflow-hidden bg-background h-min shadow-md rounded-none border-none"
+      className={cn(
+        'w-full overflow-hidden bg-background h-min shadow-md rounded-none border-none',
+        className,
+      )}
       data-theme="sugar-shack"
     >
       <CardContent className="p-0">

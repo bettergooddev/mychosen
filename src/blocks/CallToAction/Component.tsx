@@ -41,7 +41,7 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
 
       <MaskBackground
         shape="paper"
-        innerClassName="grid grid-cols-1 lg:grid-cols-2 container gap-14 py-20"
+        innerClassName="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] container gap-14 py-20"
       >
         <Frame className="lg:min-h-0">
           {googleMapsEmbedUrl && (
