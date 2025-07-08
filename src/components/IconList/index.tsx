@@ -17,7 +17,13 @@ export const IconList: React.FC<{ items?: TypeGenerator['iconLink'][] }> = ({ it
               <DynamicIcon name={item.lucideIcon as any} size={16} strokeWidth={2.5} />
             </span>
           )}
-          {item.link && <CMSLink {...item.link} appearance="inline" className="hover:underline" />}
+          {item.link && (
+            <CMSLink
+              {...item.link}
+              appearance="inline"
+              className="hover:underline text-background"
+            />
+          )}
         </li>
       ))}
     </ul>
