@@ -27,6 +27,7 @@ import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from 
 import { LinkRowLabel as LinkRowLabel_bb1c4b965b7c07ad4b88efe6dc65271f } from '@/fields/dropdown/LinkRowLabel'
 import { RowLabel as RowLabel_2cfe2e364368a03eb7e153423c97fea0 } from '@/Navigation/RowLabel'
 import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/RowLabel'
+import { RowLabel as RowLabel_e99f0474d47353a988995608827977bb } from '@/Footer/GroupsRowLabel'
 import { Field as Field_9bbc4ea063d21e8ca0498094333bb64f } from '@/collections/CompanyDetails/Field'
 import { RowLabel as RowLabel_a6fee3a038409b1d77c10e4497e52913 } from '@/collections/CompanyDetails/FindUsRowLabel'
 import { RowLabel as RowLabel_8c743bc97328bee5930a4cdfafea06aa } from '@/collections/CompanyDetails/SocialsRowLabel'
@@ -66,6 +67,7 @@ export const importMap = {
   "@/fields/dropdown/LinkRowLabel#LinkRowLabel": LinkRowLabel_bb1c4b965b7c07ad4b88efe6dc65271f,
   "@/Navigation/RowLabel#RowLabel": RowLabel_2cfe2e364368a03eb7e153423c97fea0,
   "@/Footer/RowLabel#RowLabel": RowLabel_1f6ff6ff633e3695d348f4f3c58f1466,
+  "@/Footer/GroupsRowLabel#RowLabel": RowLabel_e99f0474d47353a988995608827977bb,
   "@/collections/CompanyDetails/Field#Field": Field_9bbc4ea063d21e8ca0498094333bb64f,
   "@/collections/CompanyDetails/FindUsRowLabel#RowLabel": RowLabel_a6fee3a038409b1d77c10e4497e52913,
   "@/collections/CompanyDetails/SocialsRowLabel#RowLabel": RowLabel_8c743bc97328bee5930a4cdfafea06aa,

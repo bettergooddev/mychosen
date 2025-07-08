@@ -3,18 +3,13 @@ import { Footer } from '@/payload-types'
 import { RowLabelProps, useRowLabel } from '@payloadcms/ui'
 
 export const RowLabel: React.FC<RowLabelProps> = () => {
-  const data = useRowLabel<NonNullable<NonNullable<Footer['sitemap']>['footerItems']>[number]>()
+  const data =
+    useRowLabel<NonNullable<NonNullable<Footer['groups']>[number]['linkGroups']>[number]>()
 
   let label = `Row ${data.rowNumber !== undefined ? data.rowNumber + 1 : ''}`
 
-  if (data?.data?.navigationItem) {
-    const navItem = data.data.navigationItem
-
-    if (navItem.type === 'link' && navItem.link?.label) {
-      label = navItem.link.label
-    } else if (navItem.type === 'dropdown' && navItem.dropdown?.label) {
-      label = navItem.dropdown.label
-    }
+  if (data?.data?.link?.label) {
+    label = data.data.link.label
   }
 
   return <div>{label}</div>

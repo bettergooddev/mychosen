@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
-import { navigationItem } from '@/fields/navigationItem'
+import { link } from '@/fields/link'
+import { lucideIcon } from '@/fields/lucideIcon'
 import { revalidateFooter } from './hooks/revalidateFooter'
 
 export const Footer: GlobalConfig = {
@@ -17,9 +18,9 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'sitemap',
-      type: 'group',
-      label: 'Sitemap',
+      name: 'groups',
+      type: 'array',
+      label: 'Groups',
       fields: [
         {
           name: 'heading',
@@ -28,15 +29,17 @@ export const Footer: GlobalConfig = {
           required: true,
         },
         {
-          name: 'footerItems',
+          name: 'linkGroups',
           type: 'array',
-          label: 'Footer Items',
+          label: 'Link Groups',
           fields: [
-            navigationItem({
+            link({
+              appearances: false,
               overrides: {
                 label: false,
               },
             }),
+            lucideIcon,
           ],
           maxRows: 8,
           admin: {
@@ -47,38 +50,12 @@ export const Footer: GlobalConfig = {
           },
         },
       ],
-    },
-    {
-      name: 'whatToDo',
-      type: 'group',
-      label: 'What To Do',
-      fields: [
-        {
-          name: 'heading',
-          type: 'text',
-          label: 'Heading',
-          required: true,
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/Footer/GroupsRowLabel#RowLabel',
         },
-        {
-          name: 'footerItems',
-          type: 'array',
-          label: 'Footer Items',
-          fields: [
-            navigationItem({
-              overrides: {
-                label: false,
-              },
-            }),
-          ],
-          maxRows: 8,
-          admin: {
-            initCollapsed: true,
-            components: {
-              RowLabel: '@/Footer/RowLabel#RowLabel',
-            },
-          },
-        },
-      ],
+      },
     },
   ],
   hooks: {
