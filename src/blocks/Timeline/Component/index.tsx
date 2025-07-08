@@ -1,8 +1,8 @@
 import type { TimelineBlock as TimelineBlockProps } from '@/payload-types'
 import { Heading } from '@/components/Heading'
 import React from 'react'
-import { DesktopCarousel } from './test.desktop'
-import { MobileTimeline } from './test.mobile'
+import { DesktopCarousel } from './desktop'
+import { MobileTimeline } from './mobile'
 
 export const TimelineBlock: React.FC<TimelineBlockProps> = ({ heading, subheading, events }) => {
   if (!events || events.length === 0) return null
