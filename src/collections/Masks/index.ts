@@ -4,7 +4,7 @@ import { link } from '@/fields/link'
 export const Masks: GlobalConfig = {
   slug: 'masks',
   admin: {
-    // hidden: true,
+    hidden: true,
   },
   label: {
     singular: 'Mask',
