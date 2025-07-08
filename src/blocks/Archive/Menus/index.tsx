@@ -1,76 +1,76 @@
 'use client'
 
 import type { ArchiveBlock, Menu } from '@/payload-types'
+import { useState, useMemo } from 'react'
+
 import { MenuSelect } from './menu-select'
 
-// PDF rendering
-import { useState, useEffect } from 'react'
-import { Document, Page } from 'react-pdf'
-import { configurePdfWorker } from './utilities/configurePdfWorker'
+import { Document, Page, pdfjs } from 'react-pdf'
 import { getPdfUrl } from './utilities/getPdfUrl'
+import { useWindowWidth } from '@/react/useWindowWidth'
 
-// Import React-PDF styles for annotations & text layer
-import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css'
-
-// Configure PDF.js worker once for the client bundle
-configurePdfWorker()
+// Configure the PDF.js worker (required by react-pdf)
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString()
 
 export const Menus: React.FC<ArchiveBlock> = (props) => {
-  // Filter out string references and keep only Menu objects
-  const menuObjects = (props.menus || []).filter(
+  const { menus: menuProps } = props
+
+  // Filter out any non-object entries that may come through the relation
+  const menus = (menuProps || []).filter(
     (menu): menu is Menu => typeof menu === 'object' && menu !== null,
   )
 
-  const hasMultipleMenus = menuObjects.length > 1
+  const hasMultipleMenus = menus.length > 1
 
-  // Manage currently selected menu
-  const [selectedMenuId, setSelectedMenuId] = useState<string>(menuObjects[0]?.id || '')
+  // State to track the currently-selected menu
+  const [selectedMenuId, setSelectedMenuId] = useState<string>(menus[0]?.id ?? '')
 
-  // PDF page count (loaded dynamically)
-  const [numPages, setNumPages] = useState<number>()
+  // Derive the selected menu object whenever the id changes
+  const selectedMenu = useMemo(
+    () => menus.find((m) => m.id === selectedMenuId),
+    [menus, selectedMenuId],
+  )
 
-  useEffect(() => {
-    if (menuObjects.length && !menuObjects.some((m) => m.id === selectedMenuId)) {
-      setSelectedMenuId(menuObjects[0]?.id || '')
-    }
-  }, [menuObjects])
+  // Determine the PDF URL for the selected menu
+  const pdfUrl = useMemo(() => getPdfUrl(selectedMenu), [selectedMenu])
 
-  const selectedMenu = hasMultipleMenus
-    ? menuObjects.find((m) => m.id === selectedMenuId)
-    : menuObjects[0]
+  // Track how many pages are in the PDF so we can render them all
+  const [numPages, setNumPages] = useState<number>(0)
 
-  const pdfUrl = getPdfUrl(selectedMenu)
+  // Optional: adapt page width to viewport
+  const windowWidth = useWindowWidth()
+  const pageWidth = Math.min(windowWidth || 640, 640) // cap at 640px to fit container
 
   return (
-    <div className="max-w-4xl mx-auto -mt-48" data-theme="pizza">
+    <div className="max-w-4xl mx-auto -mt-48 space-y-8" data-theme="pizza">
       {hasMultipleMenus && (
         <>
           <h4 className="type-h4 mb-4">Select a Menu:</h4>
-          <MenuSelect menus={menuObjects} value={selectedMenuId} onChange={setSelectedMenuId} />
+          <MenuSelect menus={menus} value={selectedMenuId} onChange={setSelectedMenuId} />
         </>
       )}
 
-      {/* Render the PDF below the selector (or alone if only one menu) */}
       {pdfUrl && (
-        <div className="mt-8 flex flex-col items-center w-full">
-          <Document
-            className="w-full"
-            file={pdfUrl}
-            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-            loading={<p>Loading menu...</p>}
-            error={<p>Failed to load menu.</p>}
-          >
-            {/* Render all pages */}
-            {Array.from({ length: numPages || 0 }, (_, idx) => idx + 1).map((pageNumber) => (
-              <Page
-                key={`page_${pageNumber}`}
-                pageNumber={pageNumber}
-                className="mb-4 shadow-lg w-full [&>*]:!w-full [&>*]:!h-auto"
-              />
-            ))}
-          </Document>
-        </div>
+        <Document
+          file={pdfUrl}
+          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+          loading={<p className="type-body">Loading menu…</p>}
+          className="flex flex-col items-center gap-8 w-full"
+        >
+          {Array.from({ length: numPages }, (_, index) => (
+            <Page
+              className="w-full  [&>*]:!w-full [&>*]:!h-auto"
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              width={pageWidth}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+            />
+          ))}
+        </Document>
       )}
     </div>
   )
