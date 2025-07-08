@@ -8,6 +8,13 @@ export const Footer: GlobalConfig = {
   access: {
     read: () => true,
   },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100,
+      },
+    },
+  },
   fields: [
     {
       name: 'sitemap',
