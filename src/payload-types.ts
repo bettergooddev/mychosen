@@ -188,7 +188,7 @@ export interface Page {
                   url?: string | null;
                   label: string;
                   /**
-                   * Choose how the link should be rendered.
+                   * Choose how this item should be rendered.
                    */
                   appearance?: ('default' | 'outline' | 'secondary') | null;
                 };
@@ -225,7 +225,7 @@ export interface Page {
                     url?: string | null;
                     label: string;
                     /**
-                     * Choose how the link should be rendered.
+                     * Choose how this item should be rendered.
                      */
                     appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
@@ -249,7 +249,7 @@ export interface Page {
                     url?: string | null;
                     label: string;
                     /**
-                     * Choose how the link should be rendered.
+                     * Choose how this item should be rendered.
                      */
                     appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
@@ -273,7 +273,7 @@ export interface Page {
                     url?: string | null;
                     label: string;
                     /**
-                     * Choose how the link should be rendered.
+                     * Choose how this item should be rendered.
                      */
                     appearance?: ('default' | 'outline' | 'secondary') | null;
                   };
@@ -538,7 +538,7 @@ export interface CallToActionBlock {
           url?: string | null;
           label: string;
           /**
-           * Choose how the link should be rendered.
+           * Choose how this item should be rendered.
            */
           appearance?: ('default' | 'secondary' | 'outline') | null;
         };
@@ -592,7 +592,7 @@ export interface ContentBlock {
           url?: string | null;
           label: string;
           /**
-           * Choose how the link should be rendered.
+           * Choose how this item should be rendered.
            */
           appearance?: ('default' | 'outline' | 'secondary') | null;
         };
@@ -2009,9 +2009,17 @@ export interface Navigation {
                 } | null);
             url?: string | null;
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
           };
           dropdown?: {
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
             items?:
               | {
                   link: {
@@ -2055,9 +2063,17 @@ export interface Navigation {
                 } | null);
             url?: string | null;
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
           };
           dropdown?: {
             label: string;
+            /**
+             * Choose how this item should be rendered.
+             */
+            appearance?: ('default' | 'outline' | 'secondary') | null;
             items?:
               | {
                   link: {
@@ -2112,9 +2128,17 @@ export interface Footer {
                   } | null);
               url?: string | null;
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
             };
             dropdown?: {
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
               items?:
                 | {
                     link: {
@@ -2161,9 +2185,17 @@ export interface Footer {
                   } | null);
               url?: string | null;
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
             };
             dropdown?: {
               label: string;
+              /**
+               * Choose how this item should be rendered.
+               */
+              appearance?: ('default' | 'outline' | 'secondary') | null;
               items?:
                 | {
                     link: {
@@ -2454,11 +2486,13 @@ export interface NavigationSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
+                    appearance?: T;
                   };
               dropdown?:
                 | T
                 | {
                     label?: T;
+                    appearance?: T;
                     items?:
                       | T
                       | {
@@ -2492,11 +2526,13 @@ export interface NavigationSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
+                    appearance?: T;
                   };
               dropdown?:
                 | T
                 | {
                     label?: T;
+                    appearance?: T;
                     items?:
                       | T
                       | {
@@ -2543,11 +2579,13 @@ export interface FooterSelect<T extends boolean = true> {
                           reference?: T;
                           url?: T;
                           label?: T;
+                          appearance?: T;
                         };
                     dropdown?:
                       | T
                       | {
                           label?: T;
+                          appearance?: T;
                           items?:
                             | T
                             | {
@@ -2586,11 +2624,13 @@ export interface FooterSelect<T extends boolean = true> {
                           reference?: T;
                           url?: T;
                           label?: T;
+                          appearance?: T;
                         };
                     dropdown?:
                       | T
                       | {
                           label?: T;
+                          appearance?: T;
                           items?:
                             | T
                             | {

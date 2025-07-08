@@ -201,6 +201,11 @@ html[data-theme='light'] {
     line-height: 140%;
   }
 
+  .type-button {
+    font-family: var(--font-martel);
+    @apply text-sm font-medium;
+  }
+
   h5,
   .type-h5,
   .type-caption,

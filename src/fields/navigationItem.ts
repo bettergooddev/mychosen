@@ -35,7 +35,6 @@ export const navigationItem: NavigationItemType = ({ overrides = {} } = {}) => {
         required: true,
       },
       link({
-        appearances: false,
         overrides: {
           admin: {
             condition: (_, siblingData) => siblingData?.type === 'link',

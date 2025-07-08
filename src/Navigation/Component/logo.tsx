@@ -17,7 +17,7 @@ export const NavLogo: React.FC<NavLogoProps> = ({ logo }) => {
 
   if (link) {
     return (
-      <CMSLink {...link} className="inline-block">
+      <CMSLink {...link} className="inline-block" appearance="inline" label={''}>
         <Inner desktopLogo={desktopLogo} mobileLogo={mobileLogo} />
       </CMSLink>
     )
