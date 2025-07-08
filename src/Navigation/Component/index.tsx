@@ -1,6 +1,7 @@
-import { NavigationClient } from '@/Navigation/Nav/client'
-import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
+
+import { NavigationClient } from './client'
+import { getCachedGlobal } from '@/utilities/getGlobals'
 
 import type { Navigation } from '@/payload-types'
 
@@ -9,3 +10,5 @@ export async function Navigation() {
 
   return <NavigationClient data={navigationData} />
 }
+
+export default Navigation

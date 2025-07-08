@@ -4,6 +4,7 @@ import React from 'react'
 import { ChevronDown } from 'lucide-react'
 
 import { CMSLink } from '@/components/Link'
+import { Media } from '@/components/Media'
 import type { Navigation as NavigationType } from '@/payload-types'
 
 interface NavigationClientProps {
@@ -17,6 +18,11 @@ interface NavigationClientProps {
 export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
   const navItems = (data?.navItems ?? []) as NonNullable<NavigationType['navItems']>
   const actions = (data?.actions ?? []) as NonNullable<NavigationType['actions']>
+
+  // Logo assets
+  const desktopLogo = data?.logo?.desktopLogo
+  const mobileLogo = data?.logo?.mobileLogo
+  const logoLink = data?.logo?.link ?? null
 
   const renderNavigationItem = (
     item:
@@ -59,13 +65,62 @@ export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
   }
 
   return (
-    <nav className="flex gap-6 items-center">
-      {/* Primary navigation items */}
-      {navItems.map((item, index) => renderNavigationItem(item, index))}
+    <header className="bg-card border-b border-border">
+      <div className="container mx-auto flex items-center justify-between py-4 px-4">
+        {/* Logo – left aligned */}
+        <div className="flex-shrink-0">
+          {logoLink ? (
+            <CMSLink {...logoLink} className="inline-block">
+              {desktopLogo && (
+                <Media
+                  resource={desktopLogo}
+                  className="hidden md:block h-8 w-auto"
+                  imgClassName="h-full w-auto"
+                  alt="logo"
+                />
+              )}
+              {mobileLogo && (
+                <Media
+                  resource={mobileLogo}
+                  className="block md:hidden h-8 w-auto"
+                  imgClassName="h-full w-auto"
+                  alt="logo"
+                />
+              )}
+            </CMSLink>
+          ) : (
+            <>
+              {desktopLogo && (
+                <Media
+                  resource={desktopLogo}
+                  className="hidden md:block h-8 w-auto"
+                  imgClassName="h-full w-auto"
+                  alt="logo"
+                />
+              )}
+              {mobileLogo && (
+                <Media
+                  resource={mobileLogo}
+                  className="block md:hidden h-8 w-auto"
+                  imgClassName="h-full w-auto"
+                  alt="logo"
+                />
+              )}
+            </>
+          )}
+        </div>
 
-      {/* Call-to-action items */}
-      {actions.map((item, index) => renderNavigationItem(item, `action-${index}`))}
-    </nav>
+        {/* Primary navigation items – centered */}
+        <nav className="flex-1 flex items-center justify-center gap-6">
+          {navItems.map((item, index) => renderNavigationItem(item, index))}
+        </nav>
+
+        {/* Actions – right aligned */}
+        <div className="flex items-center gap-6">
+          {actions.map((item, index) => renderNavigationItem(item, `action-${index}`))}
+        </div>
+      </div>
+    </header>
   )
 }
 
