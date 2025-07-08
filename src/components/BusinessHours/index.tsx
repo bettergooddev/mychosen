@@ -42,12 +42,12 @@ export function BusinessHours({ hours }: { hours: HoursType }) {
     >
       <CardContent className="p-0">
         <Tabs defaultValue={hours[0]?.brand.slug || ''} className="w-full" data-theme="pizza">
-          <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-1 relative bg-transparent">
+          <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-0.5 relative bg-transparent">
             {hours.map((business) => (
               <TabsTrigger
                 key={business.id}
                 value={business.brand.slug || ''}
-                className="!type-h4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-sm py-3 z-10 "
+                className="!type-h5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-sm py-2 z-10 "
               >
                 {business.brand.name}
               </TabsTrigger>
@@ -82,8 +82,8 @@ export function BusinessHours({ hours }: { hours: HoursType }) {
                           index === arr.length - 1 && 'border-b-0',
                         )}
                       >
-                        <TableCell className="type-body px-4 py-3">{item.day}</TableCell>
-                        <TableCell className="type-body px-4 py-3 text-right">
+                        <TableCell className="type-button px-3 py-2">{item.day}</TableCell>
+                        <TableCell className="type-button px-3 py-2 text-right">
                           {item.hours}
                         </TableCell>
                       </TableRow>
