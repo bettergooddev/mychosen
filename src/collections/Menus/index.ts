@@ -12,6 +12,10 @@ export const Menus: CollectionConfig = {
     read: anyone,
     update: authenticated,
   },
+  admin: {
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'brand', 'icon'],
+  },
   fields: [
     {
       name: 'brand',
@@ -39,7 +43,7 @@ export const Menus: CollectionConfig = {
       name: 'thumbnail',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      // required: true,
       filterOptions: {
         mimeType: { contains: 'image' },
       },
