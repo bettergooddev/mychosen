@@ -10,9 +10,7 @@ type RenderOverrides = {
 }
 
 export const renderNavigationItem = (
-  item:
-    | NonNullable<NavigationType['navItems']>[number]
-    | NonNullable<NavigationType['actions']>[number],
+  item: NonNullable<NavigationType['navItems']>[number],
   index: number | string,
   overrides: RenderOverrides = {},
 ): React.ReactNode => {
@@ -35,13 +33,11 @@ export const renderNavigationItem = (
 
   // Dropdown with sub-items
   if (navItem.type === 'dropdown' && navItem.dropdown?.label && navItem.dropdown?.items) {
-    // Type safe variant approach
+    // Type safe approach to getting the variant
     const variantCandidate =
       overrideAppearance ?? navItem.dropdown?.appearance ?? navItem.link?.appearance ?? 'link'
 
-    const buttonVariant = (
-      variantCandidate === 'inline' ? 'link' : variantCandidate
-    ) as NonNullable<ButtonProps['variant']>
+    const buttonVariant = variantCandidate === 'inline' ? 'link' : variantCandidate
 
     return (
       <div key={index} className="relative group">
