@@ -29,10 +29,10 @@ export const FooterClient: React.FC<FooterClientProps> = ({ data, hours }) => {
         <div className="flex flex-col gap-16 md:grid md:grid-cols-2 md:gap-12 lg:flex lg:flex-row lg:gap-16 lg:justify-between">
           {/* Groups */}
           {groups.map((group, i) => (
-            <div key={group.id ?? i} className="flex flex-col gap-2">
+            <div key={group.id ?? i} className="flex flex-col gap-4">
               {group.heading && <h4 className="font-bold whitespace-nowrap">{group.heading}</h4>}
 
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-3.5">
                 {(group.linkGroups ?? []).map((linkGroup, j) => (
                   <li key={linkGroup.id ?? j}>
                     <CMSLink

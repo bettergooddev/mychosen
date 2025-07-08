@@ -16,7 +16,7 @@ export const FlairBlock: React.FC<FlairBlockType> = ({ image }) => {
   return (
     <div className="relative -z-10 w-full">
       <div className="absolute h-[100dvh] w-[100dvw] top-1/2 -translate-y-1/2 overflow-hidden">
-        <div className="inset-0 opacity-[0.8] scale-[1.15] overflow-hidden">
+        <div className="inset-0 opacity-[0.35] scale-[1.05] overflow-hidden">
           <Media
             resource={image}
             className="w-full h-full object-cover -translate-y-[4rem] mix-blend-darken"

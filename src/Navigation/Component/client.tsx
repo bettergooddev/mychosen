@@ -29,7 +29,7 @@ export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
       data-theme="sugar-shack"
       className="bg-background border-b border-primary/5 sticky top-0 z-50"
     >
-      <div className="container mx-auto flex items-center justify-between py-4">
+      <div className="container mx-auto flex items-center justify-between py-[0.9rem]">
         {/* Logo – left aligned */}
         <div className="flex h-min">
           <NavLogo logo={data?.logo ?? null} />

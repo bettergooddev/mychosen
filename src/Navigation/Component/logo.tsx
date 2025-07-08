@@ -37,7 +37,7 @@ function Inner({ desktopLogo, mobileLogo }: InnerProps) {
       {desktopLogo && (
         <Media
           resource={desktopLogo}
-          className="hidden md:block h-8 w-auto"
+          className="hidden md:block h-9 w-auto"
           imgClassName="h-full w-auto"
           alt="logo"
         />
@@ -45,7 +45,7 @@ function Inner({ desktopLogo, mobileLogo }: InnerProps) {
       {mobileLogo && (
         <Media
           resource={mobileLogo}
-          className="block md:hidden h-8 w-auto"
+          className="block md:hidden h-9 w-auto"
           imgClassName="h-full w-auto"
           alt="logo"
         />
