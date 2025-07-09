@@ -19,7 +19,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = (props) => {
 
   return (
     <div
-      className=" w-full pt-8 pb-32 flex flex-col items-center text-center px-4"
+      className="w-full pt-8 -mb-8 flex flex-col items-center text-center px-4"
       data-theme={theme}
     >
       {logo && <Media resource={logo} className="w-[18rem] h-auto" imgClassName="h-full w-full" />}
