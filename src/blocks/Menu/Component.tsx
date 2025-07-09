@@ -15,10 +15,10 @@ export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus:
   const activeMenuUrl = typeof activeMenu?.pdf === 'object' ? (activeMenu?.pdf).url : ''
 
   return (
-    <div className="max-w-2xl px-4 mx-auto -mt-48" data-theme="pizza">
+    <div className="max-w-2xl px-4 mx-auto -mt-52" data-theme="pizza">
       {menus.length > 1 && (
         <>
-          <h4 className="type-h4 font-semibold mb-2">Select a Menu:</h4>
+          <h5 className="type-h5 font-bold mb-2">Select a Menu:</h5>
           <IconSelect
             items={menus}
             selected={selectedMenuId}
@@ -28,7 +28,11 @@ export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus:
         </>
       )}
       {activeMenuUrl ? (
-        <PDFViewer src={activeMenuUrl} className="mt-4" pageClassName="shadow-lg" />
+        <PDFViewer
+          src={activeMenuUrl}
+          className="mt-6"
+          pageClassName="shadow-lg border-white border-[10px]"
+        />
       ) : (
         <div>No menu selected</div>
       )}
