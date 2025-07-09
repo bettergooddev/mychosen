@@ -57,7 +57,7 @@ export const renderNavigationItem = (
               <CMSLink
                 key={dropdownIndex}
                 {...dropdownItem.link}
-                className="block px-4 py-3 type-button hover:bg-secondary transition-colors"
+                className="block px-4 py-3 type-button text-foreground hover:bg-secondary transition-colors"
               />
             ))}
           </div>

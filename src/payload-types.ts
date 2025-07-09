@@ -282,7 +282,7 @@ export interface Page {
               | null;
           };
           image?: (string | null) | Media;
-          theme: 'cafe' | 'sugarShack' | 'pizza';
+          theme: 'cafe' | 'sugar-shack' | 'pizza';
           id?: string | null;
         }[]
       | null;

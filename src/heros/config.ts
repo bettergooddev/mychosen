@@ -135,7 +135,7 @@ const mediumImpact: Field[] = [
       },
       {
         label: 'Sugar Shack',
-        value: 'sugarShack',
+        value: 'sugar-shack',
       },
       {
         label: 'Pizza',
