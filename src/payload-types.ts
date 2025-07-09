@@ -298,13 +298,13 @@ export interface Page {
     | CallToActionBlock
     | ContentBlock
     | MediaBlock
-    | ArchiveBlock
     | FormBlock
     | FeaturesBlock
     | PlayingCardsBlock
     | TestimonialsBlock
     | TimelineBlock
     | FlairBlock
+    | MenuBlock
   )[];
   meta?: {
     title?: string | null;
@@ -605,45 +605,6 @@ export interface MediaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock".
- */
-export interface ArchiveBlock {
-  type: 'none' | 'menus';
-  heading: string;
-  subheading?: string | null;
-  menus?: (string | Menu)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'archive';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "menus".
- */
-export interface Menu {
-  id: string;
-  brand: string | Brand;
-  name: string;
-  lucideIcon?: string | null;
-  pdf: string | Media;
-  thumbnail: string | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "brands".
- */
-export interface Brand {
-  id: string;
-  name: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -971,6 +932,42 @@ export interface FlairBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'flair';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MenuBlock".
+ */
+export interface MenuBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  menus?: (string | Menu)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'menu';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menus".
+ */
+export interface Menu {
+  id: string;
+  brand: string | Brand;
+  name: string;
+  lucideIcon?: string | null;
+  pdf: string | Media;
+  thumbnail?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands".
+ */
+export interface Brand {
+  id: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1342,13 +1339,13 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
-        archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         features?: T | FeaturesBlockSelect<T>;
         playingCards?: T | PlayingCardsBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
         timeline?: T | TimelineBlockSelect<T>;
         flair?: T | FlairBlockSelect<T>;
+        menu?: T | MenuBlockSelect<T>;
       };
   meta?:
     | T
@@ -1430,18 +1427,6 @@ export interface MediaBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock_select".
- */
-export interface ArchiveBlockSelect<T extends boolean = true> {
-  type?: T;
-  heading?: T;
-  subheading?: T;
-  menus?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FormBlock_select".
  */
 export interface FormBlockSelect<T extends boolean = true> {
@@ -1516,6 +1501,17 @@ export interface TimelineBlockSelect<T extends boolean = true> {
  */
 export interface FlairBlockSelect<T extends boolean = true> {
   image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MenuBlock_select".
+ */
+export interface MenuBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  menus?: T;
   id?: T;
   blockName?: T;
 }
@@ -1676,8 +1672,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface BrandsSelect<T extends boolean = true> {
   name?: T;
-  slug?: T;
-  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }

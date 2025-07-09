@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
-import { RenderArchive } from '@/blocks/Archive/RenderArchive'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
@@ -12,9 +11,9 @@ import { PlayingCardsBlock } from '@/blocks/PlayingCards/Component'
 import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
 import { TimelineBlock } from '@/blocks/Timeline/Component'
 import { FlairBlock } from '@/blocks/Flair/Component'
+import { MenuBlock } from '@/blocks/Menu/Component'
 
 const blockComponents = {
-  archive: RenderArchive,
   content: ContentBlock,
   cta: CallToActionBlock,
   formBlock: FormBlock,
@@ -24,6 +23,7 @@ const blockComponents = {
   testimonials: TestimonialsBlock,
   timeline: TimelineBlock,
   flair: FlairBlock,
+  menu: MenuBlock,
 }
 
 export const RenderBlocks: React.FC<{

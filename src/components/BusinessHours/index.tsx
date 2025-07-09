@@ -44,12 +44,12 @@ export function BusinessHours({ hours, className }: { hours: HoursType; classNam
       data-theme="sugar-shack"
     >
       <CardContent className="p-0">
-        <Tabs defaultValue={hours[0]?.brand.slug || ''} className="w-full" data-theme="pizza">
+        <Tabs defaultValue={hours[0]?.brand.id || ''} className="w-full" data-theme="pizza">
           <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-0.5 relative bg-transparent">
             {hours.map((business) => (
               <TabsTrigger
                 key={business.id}
-                value={business.brand.slug || ''}
+                value={business.brand.id || ''}
                 className="!type-h5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-sm py-2 z-10 "
               >
                 {business.brand.name}
@@ -67,7 +67,7 @@ export function BusinessHours({ hours, className }: { hours: HoursType; classNam
           {hours.map((business) => (
             <TabsContent
               key={business.id}
-              value={business.brand.slug || ''}
+              value={business.brand.id || ''}
               className="m-0"
               data-theme="sugar-shack"
             >
