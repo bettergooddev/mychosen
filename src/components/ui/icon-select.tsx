@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { cn } from '@/utilities/ui'
 
 interface IconSelectItem {
   id: string
@@ -19,15 +20,18 @@ interface IconSelectProps {
   items: IconSelectItem[]
   selected?: string
   onChange?: (id: string) => void
+  className?: string
 }
 
-export const IconSelect: React.FC<IconSelectProps> = ({ items, selected, onChange }) => {
+export const IconSelect: React.FC<IconSelectProps> = ({ items, selected, onChange, className }) => {
   const selectedId = selected ?? items[0]?.id
   const selectedItem = items.find((item) => item.id === selectedId) || null
 
   return (
     <Select value={selectedId} onValueChange={(value) => onChange?.(value)}>
-      <SelectTrigger className="w-full bg-primary text-background h-14 rounded-none">
+      <SelectTrigger
+        className={cn('w-full bg-primary text-background h-14 rounded-none', className)}
+      >
         <SelectValue>
           {selectedItem && (
             <div className="flex items-center pl-1 gap-3 text-background">
