@@ -1,5 +1,8 @@
 import { LogosRowLabel as LogosRowLabel_0aee29ecc2875496ddcdf88ad9eae3da } from '@/heros/HighImpact/LogosRowLabel'
 import { HeroRowLabel as HeroRowLabel_4ef31097bde95ff71cc22d5049aebef3 } from '@/heros/HeroRowLabel'
+import { PrimaryButtonRowLabel as PrimaryButtonRowLabel_339180f66180adfe3eb343d4516059f2 } from '@/heros/MediumImpact/ButtonRowLabels'
+import { SecondaryButtonRowLabel as SecondaryButtonRowLabel_339180f66180adfe3eb343d4516059f2 } from '@/heros/MediumImpact/ButtonRowLabels'
+import { TertiaryButtonRowLabel as TertiaryButtonRowLabel_339180f66180adfe3eb343d4516059f2 } from '@/heros/MediumImpact/ButtonRowLabels'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { LexicalDiffComponent as LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -40,6 +43,9 @@ import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e
 export const importMap = {
   "@/heros/HighImpact/LogosRowLabel#LogosRowLabel": LogosRowLabel_0aee29ecc2875496ddcdf88ad9eae3da,
   "@/heros/HeroRowLabel#HeroRowLabel": HeroRowLabel_4ef31097bde95ff71cc22d5049aebef3,
+  "@/heros/MediumImpact/ButtonRowLabels#PrimaryButtonRowLabel": PrimaryButtonRowLabel_339180f66180adfe3eb343d4516059f2,
+  "@/heros/MediumImpact/ButtonRowLabels#SecondaryButtonRowLabel": SecondaryButtonRowLabel_339180f66180adfe3eb343d4516059f2,
+  "@/heros/MediumImpact/ButtonRowLabels#TertiaryButtonRowLabel": TertiaryButtonRowLabel_339180f66180adfe3eb343d4516059f2,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField": RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#LexicalDiffComponent": LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e,

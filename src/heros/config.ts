@@ -86,6 +86,11 @@ const mediumImpact: Field[] = [
         fields: [link()],
         maxRows: 1,
         minRows: 1,
+        admin: {
+          components: {
+            RowLabel: '@/heros/MediumImpact/ButtonRowLabels#PrimaryButtonRowLabel',
+          },
+        },
       },
       {
         name: 'secondaryButton',
@@ -93,6 +98,11 @@ const mediumImpact: Field[] = [
         fields: [link()],
         maxRows: 1,
         minRows: 1,
+        admin: {
+          components: {
+            RowLabel: '@/heros/MediumImpact/ButtonRowLabels#SecondaryButtonRowLabel',
+          },
+        },
       },
 
       {
@@ -101,6 +111,11 @@ const mediumImpact: Field[] = [
         fields: [link()],
         maxRows: 1,
         minRows: 1,
+        admin: {
+          components: {
+            RowLabel: '@/heros/MediumImpact/ButtonRowLabels#TertiaryButtonRowLabel',
+          },
+        },
       },
     ],
   },
