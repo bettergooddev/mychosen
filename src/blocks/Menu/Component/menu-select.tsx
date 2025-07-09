@@ -9,18 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useState } from 'react'
 
 interface MenuSelectProps {
   menus: Menu[]
-  value: string
-  onChange: (menuId: string) => void
 }
 
-export const MenuSelect: React.FC<MenuSelectProps> = ({ menus, value, onChange }) => {
-  const selectedMenu = menus.find((menu) => menu.id === value)
+export const MenuSelect: React.FC<MenuSelectProps> = ({ menus }) => {
+  const [selectedMenu, setSelectedMenu] = useState<Menu | null>(null)
 
   return (
-    <Select value={value} onValueChange={onChange}>
+    <Select
+      value={selectedMenu?.id}
+      onValueChange={(value) => setSelectedMenu(menus.find((menu) => menu.id === value) || null)}
+    >
       <SelectTrigger className="w-full bg-primary text-background h-14 rounded-none">
         <SelectValue>
           {selectedMenu && (

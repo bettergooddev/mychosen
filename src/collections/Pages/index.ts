@@ -2,7 +2,6 @@ import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Archive } from '../../blocks/Archive/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
@@ -12,6 +11,7 @@ import { PlayingCards } from '@/blocks/PlayingCards/config'
 import { Testimonials } from '@/blocks/Testimonials/config'
 import { Timeline } from '@/blocks/Timeline/config'
 import { Flair } from '@/blocks/Flair/config'
+import { Menu } from '@/blocks/Menu/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -84,13 +84,13 @@ export const Pages: CollectionConfig<'pages'> = {
                 CallToAction,
                 Content,
                 MediaBlock,
-                Archive,
                 FormBlock,
                 Features,
                 PlayingCards,
                 Testimonials,
                 Timeline,
                 Flair,
+                Menu,
               ],
               required: true,
               admin: {
