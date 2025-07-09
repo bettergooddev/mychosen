@@ -9,14 +9,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface MenuSelectProps {
   menus: Menu[]
 }
 
 export const MenuSelect: React.FC<MenuSelectProps> = ({ menus }) => {
-  const [selectedMenu, setSelectedMenu] = useState<Menu | null>(null)
+  const [selectedMenu, setSelectedMenu] = useState<Menu | null>(menus[0] || null)
 
   return (
     <Select
