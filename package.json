@@ -16,11 +16,7 @@
     "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation next lint --fix",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm pnpm-lock.yaml && pnpm --ignore-workspace install",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "copy-pdf-worker": "node src/blocks/Archive/Menus/utilities/copy-pdf-worker.js",
-    "postinstall": "pnpm run copy-pdf-worker",
-    "predev": "pnpm run copy-pdf-worker",
-    "prebuild": "pnpm run copy-pdf-worker"
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
     "@payloadcms/admin-bar": "3.39.1",
@@ -62,7 +58,6 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "7.45.4",
-    "react-pdf": "^10.0.1",
     "react-rough-notation": "^1.0.5",
     "rough-notation": "^0.5.1",
     "sharp": "0.32.6",
