@@ -9,7 +9,15 @@ import 'react-pdf/dist/Page/TextLayer.css'
 // Configure PDF.js worker using CDN to match react-pdf version
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
-export function Viewport({ src, className }: { src: string; className?: string }) {
+export function PDFViewer({
+  src,
+  className,
+  pageClassName,
+}: {
+  src: string
+  className?: string
+  pageClassName?: string
+}) {
   const [numPages, setNumPages] = useState<number>()
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
@@ -36,7 +44,7 @@ export function Viewport({ src, className }: { src: string; className?: string }
                 <Page
                   pageNumber={index + 1}
                   width={1200}
-                  className="w-full [&>*]:!w-full [&>*]:!h-auto"
+                  className={cn('w-full [&>*]:!w-full [&>*]:!h-auto', pageClassName)}
                   loading={<LoadingComponent>Loading page {index + 1}...</LoadingComponent>}
                   error={<ErrorComponent>Failed to load page {index + 1}.</ErrorComponent>}
                 />

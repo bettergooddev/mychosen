@@ -1,9 +1,9 @@
 'use client'
 
 import type { MenuBlock as MenuBlockType, Menu } from '@/payload-types'
-import { IconSelect } from '../../../components/ui/icon-select'
+import { IconSelect } from '../../components/ui/icon-select'
 import { useEffect, useState } from 'react'
-import { Viewport } from './viewport'
+import { PDFViewer } from '@/components/ui/pdf-viewer'
 
 export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus: menuProps }) => {
   const menus =
@@ -18,12 +18,17 @@ export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus:
     <div className="max-w-2xl px-4 mx-auto -mt-48" data-theme="pizza">
       {menus.length > 1 && (
         <>
-          <h4 className="type-h4 mb-2">Select a Menu:</h4>
-          <IconSelect items={menus} selected={selectedMenuId} onChange={setSelectedMenuId} />
+          <h4 className="type-h4 font-semibold mb-2">Select a Menu:</h4>
+          <IconSelect
+            items={menus}
+            selected={selectedMenuId}
+            onChange={setSelectedMenuId}
+            className="shadow-md"
+          />
         </>
       )}
       {activeMenuUrl ? (
-        <Viewport src={activeMenuUrl} className="mt-4" />
+        <PDFViewer src={activeMenuUrl} className="mt-4" pageClassName="shadow-lg" />
       ) : (
         <div>No menu selected</div>
       )}
