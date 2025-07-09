@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const Menu: Block = {
   slug: 'menu',
   interfaceName: 'MenuBlock',
+  imageURL: '/api/media/file/block-menu.png',
   fields: [
     {
       name: 'heading',

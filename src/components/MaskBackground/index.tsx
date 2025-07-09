@@ -10,12 +10,16 @@ interface MaskBackgroundProps {
   children: React.ReactNode
   shape?: 'wood' | 'paper'
   innerClassName?: string
+  disableTop?: boolean
+  disableBottom?: boolean
 }
 
 export async function MaskBackground({
   children,
   innerClassName,
   shape = 'wood',
+  disableTop = false,
+  disableBottom = false,
 }: MaskBackgroundProps) {
   const masksData: MaskType = await getCachedGlobal('masks', 1)()
   const { masks } = masksData
@@ -50,9 +54,13 @@ export async function MaskBackground({
         <div className="absolute -z-10 size-full bg-foreground" />
       )}
 
-      <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[2px]" />
+      {!disableTop && (
+        <Mask media={top} className="theme-sugar-shack bg-background -translate-y-[2px]" />
+      )}
       <div className={cn(innerClassName)}>{children}</div>
-      <Mask media={bottom} className="theme-sugar-shack bg-background translate-y-[2px]" />
+      {!disableBottom && (
+        <Mask media={bottom} className="theme-sugar-shack bg-background translate-y-[2px]" />
+      )}
     </div>
   )
 }

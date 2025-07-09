@@ -19,15 +19,20 @@ import { Badge } from '@/components/ui/badge'
 export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props) => {
   const cardsResponse: Card = await getCachedGlobal('card', 1)()
   const cards = cardsResponse.cards
-  const { heading, subheading } = props
+  const { heading, subheading, attachToFooter: attachToFooterProp } = props
+  const attachToFooter = Boolean(attachToFooterProp)
 
   return (
-    <div className="relative [--card-height:22rem]">
+    <div className="relative [--card-height:22rem] -mb-48">
       <div className="container">
         <Heading heading={heading} subheading={subheading} />
       </div>
 
-      <MaskBackground shape={'wood'} innerClassName="relative flex justify-center ">
+      <MaskBackground
+        shape={'wood'}
+        innerClassName="relative flex justify-center"
+        disableBottom={attachToFooter}
+      >
         <>
           {/* Desktop */}
           <BounceCards
