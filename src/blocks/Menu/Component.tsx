@@ -2,7 +2,7 @@
 
 import type { MenuBlock as MenuBlockType, Menu } from '@/payload-types'
 import { IconSelect } from '../../components/ui/icon-select'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PDFViewer } from '@/components/ui/pdf-viewer'
 
 export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus: menuProps }) => {
