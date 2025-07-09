@@ -17,7 +17,10 @@ export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus:
   return (
     <div className="max-w-2xl px-4 mx-auto -mt-48" data-theme="pizza">
       {menus.length > 1 && (
-        <IconSelect items={menus} selected={selectedMenuId} onChange={setSelectedMenuId} />
+        <>
+          <h4 className="type-h4 mb-2">Select a Menu:</h4>
+          <IconSelect items={menus} selected={selectedMenuId} onChange={setSelectedMenuId} />
+        </>
       )}
       {activeMenuUrl ? (
         <Viewport src={activeMenuUrl} className="mt-4" />
