@@ -12,6 +12,7 @@ import { Testimonials } from '@/blocks/Testimonials/config'
 import { Timeline } from '@/blocks/Timeline/config'
 import { Flair } from '@/blocks/Flair/config'
 import { Menu } from '@/blocks/Menu/config'
+import { MenuThumbnails } from '@/blocks/MenuThumbnails/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -91,6 +92,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Timeline,
                 Flair,
                 Menu,
+                MenuThumbnails,
               ],
               required: true,
               admin: {

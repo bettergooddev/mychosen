@@ -12,6 +12,7 @@ import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
 import { TimelineBlock } from '@/blocks/Timeline/Component'
 import { FlairBlock } from '@/blocks/Flair/Component'
 import { MenuBlock } from '@/blocks/Menu/Component'
+import { MenuThumbnailsBlock } from '@/blocks/MenuThumbnails/Component'
 
 const blockComponents = {
   content: ContentBlock,
@@ -24,6 +25,7 @@ const blockComponents = {
   timeline: TimelineBlock,
   flair: FlairBlock,
   menu: MenuBlock,
+  menuThumbnails: MenuThumbnailsBlock,
 }
 
 export const RenderBlocks: React.FC<{
