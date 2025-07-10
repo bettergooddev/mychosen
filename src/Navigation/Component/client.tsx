@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { NavLogo } from './logo'
 import { renderNavigationItem } from './renderNavigationItem'
 import type { Navigation as NavigationType } from '@/payload-types'
@@ -23,6 +23,11 @@ interface NavigationClientProps {
 export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
   const navItems = (data?.navItems ?? []) as NonNullable<NavigationType['navItems']>
   const actions = (data?.actions ?? []) as NonNullable<NavigationType['actions']>
+  const sheetCloseRef = useRef<HTMLButtonElement>(null)
+
+  const handleNavItemClick = () => {
+    sheetCloseRef.current?.click()
+  }
 
   return (
     <header
@@ -71,7 +76,10 @@ export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
               {/* Primary navigation items */}
               <nav className="flex flex-col gap-4 w-full">
                 {navItems.map((item, index) =>
-                  renderMobileNavigationItem(item, index, { appearance: 'inline' }),
+                  renderMobileNavigationItem(item, index, {
+                    appearance: 'inline',
+                    onItemClick: handleNavItemClick,
+                  }),
                 )}
               </nav>
 
@@ -81,9 +89,14 @@ export const NavigationClient: React.FC<NavigationClientProps> = ({ data }) => {
               {/* Actions */}
               <div className="flex flex-col gap-4">
                 {actions.map((item, index) =>
-                  renderMobileNavigationItem(item, `action-mobile-${index}`),
+                  renderMobileNavigationItem(item, `action-mobile-${index}`, {
+                    onItemClick: handleNavItemClick,
+                  }),
                 )}
               </div>
+
+              {/* Hidden close button for programmatic closing */}
+              <SheetClose ref={sheetCloseRef} className="hidden" />
             </SheetContent>
           </Sheet>
         </div>
