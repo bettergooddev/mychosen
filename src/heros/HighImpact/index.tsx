@@ -33,7 +33,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
   return (
     <>
       <section
-        className="relative min-h-screen overflow-hidden flex flex-col justify-center pb-60 pt-12"
+        className="relative min-h-screen overflow-hidden flex flex-col justify-center pb-24 md:pb-60 pt-12"
         data-theme="cafe"
       >
         <HeroBackground backgroundLayers={backgroundLayers} scrollY={scrollY} />
@@ -85,7 +85,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      <section className="-mt-[15%] lg:-mt-32">
+      <section className="-mt-[15%] lg:-mt-32 md:mb-0">
         <div className="flex w-screen justify-start overflow-hidden py-2">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
