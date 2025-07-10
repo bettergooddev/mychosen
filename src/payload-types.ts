@@ -297,7 +297,6 @@ export interface Page {
   layout: (
     | CallToActionBlock
     | ContentBlock
-    | MediaBlock
     | FormBlock
     | FeaturesBlock
     | PlayingCardsBlock
@@ -603,16 +602,6 @@ export interface ContentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: string | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1372,7 +1361,6 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
-        mediaBlock?: T | MediaBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         features?: T | FeaturesBlockSelect<T>;
         playingCards?: T | PlayingCardsBlockSelect<T>;
@@ -1448,15 +1436,6 @@ export interface ContentBlockSelect<T extends boolean = true> {
         id?: T;
       };
   reverse?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock_select".
- */
-export interface MediaBlockSelect<T extends boolean = true> {
-  media?: T;
   id?: T;
   blockName?: T;
 }
@@ -2196,27 +2175,6 @@ export interface CompanyDetail {
         id?: string | null;
       }[]
     | null;
-  socials?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        lucideIcon?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   location?: {
     /**
      * Paste the embed URL from Google Maps (e.g., https://www.google.com/maps/embed?pb=...)
@@ -2551,21 +2509,6 @@ export interface CompanyDetailsSelect<T extends boolean = true> {
         lucideIcon?: T;
         id?: T;
       };
-  socials?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        lucideIcon?: T;
-        id?: T;
-      };
   location?:
     | T
     | {
@@ -2807,6 +2750,16 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

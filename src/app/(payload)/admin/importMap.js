@@ -33,7 +33,6 @@ import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/
 import { RowLabel as RowLabel_e99f0474d47353a988995608827977bb } from '@/Footer/GroupsRowLabel'
 import { Field as Field_9bbc4ea063d21e8ca0498094333bb64f } from '@/collections/CompanyDetails/Field'
 import { RowLabel as RowLabel_a6fee3a038409b1d77c10e4497e52913 } from '@/collections/CompanyDetails/FindUsRowLabel'
-import { RowLabel as RowLabel_8c743bc97328bee5930a4cdfafea06aa } from '@/collections/CompanyDetails/SocialsRowLabel'
 import { RowLabel as RowLabel_2070b2f5f3e169c59d6769e389794f9c } from '@/collections/Cards/RowLabel'
 import { TimeFormatInfo as TimeFormatInfo_d34487111b42bc922d18204b2f5948d8 } from '@/collections/Hours/TimeFormatInfo'
 import { RowLabel as RowLabel_bd670192799650a036dbe69d685a3ecf } from '@/collections/Hours/RowLabel'
@@ -76,7 +75,6 @@ export const importMap = {
   "@/Footer/GroupsRowLabel#RowLabel": RowLabel_e99f0474d47353a988995608827977bb,
   "@/collections/CompanyDetails/Field#Field": Field_9bbc4ea063d21e8ca0498094333bb64f,
   "@/collections/CompanyDetails/FindUsRowLabel#RowLabel": RowLabel_a6fee3a038409b1d77c10e4497e52913,
-  "@/collections/CompanyDetails/SocialsRowLabel#RowLabel": RowLabel_8c743bc97328bee5930a4cdfafea06aa,
   "@/collections/Cards/RowLabel#RowLabel": RowLabel_2070b2f5f3e169c59d6769e389794f9c,
   "@/collections/Hours/TimeFormatInfo#TimeFormatInfo": TimeFormatInfo_d34487111b42bc922d18204b2f5948d8,
   "@/collections/Hours/RowLabel#RowLabel": RowLabel_bd670192799650a036dbe69d685a3ecf,

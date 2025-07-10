@@ -5,7 +5,7 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
+// import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { Features } from '@/blocks/Features/config'
 import { PlayingCards } from '@/blocks/PlayingCards/config'
 import { Testimonials } from '@/blocks/Testimonials/config'
@@ -84,7 +84,7 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [
                 CallToAction,
                 Content,
-                MediaBlock,
+                // MediaBlock,
                 FormBlock,
                 Features,
                 PlayingCards,
