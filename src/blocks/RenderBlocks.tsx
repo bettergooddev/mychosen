@@ -13,6 +13,7 @@ import { TimelineBlock } from '@/blocks/Timeline/Component'
 import { FlairBlock } from '@/blocks/Flair/Component'
 import { MenuBlock } from '@/blocks/Menu/Component'
 import { MenuThumbnailsBlock } from '@/blocks/MenuThumbnails/Component'
+import Section from '@/components/Section'
 
 const blockComponents = {
   content: ContentBlock,
@@ -46,10 +47,10 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-48" key={index}>
+                <Section key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
-                </div>
+                </Section>
               )
             }
           }
