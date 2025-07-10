@@ -11,6 +11,13 @@ import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
 import { Heading } from '@/components/Heading'
 import { Frame } from '@/components/Frame'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 const classes = {
   grid: tv({
@@ -26,6 +33,14 @@ const classes = {
       imageCount: 3,
     },
   }),
+  container: tv({
+    variants: {
+      style: {
+        grid: 'container',
+        carousel: 'w-full px-4',
+      },
+    },
+  }),
 }
 
 export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }) => {
@@ -33,9 +48,17 @@ export const Gallery: React.FC<FeaturesBlock> = ({ heading, subheading, images }
     images?.length && images.length in classes.grid['variants']['imageCount']
 
   return (
-    <div className="container">
-      <Heading heading={heading} subheading={subheading} />
-      {hasSupportedNumberOfImages && <GalleryGrid images={images} />}
+    <div>
+      <Heading heading={heading} subheading={subheading} className="container" />
+      <div
+        className={classes.container({ style: hasSupportedNumberOfImages ? 'grid' : 'carousel' })}
+      >
+        {hasSupportedNumberOfImages ? (
+          <GalleryGrid images={images || []} />
+        ) : (
+          <GalleryCarousel images={images || []} />
+        )}
+      </div>
     </div>
   )
 }
@@ -55,5 +78,33 @@ const GalleryGrid = ({ images }: { images: (string | MediaType)[] }) => {
         </div>
       ))}
     </div>
+  )
+}
+
+const GalleryCarousel = ({ images }: { images: (string | MediaType)[] }) => {
+  return (
+    <Carousel
+      opts={{
+        align: 'start',
+        loop: true,
+      }}
+      className="w-full"
+    >
+      <CarouselContent className="-ml-4 md:-ml-6 ">
+        {images.map((image, index) => (
+          <CarouselItem key={index} className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3">
+            <div className="relative">
+              <Frame
+                resource={image}
+                className="w-full overflow-hidden"
+                imgClassName="w-full h-auto scale-[1.025]"
+              />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="left-6 md:left-12 theme-pizza [&_svg]:!text-primary" />
+      <CarouselNext className="right-6 md:right-12 theme-pizza [&_svg]:!text-primary" />
+    </Carousel>
   )
 }

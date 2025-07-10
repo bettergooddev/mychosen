@@ -40,10 +40,12 @@ export const Heading = ({
   heading,
   subheading,
   actions,
+  className,
 }: {
   heading?: FeaturesBlock['heading']
   subheading?: string | null
   actions?: NonNullable<CallToActionBlock['links']>
+  className?: string
 }) => {
   const textWrapper = useRef<HTMLDivElement>(null)
   const annotations = useRef<Annotation[]>([])
@@ -77,7 +79,7 @@ export const Heading = ({
   }, [isInView])
 
   return (
-    <div data-theme="sugar-shack" className="mb-16">
+    <div data-theme="sugar-shack" className={cn('mb-16', className)}>
       {heading && (
         <div className="" ref={textWrapper}>
           <RichText
