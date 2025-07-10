@@ -24,7 +24,7 @@ export const Country: React.FC<
 > = ({ name, control, errors, label, required, width }) => {
   return (
     <Width width={width}>
-      <Label className="" htmlFor={name}>
+      <Label className="type-body" htmlFor={name}>
         {label}
 
         {required && (
@@ -42,7 +42,7 @@ export const Country: React.FC<
 
           return (
             <Select onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
-              <SelectTrigger className="w-full" id={name}>
+              <SelectTrigger className="w-full type-body" id={name}>
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>

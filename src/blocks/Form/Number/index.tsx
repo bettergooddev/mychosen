@@ -15,7 +15,7 @@ export const Number: React.FC<
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
   return (
     <Width width={width}>
-      <Label htmlFor={name}>
+      <Label className="type-body" htmlFor={name}>
         {label}
 
         {required && (
@@ -25,8 +25,10 @@ export const Number: React.FC<
         )}
       </Label>
       <Input
+        className="border-none shadow-md bg-card type-body placeholder:opacity-50"
         defaultValue={defaultValue}
         id={name}
+        placeholder={label}
         type="number"
         {...register(name, { required })}
       />
