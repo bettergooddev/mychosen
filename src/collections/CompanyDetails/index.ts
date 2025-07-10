@@ -4,8 +4,8 @@ import { iconLink } from '@/fields/iconLink'
 export const CompanyDetails: GlobalConfig = {
   slug: 'companyDetails',
   label: {
-    singular: 'Company Details',
-    plural: 'Company Details',
+    singular: 'Call to Action',
+    plural: 'Call to Actions',
   },
   fields: [
     {
@@ -20,18 +20,18 @@ export const CompanyDetails: GlobalConfig = {
         },
       },
     },
-    {
-      name: 'socials',
-      type: 'array',
-      label: 'Socials',
-      fields: iconLink,
-      admin: {
-        components: {
-          RowLabel: '@/collections/CompanyDetails/SocialsRowLabel#RowLabel',
-          Field: '@/collections/CompanyDetails/Field#Field',
-        },
-      },
-    },
+    // {
+    //   name: 'socials',
+    //   type: 'array',
+    //   label: 'Socials',
+    //   fields: iconLink,
+    //   admin: {
+    //     components: {
+    //       RowLabel: '@/collections/CompanyDetails/SocialsRowLabel#RowLabel',
+    //       Field: '@/collections/CompanyDetails/Field#Field',
+    //     },
+    //   },
+    // },
     {
       name: 'location',
       type: 'group',
