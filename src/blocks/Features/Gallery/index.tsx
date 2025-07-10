@@ -72,7 +72,7 @@ const GalleryGrid = ({ images }: { images: (string | MediaType)[] }) => {
         <div key={index} className="relative">
           <Frame
             resource={image}
-            className="w-full overflow-hidden"
+            className="w-full overflow-hidden max-w-xs sm:max-w-none mx-auto"
             imgClassName="w-full h-auto scale-[1.025]"
           />
         </div>
