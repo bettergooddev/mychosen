@@ -44,7 +44,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
             ))}
           />
           {/* Mobile */}
-          <Badge className="theme-pizza absolute top-0 left-1/2 -translate-x-1/2 !bg-primary !text-background !type-h5 !font-normal pt-1.5 pb-1 px-4 -mb-12 mt-8 !type-border md:hidden">
+          <Badge className="theme-pizza absolute top-0 left-1/2 -translate-x-1/2 !bg-primary !text-background !type-h5 !font-normal pt-1.5 pb-1 px-4 -mb-12 mt-8 !type-border md:hidden whitespace-nowrap">
             Tap to learn more!
           </Badge>
           <Carousel
