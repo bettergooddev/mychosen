@@ -1,11 +1,13 @@
 import type { Block } from 'payload'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { padding } from '@/fields/padding'
 
 export const MenuThumbnails: Block = {
   slug: 'menuThumbnails',
   interfaceName: 'MenuThumbnailsBlock',
   imageURL: '/api/media/file/block-menu-thumbnails.png',
   fields: [
+    padding(),
     {
       name: 'heading',
       type: 'richText',
