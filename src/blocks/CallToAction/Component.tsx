@@ -18,8 +18,8 @@ const classes = {
   text: tv({
     variants: {
       style: {
-        fancy: 'text-background',
-        default: 'theme-sugar-shack text-foreground [&_*]:text-foreground',
+        fancy: '[&_*]:!text-background',
+        default: 'theme-sugar-shack text-foreground [&_*]:!text-foreground',
       },
     },
   }),
@@ -54,9 +54,9 @@ export const CallToActionBlock: React.FC<CTABlockProps> = async ({
           <Map src={googleMapsEmbedUrl} className="min-h-[450px] lg:min-h-0" />
         )}
       </Frame>
-      <div className={cn('flex flex-col gap-14', classes.text({ style }))}>
+      <div className="flex flex-col gap-14">
         <BusinessHours hours={hours} />
-        <div className="flex flex-col gap-4">
+        <div className={cn('flex flex-col gap-4', classes.text({ style }))}>
           <h4 className="type-h4">Find Us</h4>
           {findUs.length > 0 && <IconList items={findUs} />}
         </div>

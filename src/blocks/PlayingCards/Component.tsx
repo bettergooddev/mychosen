@@ -15,6 +15,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { Badge } from '@/components/ui/badge'
+import { cn } from '@/utilities/ui'
 
 export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props) => {
   const cardsResponse: Card = await getCachedGlobal('card', 1)()
@@ -23,7 +24,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
   const attachToFooter = Boolean(attachToFooterProp)
 
   return (
-    <div className="relative [--card-height:22rem] -mb-48">
+    <div className={cn('relative [--card-height:22rem]', attachToFooter ? '-mb-48' : '')}>
       <div className="container">
         <Heading heading={heading} subheading={subheading} />
       </div>
