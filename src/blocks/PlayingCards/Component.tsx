@@ -62,8 +62,8 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
               ))}
             </CarouselContent>
             <div className="relative flex justify-center gap-8 mt-8 theme-pizza -mb-4">
-              <CarouselPrevious className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground" />
-              <CarouselNext className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground" />
+              <CarouselPrevious className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground border-none" />
+              <CarouselNext className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground border-none" />
             </div>
           </Carousel>
         </>
