@@ -43,7 +43,7 @@ export function PDFViewer({
               <div key={index + 1} className="border-b border-gray-200 pb-4">
                 <Page
                   pageNumber={index + 1}
-                  width={1200}
+                  width={600}
                   className={cn('w-full [&>*]:!w-full [&>*]:!h-auto', pageClassName)}
                   loading={<LoadingComponent>Loading page {index + 1}...</LoadingComponent>}
                   error={<ErrorComponent>Failed to load page {index + 1}.</ErrorComponent>}
