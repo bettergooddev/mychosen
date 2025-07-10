@@ -15,7 +15,7 @@ export const MenuBlock: React.FC<MenuBlockType> = ({ heading, subheading, menus:
   const activeMenuUrl = typeof activeMenu?.pdf === 'object' ? (activeMenu?.pdf).url : ''
 
   return (
-    <div className="max-w-2xl px-4 mx-auto -mt-52" data-theme="pizza">
+    <div className="max-w-2xl px-4 mx-auto -mt-24 md:-mt-48" data-theme="pizza">
       {menus.length > 1 && (
         <>
           <h5 className="type-h5 font-bold mb-2">Select a Menu:</h5>
