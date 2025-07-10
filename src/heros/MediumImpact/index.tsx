@@ -7,6 +7,19 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import { Frame } from '@/components/Frame'
+import { tv } from 'tailwind-variants'
+import { cn } from '@/utilities/ui'
+
+const classes = {
+  wrapper: tv({
+    variants: {
+      hasLogo: {
+        true: 'pt-6',
+        false: 'pt-16',
+      },
+    },
+  }),
+}
 
 export const MediumImpactHero: React.FC<Page['hero']> = (props) => {
   if (!props?.mediumImpact?.[0]) return null
@@ -19,7 +32,10 @@ export const MediumImpactHero: React.FC<Page['hero']> = (props) => {
 
   return (
     <div
-      className="w-full pt-8 -mb-8 flex flex-col items-center text-center px-4 "
+      className={cn(
+        'w-full -mb-8 flex flex-col items-center text-center px-4',
+        classes.wrapper({ hasLogo: !!logo }),
+      )}
       data-theme={theme}
     >
       {logo && <Media resource={logo} className="w-[18rem] h-auto" imgClassName="h-full w-full" />}
