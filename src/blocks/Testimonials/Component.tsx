@@ -28,7 +28,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = async ({
       <Heading heading={heading} subheading={subheading} />
 
       {testimonials.length > 0 && (
-        <div className="grid grid-cols-1 px-12 min-[54.4rem]:px-48 min-[68rem]:grid-cols-3 gap-8 min-[68rem]:px-0 theme-sugar-shack">
+        <div className="grid grid-cols-1 px-4 min-[54.4rem]:px-48 min-[68rem]:grid-cols-3 gap-8 min-[68rem]:px-0 theme-sugar-shack">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}

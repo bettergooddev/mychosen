@@ -3,7 +3,7 @@ import { cn } from '@/utilities/ui'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Page, Post } from '@/payload-types'
+import type { Page, Post, Media } from '@/payload-types'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -12,12 +12,37 @@ type CMSLinkType = {
   label?: string | null
   newTab?: boolean | null
   reference?: {
-    relationTo: 'pages' | 'posts'
-    value: Page | Post | string | number
+    relationTo: 'pages' | 'posts' | 'media'
+    value: Page | Post | Media | string | number
   } | null
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
+}
+
+// Helpers
+export const getPageUrl = (reference: NonNullable<CMSLinkType['reference']>): string | null => {
+  if (!reference || (reference.relationTo !== 'pages' && reference.relationTo !== 'posts')) {
+    return null
+  }
+
+  if (typeof reference.value === 'object' && 'slug' in reference.value && reference.value.slug) {
+    return `${reference.relationTo !== 'pages' ? `/${reference.relationTo}` : ''}/${reference.value.slug}`
+  }
+
+  return null
+}
+
+export const getFileUrl = (reference: NonNullable<CMSLinkType['reference']>): string | null => {
+  if (!reference || reference.relationTo !== 'media') {
+    return null
+  }
+
+  if (typeof reference.value === 'object' && 'url' in reference.value && reference.value.url) {
+    return reference.value.url as string
+  }
+
+  return null
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -33,12 +58,17 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     url,
   } = props
 
-  const href =
-    type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.slug
-        }`
-      : url
+  let href: string | null = null
+
+  if (type === 'reference' && reference) {
+    if (reference.relationTo === 'media') {
+      href = getFileUrl(reference)
+    } else {
+      href = getPageUrl(reference)
+    }
+  } else {
+    href = url || null
+  }
 
   if (!href) return null
 

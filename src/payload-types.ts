@@ -182,8 +182,8 @@ export interface Page {
                         value: string | Page;
                       } | null)
                     | ({
-                        relationTo: 'posts';
-                        value: string | Post;
+                        relationTo: 'media';
+                        value: string | Media;
                       } | null);
                   url?: string | null;
                   label: string;
@@ -219,8 +219,8 @@ export interface Page {
                           value: string | Page;
                         } | null)
                       | ({
-                          relationTo: 'posts';
-                          value: string | Post;
+                          relationTo: 'media';
+                          value: string | Media;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -243,8 +243,8 @@ export interface Page {
                           value: string | Page;
                         } | null)
                       | ({
-                          relationTo: 'posts';
-                          value: string | Post;
+                          relationTo: 'media';
+                          value: string | Media;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -267,8 +267,8 @@ export interface Page {
                           value: string | Page;
                         } | null)
                       | ({
-                          relationTo: 'posts';
-                          value: string | Post;
+                          relationTo: 'media';
+                          value: string | Media;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -415,90 +415,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: string;
-  title: string;
-  heroImage?: (string | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  relatedPosts?: (string | Post)[] | null;
-  categories?: (string | Category)[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  authors?: (string | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  name?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
@@ -530,8 +446,8 @@ export interface CallToActionBlock {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'media';
+                value: string | Media;
               } | null);
           url?: string | null;
           label: string;
@@ -584,8 +500,8 @@ export interface ContentBlock {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'media';
+                value: string | Media;
               } | null);
           url?: string | null;
           label: string;
@@ -971,6 +887,7 @@ export interface Brand {
  * via the `definition` "MenuThumbnailsBlock".
  */
 export interface MenuThumbnailsBlock {
+  padding?: ('top-bottom' | 'top' | 'bottom' | 'none') | null;
   heading?: {
     root: {
       type: string;
@@ -991,6 +908,90 @@ export interface MenuThumbnailsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'menuThumbnails';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: string;
+  title: string;
+  heroImage?: (string | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  relatedPosts?: (string | Post)[] | null;
+  categories?: (string | Category)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  authors?: (string | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  name?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1534,6 +1535,7 @@ export interface MenuBlockSelect<T extends boolean = true> {
  * via the `definition` "MenuThumbnailsBlock_select".
  */
 export interface MenuThumbnailsBlockSelect<T extends boolean = true> {
+  padding?: T;
   heading?: T;
   subheading?: T;
   menus?: T;
@@ -1992,8 +1994,8 @@ export interface Navigation {
             value: string | Page;
           } | null)
         | ({
-            relationTo: 'posts';
-            value: string | Post;
+            relationTo: 'media';
+            value: string | Media;
           } | null);
       url?: string | null;
       label: string;
@@ -2012,8 +2014,8 @@ export interface Navigation {
                   value: string | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'media';
+                  value: string | Media;
                 } | null);
             url?: string | null;
             label: string;
@@ -2039,8 +2041,8 @@ export interface Navigation {
                           value: string | Page;
                         } | null)
                       | ({
-                          relationTo: 'posts';
-                          value: string | Post;
+                          relationTo: 'media';
+                          value: string | Media;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -2066,8 +2068,8 @@ export interface Navigation {
                   value: string | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'media';
+                  value: string | Media;
                 } | null);
             url?: string | null;
             label: string;
@@ -2093,8 +2095,8 @@ export interface Navigation {
                           value: string | Page;
                         } | null)
                       | ({
-                          relationTo: 'posts';
-                          value: string | Post;
+                          relationTo: 'media';
+                          value: string | Media;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -2131,8 +2133,8 @@ export interface Footer {
                       value: string | Page;
                     } | null)
                   | ({
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'media';
+                      value: string | Media;
                     } | null);
                 url?: string | null;
                 label: string;
@@ -2165,8 +2167,8 @@ export interface CompanyDetail {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'media';
+                value: string | Media;
               } | null);
           url?: string | null;
           label: string;
@@ -2223,8 +2225,8 @@ export interface Card {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'media';
+                value: string | Media;
               } | null);
           url?: string | null;
           label: string;
@@ -2341,8 +2343,8 @@ export interface TypeGenerator {
             value: string | Page;
           } | null)
         | ({
-            relationTo: 'posts';
-            value: string | Post;
+            relationTo: 'media';
+            value: string | Media;
           } | null);
       url?: string | null;
       label: string;

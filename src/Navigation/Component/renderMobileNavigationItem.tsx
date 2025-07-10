@@ -8,6 +8,7 @@ import type { Navigation as NavigationType } from '@/payload-types'
 
 type RenderOverrides = {
   appearance?: 'inline' | Parameters<typeof CMSLink>[0]['appearance']
+  onItemClick?: () => void
 }
 
 export const renderMobileNavigationItem = (
@@ -18,18 +19,19 @@ export const renderMobileNavigationItem = (
   const navItem = item.navigationItem
   if (!navItem) return null
 
-  const { appearance: overrideAppearance } = overrides
+  const { appearance: overrideAppearance, onItemClick } = overrides
 
   // Simple link
   if (navItem.type === 'link' && navItem.link) {
     return (
-      <CMSLink
-        key={index}
-        {...navItem.link}
-        label={navItem.link.label}
-        appearance={overrideAppearance ?? navItem.link.appearance ?? 'link'}
-        className="type-button py-2 w-full text-left"
-      />
+      <div key={index} onClick={onItemClick}>
+        <CMSLink
+          {...navItem.link}
+          label={navItem.link.label}
+          appearance={overrideAppearance ?? navItem.link.appearance ?? 'link'}
+          className="type-button py-2 w-full text-left"
+        />
+      </div>
     )
   }
 
@@ -62,12 +64,13 @@ export const renderMobileNavigationItem = (
           {open && (
             <div className="pl-4 flex flex-col gap-2 mt-2">
               {dropdown.items!.map((dropdownItem, dropdownIndex) => (
-                <CMSLink
-                  key={dropdownIndex}
-                  {...dropdownItem.link}
-                  appearance={overrideAppearance ?? 'inline'}
-                  className="type-button py-2 text-left underline-offset-4 hover:underline text-primary"
-                />
+                <div key={dropdownIndex} onClick={onItemClick}>
+                  <CMSLink
+                    {...dropdownItem.link}
+                    appearance={overrideAppearance ?? 'inline'}
+                    className="type-button py-2 text-left underline-offset-4 hover:underline text-primary"
+                  />
+                </div>
               ))}
             </div>
           )}

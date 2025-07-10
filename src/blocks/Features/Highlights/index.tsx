@@ -32,7 +32,7 @@ type HighlightType = NonNullable<FeaturesBlock['highlights']>[number]
 function HighlightCard({ highlight }: { highlight: HighlightType }) {
   return (
     <div className="flex flex-col items-center text-center theme-sugar-shack ">
-      <div className="mb-6 w-full aspect-square">
+      <div className="mb-6 w-full aspect-square max-w-xs sm:max-w-none mx-auto">
         <Frame resource={highlight.image} className="size-full rounded-lg" />
       </div>
       <h3 className="type-h3 text-foreground mt-2">{highlight.heading}</h3>

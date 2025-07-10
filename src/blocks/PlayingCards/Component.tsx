@@ -44,7 +44,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
             ))}
           />
           {/* Mobile */}
-          <Badge className="theme-pizza absolute top-0 left-1/2 -translate-x-1/2 !bg-primary !text-background !type-h5 !font-normal pt-1.5 pb-1 px-4 -mb-12 mt-8 !type-border md:hidden">
+          <Badge className="theme-pizza absolute top-0 left-1/2 -translate-x-1/2 !bg-primary !text-background !type-h5 !font-normal pt-1.5 pb-1 px-4 -mb-12 mt-8 !type-border md:hidden whitespace-nowrap">
             Tap to learn more!
           </Badge>
           <Carousel
@@ -62,8 +62,8 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
               ))}
             </CarouselContent>
             <div className="relative flex justify-center gap-8 mt-8 theme-pizza -mb-4">
-              <CarouselPrevious className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground" />
-              <CarouselNext className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground" />
+              <CarouselPrevious className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground border-none" />
+              <CarouselNext className="size-10 [&>*]:size-5 flex relative !transform-none inset-0 [&_*]:stroke-foreground border-none" />
             </div>
           </Carousel>
         </>

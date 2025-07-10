@@ -24,7 +24,7 @@ export const FooterClient: React.FC<FooterClientProps> = ({ data, hours }) => {
       className="mt-auto border-t border-primary/10 bg-muted text-foreground"
       data-theme="sugar-shack"
     >
-      <div className="w-full px-16 py-16">
+      <div className="w-full px-4 py-8 md:px-16 md:py-16">
         {/* Combined Groups and Business Hours Flex */}
         <div className="flex flex-col gap-16 md:grid md:grid-cols-2 md:gap-12 lg:flex lg:flex-row lg:gap-16 lg:justify-between">
           {/* Groups */}

@@ -3,16 +3,21 @@ import type { Menu, MenuThumbnailsBlock as MenuThumbnailsBlockType } from '@/pay
 import { DynamicIcon } from 'lucide-react/dynamic'
 import { CMSLink } from '@/components/Link'
 import { Frame } from '@/components/Frame'
+import { paddingStyle } from '@/utilities/padding'
+import { cn } from '@/utilities/ui'
 
 export const MenuThumbnailsBlock: React.FC<MenuThumbnailsBlockType> = (props) => {
-  const { heading, subheading, menus: menuProps = [] } = props
+  const { heading, subheading, menus: menuProps = [], padding } = props
 
   const menus: Menu[] = (menuProps as any[]).filter(
     (menu): menu is Menu => typeof menu === 'object' && menu !== null,
   )
 
   return (
-    <div className="container" data-theme="pizza">
+    <div
+      className={cn('container', paddingStyle({ padding: padding || 'top-bottom' }))}
+      data-theme="pizza"
+    >
       <Heading heading={heading} subheading={subheading} />
 
       <div className="grid gap-8 sm:grid-cols-2 max-w-xl mx-auto">

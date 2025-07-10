@@ -32,13 +32,16 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
 
   return (
     <>
-      <section className="relative h-[110dvh] overflow-hidden" data-theme="cafe">
+      <section
+        className="relative min-h-screen overflow-hidden flex flex-col justify-center pb-24 md:pb-60 pt-12"
+        data-theme="cafe"
+      >
         <HeroBackground backgroundLayers={backgroundLayers} scrollY={scrollY} />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
           {/* Logos */}
           {logos && logos.length > 0 && (
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 md:mb-12 mb-[4rem] w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0 md:-mt-[14.25%] -mt-[28%]">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 md:mb-12 mb-[4rem] w-full container md:max-w-screen-lg max-w-[360px] md:px-12 px-0">
               <CMSLink
                 {...logoCenter?.link}
                 appearance="inline"
@@ -82,7 +85,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
       </section>
 
       {/* Image Gallery Grid */}
-      <section className="-mt-[15%] lg:-mt-32">
+      <section className="-mt-[15%] lg:-mt-32 md:mb-0">
         <div className="flex w-screen justify-start overflow-hidden py-2">
           <div className="grid shrink-0 grid-cols-1 gap-y-4">
             <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
