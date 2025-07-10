@@ -38,7 +38,13 @@ export const MediumImpactHero: React.FC<Page['hero']> = (props) => {
       )}
       data-theme={theme}
     >
-      {logo && <Media resource={logo} className="w-[18rem] h-auto" imgClassName="h-full w-full" />}
+      {logo && (
+        <Media
+          resource={logo}
+          className="w-[12rem] md:w-[18rem] h-auto"
+          imgClassName="h-full w-full"
+        />
+      )}
       {heading && <h1 className="text-primary mt-0 type-h1">{heading}</h1>}
       {subheading && (
         <p className="opacity-75 text-primary mt-4 max-w-[60ch] mx-auto">{subheading}</p>
