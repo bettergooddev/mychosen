@@ -105,6 +105,7 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
+    'page-config': PageConfig;
     navigation: Navigation;
     footer: Footer;
     companyDetails: CompanyDetail;
@@ -116,6 +117,7 @@ export interface Config {
     typeGenerator: TypeGenerator;
   };
   globalsSelect: {
+    'page-config': PageConfigSelect<false> | PageConfigSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     companyDetails: CompanyDetailsSelect<false> | CompanyDetailsSelect<true>;
@@ -308,6 +310,7 @@ export interface Page {
   )[];
   meta?: {
     title?: string | null;
+    ignoreSuffix?: boolean | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
@@ -1375,6 +1378,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        ignoreSuffix?: T;
         image?: T;
         description?: T;
       };
@@ -1978,6 +1982,19 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-config".
+ */
+export interface PageConfig {
+  id: string;
+  /**
+   * This will be added to the end of the page title. For example, "Rates | Page Suffix"
+   */
+  pageSuffix?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation".
  */
 export interface Navigation {
@@ -2354,6 +2371,16 @@ export interface TypeGenerator {
   };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-config_select".
+ */
+export interface PageConfigSelect<T extends boolean = true> {
+  pageSuffix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

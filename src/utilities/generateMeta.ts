@@ -4,6 +4,8 @@ import type { Media, Page, Post, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
+import { getCachedGlobal } from './getGlobals'
+import { DataFromGlobalSlug } from 'payload'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
@@ -26,9 +28,15 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Payload Website Template'
-    : 'Payload Website Template'
+  const pageConfig = (await getCachedGlobal(
+    'page-config',
+    3,
+  )()) as DataFromGlobalSlug<'page-config'>
+
+  const titleText = doc?.meta?.title || doc?.title || `${process.env.NEXT_PUBLIC_COMPANY_NAME} PAGE`
+  const ignoreSuffix = (doc?.meta && 'ignoreSuffix' in doc.meta && doc.meta.ignoreSuffix) ?? false
+  const pageSuffix = ignoreSuffix ? '' : (pageConfig?.pageSuffix ?? '')
+  const pageTitle = pageSuffix ? titleText + ' | ' + pageSuffix : titleText
 
   return {
     description: doc?.meta?.description,
@@ -41,9 +49,9 @@ export const generateMeta = async (args: {
             },
           ]
         : undefined,
-      title,
+      title: pageTitle,
       url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
     }),
-    title,
+    title: pageTitle,
   }
 }
