@@ -6,6 +6,8 @@ import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
 import { CMSLink } from '../../components/Link'
 import { Frame } from '../../components/Frame'
+import * as motion from 'motion/react-client'
+import { fadeUpInView } from '@/utilities/animations'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const { columns } = props
@@ -53,11 +55,13 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 )}
 
                 {type === 'media' && media && (
-                  <Frame
-                    resource={media}
-                    className="w-full overflow-hidden"
-                    imgClassName="w-full h-auto scale-[1.025]"
-                  />
+                  <motion.div {...fadeUpInView(index)}>
+                    <Frame
+                      resource={media}
+                      className="w-full overflow-hidden"
+                      imgClassName="w-full h-auto scale-[1.025]"
+                    />
+                  </motion.div>
                 )}
               </div>
             )

@@ -9,6 +9,8 @@ import { Heading } from '@/components/Heading'
 import { Frame } from '@/components/Frame'
 import StarRating from '@/components/StarRating'
 import { Media } from '@/components/Media'
+import * as motion from 'motion/react-client'
+import { fadeUpInView } from '@/utilities/animations'
 
 export const TestimonialsBlock: React.FC<TestimonialsBlockType> = async ({
   heading,
@@ -30,7 +32,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = async ({
       {testimonials.length > 0 && (
         <div className="grid grid-cols-1 px-4 min-[54.4rem]:px-48 min-[68rem]:grid-cols-3 gap-8 min-[68rem]:px-0 theme-sugar-shack">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} testimonial={testimonial} />
+            <TestimonialCard key={index} testimonial={testimonial} index={index} />
           ))}
         </div>
       )}
@@ -40,9 +42,12 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = async ({
 
 type TestimonialType = NonNullable<TestimonialCollectionType['testimonials']>[number]
 
-function TestimonialCard({ testimonial }: { testimonial: TestimonialType }) {
+function TestimonialCard({ testimonial, index }: { testimonial: TestimonialType; index: number }) {
   return (
-    <div className="flex w-full flex-col items-start border-[10px] border-white drop-shadow-md bg-white">
+    <motion.div
+      className="flex w-full flex-col items-start border-[10px] border-white drop-shadow-md bg-white"
+      {...fadeUpInView(index)}
+    >
       <Media
         resource={testimonial.image}
         className="size-full min-h-[20rem]"
@@ -69,6 +74,6 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialType }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

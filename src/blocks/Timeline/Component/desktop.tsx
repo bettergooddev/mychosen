@@ -8,6 +8,8 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { Frame } from '@/components/Frame'
+import * as motion from 'motion/react-client'
+import { slideInFromRightInView } from '@/utilities/animations'
 import React from 'react'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/utilities/ui'
@@ -34,6 +36,7 @@ export function DesktopCarousel({
             event={event}
             isFirst={index === 0}
             isLast={index === events.length - 1}
+            index={index}
           />
         ))}
       </CarouselContent>
@@ -49,10 +52,14 @@ const Event: React.FC<{
   event: NonNullable<TimelineBlockProps['events']>[number]
   isFirst: boolean
   isLast: boolean
-}> = ({ event, isFirst, isLast }) => {
+  index: number
+}> = ({ event, isFirst, isLast, index }) => {
   return (
     <CarouselItem className="md:basis-1/2 lg:basis-1/3 !pl-0" data-theme="sugar-shack">
-      <div className="flex flex-col items-center text-center h-full">
+      <motion.div
+        {...slideInFromRightInView(index)}
+        className="flex flex-col items-center text-center h-full"
+      >
         {/* Image with internal padding formerly on the item */}
         <Frame
           resource={event.image}
@@ -69,7 +76,7 @@ const Event: React.FC<{
             {event.description}
           </p>
         )}
-      </div>
+      </motion.div>
     </CarouselItem>
   )
 }

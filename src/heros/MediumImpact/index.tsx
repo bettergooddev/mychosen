@@ -9,6 +9,8 @@ import { Media } from '@/components/Media'
 import { Frame } from '@/components/Frame'
 import { tv } from 'tailwind-variants'
 import { cn } from '@/utilities/ui'
+import { motion } from 'motion/react'
+import { fadeUpInView } from '@/utilities/animations'
 
 const classes = {
   wrapper: tv({
@@ -63,7 +65,9 @@ export const MediumImpactHero: React.FC<Page['hero']> = (props) => {
         </div>
       )}
       {image && (
-        <Media resource={image} className="max-w-screen-xl flex mt-7 w-full rotate-[1deg]" />
+        <motion.div {...fadeUpInView(0)} className="w-full flex justify-center">
+          <Media resource={image} className="max-w-screen-xl flex mt-7 w-full rotate-[1deg]" />
+        </motion.div>
       )}
     </div>
   )
