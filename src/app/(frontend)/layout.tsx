@@ -38,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <meta name="apple-mobile-web-app-title" content="My-Chosen" />
       </head>
       <body className="relative">
         <Providers>
