@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
+import { useIntersectionObserver } from '@uidotdev/usehooks'
 
 interface BounceCardsProps {
   className?: string
@@ -34,18 +35,41 @@ export default function BounceCards({
   enableHover = true,
   invertStackingOrder = false,
 }: BounceCardsProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  // Observe visibility using the library hook
+  const [observerRef, entry] = useIntersectionObserver({ threshold: 0.1 })
+
+  // Merge the IntersectionObserver ref with our local ref so we can access the element later
+  const setRefs = useCallback(
+    (node: HTMLDivElement | null) => {
+      containerRef.current = node
+      observerRef(node)
+    },
+    [observerRef],
+  )
+
+  // Run the intro animation the first time the component becomes visible
+  const hasAnimatedRef = useRef(false)
+
   useEffect(() => {
-    gsap.fromTo(
-      '.card',
-      { scale: 0 },
-      {
-        scale: 1,
-        stagger: animationStagger,
-        ease: easeType,
-        delay: animationDelay,
-      },
-    )
-  }, [animationDelay, animationStagger, easeType])
+    if (hasAnimatedRef.current) return
+
+    if (entry?.isIntersecting && containerRef.current) {
+      gsap.fromTo(
+        containerRef.current.querySelectorAll('.card'),
+        { scale: 0 },
+        {
+          scale: 1,
+          stagger: animationStagger,
+          ease: easeType,
+          delay: animationDelay,
+        },
+      )
+
+      hasAnimatedRef.current = true
+    }
+  }, [entry, animationDelay, animationStagger, easeType])
 
   const getNoRotationTransform = (transformStr: string): string => {
     const hasRotate = /rotate\([\s\S]*?\)/.test(transformStr)
@@ -126,6 +150,7 @@ export default function BounceCards({
 
   return (
     <div
+      ref={setRefs}
       className={`relative flex items-center justify-center h-32 ${className}`}
       //   style={{
       //     width: containerWidth,
