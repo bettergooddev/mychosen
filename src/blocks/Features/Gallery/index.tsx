@@ -1,5 +1,6 @@
 import React from 'react'
 import * as motion from 'motion/react-client'
+import { fadeUpInView } from '@/utilities/animations'
 import { cva } from 'class-variance-authority'
 import { tv } from 'tailwind-variants'
 
@@ -70,14 +71,7 @@ const GalleryGrid = ({ images }: { images: (string | MediaType)[] }) => {
   return (
     <div className={cn('grid gap-6', classes.grid({ imageCount }))}>
       {images.map((image, index) => (
-        <motion.div
-          key={index}
-          className="relative"
-          initial={{ y: 200, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1], delay: index * 0.2 }}
-        >
+        <motion.div key={index} className="relative" {...fadeUpInView(index)}>
           <Frame
             resource={image}
             className="w-full overflow-hidden max-w-xs sm:max-w-none mx-auto"
@@ -101,13 +95,7 @@ const GalleryCarousel = ({ images }: { images: (string | MediaType)[] }) => {
       <CarouselContent className="-ml-4 md:-ml-6 ">
         {images.map((image, index) => (
           <CarouselItem key={index} className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3">
-            <motion.div
-              className="relative"
-              initial={{ y: 200, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1], delay: index * 0.1 }}
-            >
+            <motion.div className="relative" {...fadeUpInView(index, 0.1, 0.5)}>
               <Frame
                 resource={image}
                 className="w-full overflow-hidden"
