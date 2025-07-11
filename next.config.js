@@ -22,6 +22,23 @@ const nextConfig = {
   },
   reactStrictMode: true,
   redirects,
+  async rewrites() {
+    return [
+      {
+        source: '/relay-zXAU/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*',
+      },
+      {
+        source: '/relay-zXAU/:path*',
+        destination: 'https://us.i.posthog.com/:path*',
+      },
+      {
+        source: '/relay-zXAU/flags',
+        destination: 'https://us.i.posthog.com/flags',
+      },
+    ]
+  },
+  skipTrailingSlashRedirect: true,
   webpack: (config) => {
     config.resolve.alias.canvas = false
     return config
