@@ -7,6 +7,7 @@ import type { Footer as FooterType } from '@/payload-types'
 import type { HoursType } from '@/collections/Hours/types'
 
 import { FooterClient } from './client'
+import { BusinessHours } from '@/components/BusinessHours'
 
 export async function Footer() {
   const footerData = (await getCachedGlobal('footer', 1)()) as FooterType
@@ -19,7 +20,11 @@ export async function Footer() {
 
   const hours = (hoursData.hours || []) as HoursType
 
-  return <FooterClient data={footerData} hours={hours} />
+  return (
+    <FooterClient data={footerData} hours={hours}>
+      <BusinessHours hours={hours} className="shadow-lg" />
+    </FooterClient>
+  )
 }
 
 export default Footer

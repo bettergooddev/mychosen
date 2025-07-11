@@ -14,9 +14,10 @@ import { cn } from '@/utilities/ui'
 interface FooterClientProps {
   data: FooterType
   hours: HoursType
+  children: React.ReactNode
 }
 
-export const FooterClient: React.FC<FooterClientProps> = ({ data, hours }) => {
+export const FooterClient: React.FC<FooterClientProps> = ({ data, children }) => {
   const groups = (data?.groups ?? []) as NonNullable<FooterType['groups']>
 
   return (
@@ -57,9 +58,7 @@ export const FooterClient: React.FC<FooterClientProps> = ({ data, hours }) => {
           ))}
 
           {/* Business Hours */}
-          <div className="flex flex-col gap-2 flex-1 lg:max-w-xs">
-            <BusinessHours hours={hours} className="shadow-lg" />
-          </div>
+          <div className="flex flex-col gap-2 flex-1 lg:max-w-xs">{children}</div>
         </div>
       </div>
       <WebsiteTag />
