@@ -11,6 +11,7 @@ interface BounceCardsProps {
   //   containerHeight?: number
   animationDelay?: number
   animationStagger?: number
+  animationDuration?: number
   easeType?: string
   transformStyles?: string[]
   enableHover?: boolean
@@ -22,8 +23,9 @@ export default function BounceCards({
   elements = [],
   //   containerWidth = 400,
   //   containerHeight = 400,
-  animationDelay = 0.5,
-  animationStagger = 0.06,
+  animationDelay = 0.4,
+  animationStagger = 0.13,
+  animationDuration = 0.7,
   easeType = 'elastic.out(1, 0.8)',
   transformStyles = [
     'rotate(10deg) translate(-200px)',
@@ -38,7 +40,7 @@ export default function BounceCards({
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   // Observe visibility using the library hook
-  const [observerRef, entry] = useIntersectionObserver({ threshold: 0.1 })
+  const [observerRef, entry] = useIntersectionObserver({ threshold: 0.3 })
 
   // Merge the IntersectionObserver ref with our local ref so we can access the element later
   const setRefs = useCallback(
@@ -61,7 +63,8 @@ export default function BounceCards({
         { scale: 0 },
         {
           scale: 1,
-          stagger: animationStagger,
+          duration: animationDuration,
+          stagger: { each: animationStagger, from: 'end' },
           ease: easeType,
           delay: animationDelay,
         },
@@ -69,7 +72,7 @@ export default function BounceCards({
 
       hasAnimatedRef.current = true
     }
-  }, [entry, animationDelay, animationStagger, easeType])
+  }, [entry, animationDelay, animationStagger, easeType, animationDuration])
 
   const getNoRotationTransform = (transformStr: string): string => {
     const hasRotate = /rotate\([\s\S]*?\)/.test(transformStr)
