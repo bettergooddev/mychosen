@@ -1,12 +1,8 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import type { FeaturesBlock, Page } from '@/payload-types'
+import type { FeaturesBlock } from '@/payload-types'
 
-import { CMSLink } from '@/components/Link'
-import { Media } from '@/components/Media'
-import RichText from '@/components/RichText'
 import { Heading } from '@/components/Heading'
 import { Frame } from '@/components/Frame'
 
