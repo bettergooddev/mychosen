@@ -56,7 +56,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                   {...logoLeft?.link}
                   appearance="inline"
                   label={null}
-                  className="w-[35%] md:w-[17.5%] md:order-1"
+                  className="w-[35%] md:w-[17.5%] md:order-1 transition-all duration-150 hover:scale-95 hover:opacity-70 hover:-rotate-3"
                 >
                   <Media resource={logoLeft?.logo} className="h-auto" imgClassName="size-full" />
                 </CMSLink>
@@ -64,7 +64,7 @@ export const HighImpactHero: React.FC<Page['hero']> = (props) => {
                   {...logoRight?.link}
                   appearance="inline"
                   label={null}
-                  className="w-[35%] md:w-[17.5%] md:order-3"
+                  className="w-[35%] md:w-[17.5%] md:order-3 transition-all duration-150 hover:scale-95 hover:opacity-70 hover:rotate-3"
                 >
                   <Media resource={logoRight?.logo} className="h-auto" imgClassName="size-full" />
                 </CMSLink>
