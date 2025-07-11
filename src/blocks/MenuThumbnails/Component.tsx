@@ -35,7 +35,7 @@ const MenuCard: React.FC<{ menu: Menu; index: number }> = ({ menu, index }) => {
   const pdfUrl = typeof menu.pdf === 'object' ? (menu.pdf as any).url : '#'
 
   return (
-    <motion.div {...popInInView(index)}>
+    <motion.div {...popInInView(index)} className="max-w-xs sm:max-w-none mx-auto">
       <CMSLink
         url={pdfUrl}
         newTab
