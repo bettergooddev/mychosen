@@ -1,5 +1,6 @@
 ## TODO
 
+- [x] Update Socials
 - [ ] Entrance animations
 - [ ] Final bug testing
 - [ ] Favicon
