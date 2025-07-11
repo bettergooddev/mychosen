@@ -27,6 +27,7 @@ import { TypeGenerator } from './collections/TypeGenerator'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { PageConfig } from './collections/PageConfig/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -76,6 +77,7 @@ export default buildConfig({
   collections: [Pages, Posts, Media, Categories, Users, Brands, Menus],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [
+    PageConfig,
     Navigation,
     Footer,
     CompanyDetails,

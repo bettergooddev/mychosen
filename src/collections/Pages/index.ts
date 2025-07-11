@@ -114,6 +114,15 @@ export const Pages: CollectionConfig<'pages'> = {
             MetaTitleField({
               hasGenerateFn: true,
             }),
+            {
+              name: 'ignoreSuffix',
+              type: 'checkbox',
+              defaultValue: false,
+              label: 'Ignore Suffix',
+              admin: {
+                hidden: true,
+              },
+            },
             MetaImageField({
               relationTo: 'media',
             }),
