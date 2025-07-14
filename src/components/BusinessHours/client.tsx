@@ -44,8 +44,6 @@ export function BusinessHoursClient({
   const pathname = usePathname()
   const today = new Date().toLocaleString('en-us', { weekday: 'long' })
 
-  if (!hours || hours.length === 0) return <Fallback />
-
   // Extract the path segment after the first slash (e.g., "/sugar-shack" becomes "sugar-shack")
   const pathSegment = pathname.split('/')[1] || ''
 
@@ -65,6 +63,8 @@ export function BusinessHoursClient({
   useEffect(() => {
     setActiveTab(defaultTabValue)
   }, [defaultTabValue])
+
+  if (!hours || hours.length === 0) return <Fallback />
 
   return (
     <Card
