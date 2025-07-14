@@ -19,7 +19,7 @@ export const Frame: React.FC<FrameProps> = ({ className, children, seed, ...medi
   }
 
   const frameClassName = cn(
-    'border-[10px] border-white drop-shadow-md transition-transform duration-300 !rounded-none',
+    'border-[10px] border-white drop-shadow-md transition-transform duration-300 !rounded-none [&_img]:size-full',
     className,
   )
 
