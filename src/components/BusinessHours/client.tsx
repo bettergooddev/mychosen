@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/utilities/ui'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
 
 const weekdays = [
   'monday',
@@ -55,7 +56,15 @@ export function BusinessHoursClient({
   })
 
   // Use the matching brand's ID, or fall back to the first brand
-  const activeTabValue = matchingBrand?.brand.id || hours[0]?.brand.id || ''
+  const defaultTabValue = matchingBrand?.brand.id || hours[0]?.brand.id || ''
+
+  // Add state to manage the active tab
+  const [activeTab, setActiveTab] = useState(defaultTabValue)
+
+  // Update active tab when pathname changes
+  useEffect(() => {
+    setActiveTab(defaultTabValue)
+  }, [defaultTabValue])
 
   return (
     <Card
@@ -66,7 +75,13 @@ export function BusinessHoursClient({
       data-theme="sugar-shack"
     >
       <CardContent className="p-0">
-        <Tabs key={pathname} value={activeTabValue} className="w-full" data-theme="pizza">
+        <Tabs
+          key={pathname}
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="w-full"
+          data-theme="pizza"
+        >
           <TabsList className="grid w-full grid-cols-3 rounded-none h-auto p-0.5 relative bg-transparent">
             {hours.map((business) => (
               <TabsTrigger
