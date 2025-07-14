@@ -24,7 +24,12 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
   const attachToFooter = Boolean(attachToFooterProp)
 
   return (
-    <div className={cn('relative [--card-height:22rem]', attachToFooter ? '-mb-48' : '')}>
+    <div
+      className={cn(
+        'relative [--card-height:22rem]',
+        attachToFooter ? '-mb-[6rem] md:-mb-48 ' : '',
+      )}
+    >
       <div className="container">
         <Heading heading={heading} subheading={subheading} />
       </div>
