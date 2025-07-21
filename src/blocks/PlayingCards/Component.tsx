@@ -43,6 +43,7 @@ export const PlayingCardsBlock: React.FC<PlayingCardsBlockProps> = async (props)
           {/* Desktop */}
           <BounceCards
             className="h-[calc(var(--card-height)+9rem)] hidden md:flex"
+            cardClassName="rounded-xl"
             invertStackingOrder={true}
             elements={cards?.map((card) => (
               <PlayingCard key={card.id} card={card} className="!h-[var(--card-height)]" />

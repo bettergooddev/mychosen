@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { useIntersectionObserver } from '@uidotdev/usehooks'
+import { cn } from '@/utilities/ui'
 
 interface BounceCardsProps {
   className?: string
@@ -16,6 +17,7 @@ interface BounceCardsProps {
   transformStyles?: string[]
   enableHover?: boolean
   invertStackingOrder?: boolean
+  cardClassName?: string
 }
 
 export default function BounceCards({
@@ -36,6 +38,7 @@ export default function BounceCards({
   ],
   enableHover = true,
   invertStackingOrder = false,
+  cardClassName = '',
 }: BounceCardsProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
@@ -164,7 +167,7 @@ export default function BounceCards({
       {elements.map((element, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} absolute overflow-hidden`}
+          className={cn(`card card-${idx} absolute overflow-hidden`, cardClassName)}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none',

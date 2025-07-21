@@ -75,14 +75,13 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Brands, Menus],
+  collections: [Pages, Posts, Media, Categories, Users, Brands, Menus, Background],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [
     PageConfig,
     Navigation,
     Footer,
     CompanyDetails,
-    Background,
     Cards,
     Hours,
     Testimonials,

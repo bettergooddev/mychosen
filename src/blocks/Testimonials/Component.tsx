@@ -50,7 +50,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: TestimonialType;
     >
       <Media
         resource={testimonial.image}
-        className="size-full min-h-[20rem]"
+        className="size-full min-h-[20rem] h-[20rem]"
         imgClassName="size-full object-cover"
       />
 

@@ -37,6 +37,7 @@ const Card: Field[] = [
       hidden: true,
     },
   },
+  // When we had polka dots the values were 17, and 0.035.
   {
     name: 'patternSize',
     type: 'number',

@@ -42,8 +42,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="relative">
         <Providers>
-          <Background />
-
           {/* <AdminBar
             adminBarProps={{
               preview: isEnabled,
