@@ -6,7 +6,6 @@ import type {
   Page as PageType,
 } from '@/payload-types'
 import { getClientSideURL } from '@/utilities/getURL'
-import { headers } from 'next/headers'
 
 export async function Background({ background }: { background?: PageType['background'] }) {
   // @ts-ignore, it really didn't like being told that they will always be images, and they will always have an id.
