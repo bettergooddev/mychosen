@@ -141,6 +141,16 @@ export const Pages: CollectionConfig<'pages'> = {
       ],
     },
     {
+      name: 'background',
+      type: 'relationship',
+      relationTo: 'background',
+      defaultValue: '687e7fe1995972227120c63d',
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'publishedAt',
       type: 'date',
       admin: {

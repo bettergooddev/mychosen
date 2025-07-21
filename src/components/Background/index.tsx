@@ -1,13 +1,16 @@
 import React from 'react'
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import type { Background as BackgroundType, Media as MediaType } from '@/payload-types'
+import type {
+  Background as BackgroundType,
+  Media as MediaType,
+  Page as PageType,
+} from '@/payload-types'
 import { getClientSideURL } from '@/utilities/getURL'
+import { headers } from 'next/headers'
 
-export async function Background() {
-  const backgroundData: BackgroundType = await getCachedGlobal('background', 1)()
-
+export async function Background({ background }: { background?: PageType['background'] }) {
   // @ts-ignore, it really didn't like being told that they will always be images, and they will always have an id.
-  const { layers }: { layers: { media: MediaType; id: string }[] } = backgroundData
+  const { layers }: { layers: { media: MediaType; id: string }[] } = background
 
   const [polka, blanket, ...remainingImages] = layers
   if (!polka || !blanket) return null

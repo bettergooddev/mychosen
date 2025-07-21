@@ -1,16 +1,23 @@
 import type { CollectionConfig, GlobalConfig, Field } from 'payload'
 import { link } from '@/fields/link'
 
-export const Background: GlobalConfig = {
+export const Background: CollectionConfig = {
   slug: 'background',
   admin: {
-    hidden: true,
+    useAsTitle: 'name',
+    // hidden: true,
   },
-  label: {
+
+  labels: {
     singular: 'Background',
     plural: 'Backgrounds',
   },
   fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+    },
     {
       name: 'layers',
       type: 'array',
