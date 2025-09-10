@@ -1,5 +1,6 @@
 import type { CollectionConfig, GlobalConfig, Field } from 'payload'
 import { link } from '@/fields/link'
+import { revalidateHours } from './hooks/revalidateHours'
 
 const Day: Field[] = [
   {
@@ -72,6 +73,9 @@ export const Hours: GlobalConfig = {
   label: {
     singular: 'Hours',
     plural: 'Hours',
+  },
+  hooks: {
+    afterChange: [revalidateHours],
   },
   fields: [
     {
