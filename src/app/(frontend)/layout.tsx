@@ -17,6 +17,7 @@ import { laquile, laquileRounded, laquileRough, laquileStamp, martel, fiyona } f
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import Script from 'next/script'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -42,6 +43,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="relative">
         <Providers>
+          <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+            strategy="beforeInteractive"
+          />
+
           {/* <AdminBar
             adminBarProps={{
               preview: isEnabled,

@@ -10,6 +10,9 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import Link from 'next/link'
+import { formVerificationAction } from '@/actions/form-verification'
+import { getCaptchaToken } from '@/components/Frame/utils/captcha'
 
 export type FormBlockType = {
   blockName?: string
@@ -60,50 +63,62 @@ export const FormBlock: React.FC<
         // delay loading indicator by 1s
         loadingTimerID = setTimeout(() => {
           setIsLoading(true)
-        }, 1000)
+        }, 0)
 
-        try {
-          const req = await fetch(`${getClientSideURL()}/api/form-submissions`, {
-            body: JSON.stringify({
-              form: formID,
-              submissionData: dataToSend,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
-          })
+        const token = await getCaptchaToken()
+        const captchaResponse = await formVerificationAction(token)
 
-          const res = await req.json()
-
-          clearTimeout(loadingTimerID)
-
-          if (req.status >= 400) {
-            setIsLoading(false)
-
-            setError({
-              message: res.errors?.[0]?.message || 'Internal Server Error',
-              status: res.status,
+        if (captchaResponse.success) {
+          try {
+            const req = await fetch(`${getClientSideURL()}/api/form-submissions`, {
+              body: JSON.stringify({
+                form: formID,
+                submissionData: dataToSend,
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              method: 'POST',
             })
 
-            return
+            const res = await req.json()
+
+            clearTimeout(loadingTimerID)
+
+            if (req.status >= 400) {
+              setIsLoading(false)
+
+              setError({
+                message: res.errors?.[0]?.message || 'Internal Server Error',
+                status: res.status,
+              })
+
+              return
+            }
+
+            setIsLoading(false)
+            setHasSubmitted(true)
+
+            if (confirmationType === 'redirect' && redirect) {
+              const { url } = redirect
+
+              const redirectUrl = url
+
+              if (redirectUrl) router.push(redirectUrl)
+            }
+          } catch (err) {
+            console.warn(err)
+            clearTimeout(loadingTimerID)
+            setIsLoading(false)
+            setError({
+              message: 'Something went wrong.',
+            })
           }
-
-          setIsLoading(false)
-          setHasSubmitted(true)
-
-          if (confirmationType === 'redirect' && redirect) {
-            const { url } = redirect
-
-            const redirectUrl = url
-
-            if (redirectUrl) router.push(redirectUrl)
-          }
-        } catch (err) {
-          console.warn(err)
+        } else {
+          clearTimeout(loadingTimerID)
           setIsLoading(false)
           setError({
-            message: 'Something went wrong.',
+            message: 'Captcha Failed',
           })
         }
       }
@@ -125,8 +140,6 @@ export const FormBlock: React.FC<
             data={confirmationMessage}
           />
         )}
-        {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-        {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
         {!hasSubmitted && (
           <form id={formID} onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4 last:mb-0">
@@ -153,9 +166,43 @@ export const FormBlock: React.FC<
                 })}
             </div>
 
-            <Button className="theme-pizza mt-4" form={formID} type="submit" variant="default">
-              {submitButtonLabel}
+            <p className="mt-7 mb-1 [&_*]:!type-caption !type-caption [&_*]:!font-normal !font-normal text-muted-foreground text-left opacity-85">
+              This site is protected by reCAPTCHA and the Google{' '}
+              <Link
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground"
+              >
+                Privacy Policy
+              </Link>{' '}
+              and{' '}
+              <Link
+                href="https://policies.google.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground"
+              >
+                Terms of Service
+              </Link>{' '}
+              apply.
+            </p>
+
+            <Button
+              className="theme-pizza mt-4"
+              form={formID}
+              type="submit"
+              variant="default"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Loading...' : submitButtonLabel}
             </Button>
+            {error && (
+              <div className="theme-pizza type-caption text-primary mt-4">
+                Error: {error.status && `${error.status}: `}
+                {error.message || ''}
+              </div>
+            )}
           </form>
         )}
       </FormProvider>
