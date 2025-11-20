@@ -75,8 +75,6 @@ export default async function Page({ params: paramsPromise }: Args) {
     background = backgroundData.docs?.[0] as BackgroundType
   }
 
-  console.log(background)
-
   return (
     <>
       <Background background={background} />
